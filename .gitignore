@@ -1,0 +1,36 @@
+# Ignore massive raw global CSVs (>3 GB total, individual files up to 149 MB)
+# Whitelist only AttributesReadme.txt and anchor case-study countries (Sri Lanka & Argentina)
+# across any year subfolder (2000-2026)
+
+modis/*
+!modis/*/
+modis/*/*
+!modis/*/AttributesReadme.txt
+!modis/*/*_Sri_Lanka.csv
+!modis/*/*_Argentina.csv
+
+viirs-snpp/*
+!viirs-snpp/*/
+viirs-snpp/*/*
+!viirs-snpp/*/AttributesReadme.txt
+!viirs-snpp/*/*_Sri_Lanka.csv
+!viirs-snpp/*/*_Argentina.csv
+
+viirs-jpss1/*
+!viirs-jpss1/*/
+viirs-jpss1/*/*
+!viirs-jpss1/*/AttributesReadme.txt
+!viirs-jpss1/*/*_Sri_Lanka.csv
+!viirs-jpss1/*/*_Argentina.csv
+
+# Python / Node / Environment / Archives
+node_modules/
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+.DS_Store
+Thumbs.db
+*.zip
+*.tar.gz
