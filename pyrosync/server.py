@@ -25,6 +25,12 @@ def handler_class(store):
             try:
                 if path == '/api/mirofish':
                     return self.reply(200,doctor(store.root, store.client))
+                if path == '/api/research':
+                    results={}
+                    for name in ('forecast_v2','sensor_calibration_v1','policy_study'):
+                        artifact=store.root/'processed_data/evaluations'/f'{name}.json'
+                        results[name]=json.loads(artifact.read_text()) if artifact.exists() else {'status':'not_built'}
+                    return self.reply(200,{'schema_version':1,'results':results,'purpose':'optional research view; not operational alerts'})
                 match = re.fullmatch(r'/api/scenarios/([0-9a-f]{20})(/report)?',path)
                 if match:
                     run_id, report = match.groups()

@@ -1,0 +1,24 @@
+{
+  "id": "forecast-v2-2026-11-15",
+  "status": "frozen_before_historical_download_and_scoring",
+  "target": "daily quality-filtered vegetation H3-8 observed active cells; not latent fire incidence",
+  "countries": ["Sri_Lanka", "Argentina"],
+  "input_years": [2020, 2021, 2022, 2023, 2024],
+  "excluded_evaluation_years": [2025],
+  "models": ["last_week", "trailing_28", "weekday_8w", "ridge_ar", "ewma_14"],
+  "outer_folds": [
+    {"selection_years": [2020, 2021], "calibration_year": 2022, "test_year": 2023},
+    {"selection_years": [2020, 2021, 2022], "calibration_year": 2023, "test_year": 2024}
+  ],
+  "horizon_days": 7,
+  "origin_step_days": 7,
+  "initial_history_days": 84,
+  "selection_metric": "MAE",
+  "interval_target": 0.8,
+  "promotion": {"minimum_relative_MAE_skill": 0.05, "paired_weekly_bootstrap_upper_bound_below_zero": true},
+  "calibration_candidates": ["identity", "monthly_ratio", "monthly_quantile_mapping"],
+  "calibration_target": "VIIRS-only union observed H3-8 daily cells; not ground truth",
+  "foundation_model": "deferred: no model weights, pretraining-cutoff audit or compute budget approved for this experiment",
+  "weather": "excluded: no archived issue-time weather forecasts acquired",
+  "unknown_coverage": "retain observed detection counts with explicit unknown coverage; abstain from fire-occurrence and detection-recall claims"
+}

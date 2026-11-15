@@ -2,7 +2,7 @@
 
 An instrument-aware fire observation lab for the NASA Space Apps harmonization challenge. Compare MODIS and VIIRS observations, inspect source evidence, stress-test sensor availability, and evaluate seven-day forecasts against baselines.
 
-**Current scope:** Sri Lanka and Argentina, 2025 archive. This is a runnable research prototype. Active cell-days are not distinct fires or burned area; the archive is not a live warning feed. Historical sensor calibration and climate anomalies are not implemented.
+**Dashboard scope:** Sri Lanka and Argentina, 2025 archive. The backend also acquires 2020–2024 archives and evaluates frozen historical forecast and sensor-comparison experiments. This is a research prototype: active cell-days are not distinct fires or burned area, and the archive is not a live warning feed. Climate anomalies and operational historical harmonization are not validated.
 
 ## Run locally
 
@@ -88,9 +88,13 @@ make mirofish-start
 
 In another terminal, `make serve`, then use **MiroFish Tabletop** in the dashboard. Prepare locally, check connection, and start the workflow. Runs and reports persist under ignored `processed_data/scenarios/`. The pilot defaults to 4 rounds, supports up to 12, and checks that 1–8 personas were prepared before starting the simulation. Extraction and report generation also incur provider usage; a round cap is not a monetary budget.
 
-`make mirofish-status` checks setup and connection without exposing keys. For CLI preparation and one-step workflow advancement, see [MiroFish integration guide](docs/MIROFISH_INTEGRATION.md). Cloud execution has not been validated here because no LLM or Zep key is configured; contract tests use a local HTTP stub, and upstream runtime imports/health are checked separately.
+`make mirofish-status` checks setup and connection without exposing keys. For CLI preparation and one-step workflow advancement, see [MiroFish integration guide](docs/MIROFISH_INTEGRATION.md). Local Zep authentication and a real MiroFish JSON call through Vertex have passed. A complete cloud simulation/report has not yet been validated; lifecycle tests use a local HTTP stub.
+
+Vertex AI is also supported through `make vertex-start`, a local relay that refreshes Google Application Default Credentials for MiroFish and its simulation subprocesses. See the Vertex section in the integration guide. A Google OAuth web-client file alone is not an authenticated Vertex credential. Optional dependencies: `make vertex-setup`.
 
 ## Design and evidence
+
+The work for KusalPabasara's issues #2/#3/#4/#6 is documented in [Backend research and reproduction](docs/BACKEND_RESEARCH.md). Run `make history-acquire`, `make history-build`, then `make research` for the historical experiments. Full raw/history/prediction data stay out of Git; compact manifests and measured summaries are tracked. `GET /api/research` exposes the summaries for the optional research UI. Real cloud work is isolated in the manually dispatched pilot workflow; ordinary CI stays credential-free.
 
 - [Architecture review and technology decisions](docs/ARCHITECTURE_REVIEW.md)
 - [Evaluation protocol, forecasting and proposed UI A/B study](docs/EVALUATION_PROTOCOL.md)

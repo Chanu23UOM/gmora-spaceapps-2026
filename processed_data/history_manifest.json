@@ -1,0 +1,670 @@
+{
+  "catalog_sha256": "a85c319c545f0004ffaa659e5063ed0547cc59c409e16d2a54fdcf37e7a33f8c",
+  "catalog_url": "https://firms.modaps.eosdis.nasa.gov/data/country/yearly_summary_files.txt",
+  "coverage_note": "Positive detection archives do not contain non-fire, cloud or observation-opportunity masks.",
+  "coverage_reference": "https://firms.modaps.eosdis.nasa.gov/api/data_availability/",
+  "fetched_at": "2026-11-15T07:09:05.655489+00:00",
+  "files": [
+    {
+      "bytes": 56364,
+      "catalog_updated": "2023-12-14 11:15:07",
+      "country": "Sri_Lanka",
+      "date_range": [
+        "2020-01-16",
+        "2020-12-26"
+      ],
+      "fetched_at": "2026-11-15T07:09:05.655489+00:00",
+      "file_status": "present",
+      "observation_coverage": "unknown",
+      "path": "modis/2020/modis_2020_Sri_Lanka.csv",
+      "product_versions": [
+        "6.03"
+      ],
+      "rows": 736,
+      "sensor_availability": "archive_file_present",
+      "sha256": "dfe4c1f20cb16fef7de032e0087bd644d30cdc836490efd0bdb9f7282cb5e986",
+      "source": "modis",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/modis/2020/modis_2020_Sri_Lanka.csv",
+      "year": 2020
+    },
+    {
+      "bytes": 597211,
+      "catalog_updated": "2025-06-19 15:28:41",
+      "country": "Sri_Lanka",
+      "date_range": [
+        "2020-01-03",
+        "2020-12-30"
+      ],
+      "fetched_at": "2026-11-15T07:09:05.655489+00:00",
+      "file_status": "present",
+      "observation_coverage": "unknown",
+      "path": "viirs-snpp/2020/viirs-snpp_2020_Sri_Lanka.csv",
+      "product_versions": [
+        "2"
+      ],
+      "rows": 7729,
+      "sensor_availability": "archive_file_present",
+      "sha256": "5820c902641a78ce6fdf7f7cdc3de4cbaa407c8d392c27ec78066cc1761c44c9",
+      "source": "viirs-snpp",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp/2020/viirs-snpp_2020_Sri_Lanka.csv",
+      "year": 2020
+    },
+    {
+      "bytes": 636362,
+      "catalog_updated": "2025-06-20 14:03:37",
+      "country": "Sri_Lanka",
+      "date_range": [
+        "2020-01-01",
+        "2020-12-29"
+      ],
+      "fetched_at": "2026-11-15T07:09:05.655489+00:00",
+      "file_status": "present",
+      "observation_coverage": "unknown",
+      "path": "viirs-jpss1/2020/viirs-jpss1_2020_Sri_Lanka.csv",
+      "product_versions": [
+        "2"
+      ],
+      "rows": 8026,
+      "sensor_availability": "archive_file_present",
+      "sha256": "8abb13f8e1483f3b083d36892ceb1fba3b3be1d01ef6bac738cc76cb6165aa98",
+      "source": "viirs-jpss1",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-jpss1/2020/viirs-jpss1_2020_Sri_Lanka.csv",
+      "year": 2020
+    },
+    {
+      "bytes": 9972297,
+      "catalog_updated": "2023-12-14 11:15:07",
+      "country": "Argentina",
+      "date_range": [
+        "2020-01-01",
+        "2020-12-31"
+      ],
+      "fetched_at": "2026-11-15T07:09:05.655489+00:00",
+      "file_status": "present",
+      "observation_coverage": "unknown",
+      "path": "modis/2020/modis_2020_Argentina.csv",
+      "product_versions": [
+        "6.03"
+      ],
+      "rows": 124094,
+      "sensor_availability": "archive_file_present",
+      "sha256": "59d485a2c6a4acc088d90c481d71d34901d1e2b3a5a16d57689865c76aa3a1cf",
+      "source": "modis",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/modis/2020/modis_2020_Argentina.csv",
+      "year": 2020
+    },
+    {
+      "bytes": 35993088,
+      "catalog_updated": "2025-06-19 15:28:30",
+      "country": "Argentina",
+      "date_range": [
+        "2020-01-01",
+        "2020-12-31"
+      ],
+      "fetched_at": "2026-11-15T07:09:05.655489+00:00",
+      "file_status": "present",
+      "observation_coverage": "unknown",
+      "path": "viirs-snpp/2020/viirs-snpp_2020_Argentina.csv",
+      "product_versions": [
+        "2"
+      ],
+      "rows": 448313,
+      "sensor_availability": "archive_file_present",
+      "sha256": "48ca3db0721d41aa6f0457fc649ef5bf69141b13da964dac73ee1b708cf466f4",
+      "source": "viirs-snpp",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp/2020/viirs-snpp_2020_Argentina.csv",
+      "year": 2020
+    },
+    {
+      "bytes": 35781778,
+      "catalog_updated": "2025-06-20 14:03:26",
+      "country": "Argentina",
+      "date_range": [
+        "2020-01-01",
+        "2020-12-31"
+      ],
+      "fetched_at": "2026-11-15T07:09:05.655489+00:00",
+      "file_status": "present",
+      "observation_coverage": "unknown",
+      "path": "viirs-jpss1/2020/viirs-jpss1_2020_Argentina.csv",
+      "product_versions": [
+        "2"
+      ],
+      "rows": 434775,
+      "sensor_availability": "archive_file_present",
+      "sha256": "e7eed9444abba6dfe8aa9452f3e9a56967215014e3235ba53dce896d3ca663cc",
+      "source": "viirs-jpss1",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-jpss1/2020/viirs-jpss1_2020_Argentina.csv",
+      "year": 2020
+    },
+    {
+      "bytes": 44757,
+      "catalog_updated": "2023-12-14 11:15:07",
+      "country": "Sri_Lanka",
+      "date_range": [
+        "2021-01-23",
+        "2021-12-27"
+      ],
+      "fetched_at": "2026-11-15T07:09:05.655489+00:00",
+      "file_status": "present",
+      "observation_coverage": "unknown",
+      "path": "modis/2021/modis_2021_Sri_Lanka.csv",
+      "product_versions": [
+        "6.03"
+      ],
+      "rows": 585,
+      "sensor_availability": "archive_file_present",
+      "sha256": "8e80a639349e7b53244ecc2bd6ba1cc41a5ec83f335693a5dbae53cfc1d187cf",
+      "source": "modis",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/modis/2021/modis_2021_Sri_Lanka.csv",
+      "year": 2021
+    },
+    {
+      "bytes": 305610,
+      "catalog_updated": "2025-06-19 14:57:50",
+      "country": "Sri_Lanka",
+      "date_range": [
+        "2021-01-15",
+        "2021-12-30"
+      ],
+      "fetched_at": "2026-11-15T07:09:05.655489+00:00",
+      "file_status": "present",
+      "observation_coverage": "unknown",
+      "path": "viirs-snpp/2021/viirs-snpp_2021_Sri_Lanka.csv",
+      "product_versions": [
+        "2"
+      ],
+      "rows": 3954,
+      "sensor_availability": "archive_file_present",
+      "sha256": "c6c6819608d7ded1a0f8cf8648821a94ab74ba984a526a6534a33a27097e1f51",
+      "source": "viirs-snpp",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp/2021/viirs-snpp_2021_Sri_Lanka.csv",
+      "year": 2021
+    },
+    {
+      "bytes": 324797,
+      "catalog_updated": "2025-06-20 14:38:23",
+      "country": "Sri_Lanka",
+      "date_range": [
+        "2021-01-02",
+        "2021-12-30"
+      ],
+      "fetched_at": "2026-11-15T07:09:05.655489+00:00",
+      "file_status": "present",
+      "observation_coverage": "unknown",
+      "path": "viirs-jpss1/2021/viirs-jpss1_2021_Sri_Lanka.csv",
+      "product_versions": [
+        "2"
+      ],
+      "rows": 4095,
+      "sensor_availability": "archive_file_present",
+      "sha256": "2ab355013844ddf4ea2526bc53f3f5c05a5066fecc0c1703dceeb74fe38ca9d5",
+      "source": "viirs-jpss1",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-jpss1/2021/viirs-jpss1_2021_Sri_Lanka.csv",
+      "year": 2021
+    },
+    {
+      "bytes": 4566299,
+      "catalog_updated": "2023-12-14 11:15:07",
+      "country": "Argentina",
+      "date_range": [
+        "2021-01-01",
+        "2021-12-31"
+      ],
+      "fetched_at": "2026-11-15T07:09:05.655489+00:00",
+      "file_status": "present",
+      "observation_coverage": "unknown",
+      "path": "modis/2021/modis_2021_Argentina.csv",
+      "product_versions": [
+        "6.03"
+      ],
+      "rows": 56867,
+      "sensor_availability": "archive_file_present",
+      "sha256": "04cc5b10dfacea4775c1b8bc0a9d1fa7721a21a84c3d396dfca0ac0608d1d857",
+      "source": "modis",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/modis/2021/modis_2021_Argentina.csv",
+      "year": 2021
+    },
+    {
+      "bytes": 15895377,
+      "catalog_updated": "2025-06-19 14:57:36",
+      "country": "Argentina",
+      "date_range": [
+        "2021-01-01",
+        "2021-12-31"
+      ],
+      "fetched_at": "2026-11-15T07:09:05.655489+00:00",
+      "file_status": "present",
+      "observation_coverage": "unknown",
+      "path": "viirs-snpp/2021/viirs-snpp_2021_Argentina.csv",
+      "product_versions": [
+        "2"
+      ],
+      "rows": 198060,
+      "sensor_availability": "archive_file_present",
+      "sha256": "915bcb6794ab0c11663d9a3c71f4d9ff53bd5700d00ed4deda05ee101938a37c",
+      "source": "viirs-snpp",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp/2021/viirs-snpp_2021_Argentina.csv",
+      "year": 2021
+    },
+    {
+      "bytes": 16369735,
+      "catalog_updated": "2025-06-20 14:38:12",
+      "country": "Argentina",
+      "date_range": [
+        "2021-01-01",
+        "2021-12-31"
+      ],
+      "fetched_at": "2026-11-15T07:09:05.655489+00:00",
+      "file_status": "present",
+      "observation_coverage": "unknown",
+      "path": "viirs-jpss1/2021/viirs-jpss1_2021_Argentina.csv",
+      "product_versions": [
+        "2"
+      ],
+      "rows": 198976,
+      "sensor_availability": "archive_file_present",
+      "sha256": "8a2960d54581dce5927709c30db248eb31c30e712ec6e961455859336ada800b",
+      "source": "viirs-jpss1",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-jpss1/2021/viirs-jpss1_2021_Argentina.csv",
+      "year": 2021
+    },
+    {
+      "bytes": 45068,
+      "catalog_updated": "2023-12-14 11:15:07",
+      "country": "Sri_Lanka",
+      "date_range": [
+        "2022-01-05",
+        "2022-12-02"
+      ],
+      "fetched_at": "2026-11-15T07:09:05.655489+00:00",
+      "file_status": "present",
+      "observation_coverage": "unknown",
+      "path": "modis/2022/modis_2022_Sri_Lanka.csv",
+      "product_versions": [
+        "6.03"
+      ],
+      "rows": 588,
+      "sensor_availability": "archive_file_present",
+      "sha256": "fa19f8e7e157f6e0ab548b6519e23897ec9d5a88a0cb5cd7e2a0216bcb0d40e7",
+      "source": "modis",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/modis/2022/modis_2022_Sri_Lanka.csv",
+      "year": 2022
+    },
+    {
+      "bytes": 314685,
+      "catalog_updated": "2025-06-19 14:25:59",
+      "country": "Sri_Lanka",
+      "date_range": [
+        "2022-01-02",
+        "2022-12-30"
+      ],
+      "fetched_at": "2026-11-15T07:09:05.655489+00:00",
+      "file_status": "present",
+      "observation_coverage": "unknown",
+      "path": "viirs-snpp/2022/viirs-snpp_2022_Sri_Lanka.csv",
+      "product_versions": [
+        "2"
+      ],
+      "rows": 4069,
+      "sensor_availability": "archive_file_present",
+      "sha256": "4c147867aea08a38f48858ed986039c2a1d02f81f2cca66a339cdd41a2cfba39",
+      "source": "viirs-snpp",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp/2022/viirs-snpp_2022_Sri_Lanka.csv",
+      "year": 2022
+    },
+    {
+      "bytes": 309932,
+      "catalog_updated": "2025-06-20 15:04:10",
+      "country": "Sri_Lanka",
+      "date_range": [
+        "2022-01-05",
+        "2022-12-31"
+      ],
+      "fetched_at": "2026-11-15T07:09:05.655489+00:00",
+      "file_status": "present",
+      "observation_coverage": "unknown",
+      "path": "viirs-jpss1/2022/viirs-jpss1_2022_Sri_Lanka.csv",
+      "product_versions": [
+        "2"
+      ],
+      "rows": 3906,
+      "sensor_availability": "archive_file_present",
+      "sha256": "51c8349363686f8a38e277fd1d82988482d000b647016c12ce676bbc84256e37",
+      "source": "viirs-jpss1",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-jpss1/2022/viirs-jpss1_2022_Sri_Lanka.csv",
+      "year": 2022
+    },
+    {
+      "bytes": 6231134,
+      "catalog_updated": "2023-12-14 11:15:07",
+      "country": "Argentina",
+      "date_range": [
+        "2022-01-01",
+        "2022-12-31"
+      ],
+      "fetched_at": "2026-11-15T07:09:05.655489+00:00",
+      "file_status": "present",
+      "observation_coverage": "unknown",
+      "path": "modis/2022/modis_2022_Argentina.csv",
+      "product_versions": [
+        "6.03"
+      ],
+      "rows": 77521,
+      "sensor_availability": "archive_file_present",
+      "sha256": "6c5ad252fda14943060fd37f04358bd482b6f107940981cdb1d6bd9be63c4627",
+      "source": "modis",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/modis/2022/modis_2022_Argentina.csv",
+      "year": 2022
+    },
+    {
+      "bytes": 25114506,
+      "catalog_updated": "2025-06-19 14:25:50",
+      "country": "Argentina",
+      "date_range": [
+        "2022-01-01",
+        "2022-12-31"
+      ],
+      "fetched_at": "2026-11-15T07:09:05.655489+00:00",
+      "file_status": "present",
+      "observation_coverage": "unknown",
+      "path": "viirs-snpp/2022/viirs-snpp_2022_Argentina.csv",
+      "product_versions": [
+        "2"
+      ],
+      "rows": 312925,
+      "sensor_availability": "archive_file_present",
+      "sha256": "c441a07213b84debd04623dde97cc38ac7ebc7286c864f236a0140a6ede7911c",
+      "source": "viirs-snpp",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp/2022/viirs-snpp_2022_Argentina.csv",
+      "year": 2022
+    },
+    {
+      "bytes": 25714477,
+      "catalog_updated": "2025-06-20 15:04:00",
+      "country": "Argentina",
+      "date_range": [
+        "2022-01-01",
+        "2022-12-31"
+      ],
+      "fetched_at": "2026-11-15T07:09:05.655489+00:00",
+      "file_status": "present",
+      "observation_coverage": "unknown",
+      "path": "viirs-jpss1/2022/viirs-jpss1_2022_Argentina.csv",
+      "product_versions": [
+        "2"
+      ],
+      "rows": 312448,
+      "sensor_availability": "archive_file_present",
+      "sha256": "6bcc3e3be9461ecc92d8a2bb87950d97ef7620e7c2ec68f317692ea1a3d35e98",
+      "source": "viirs-jpss1",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-jpss1/2022/viirs-jpss1_2022_Argentina.csv",
+      "year": 2022
+    },
+    {
+      "bytes": 64703,
+      "catalog_updated": "2024-06-03 14:07:29",
+      "country": "Sri_Lanka",
+      "date_range": [
+        "2023-01-10",
+        "2023-11-08"
+      ],
+      "fetched_at": "2026-11-15T07:09:05.655489+00:00",
+      "file_status": "present",
+      "observation_coverage": "unknown",
+      "path": "modis/2023/modis_2023_Sri_Lanka.csv",
+      "product_versions": [
+        "61.03"
+      ],
+      "rows": 832,
+      "sensor_availability": "archive_file_present",
+      "sha256": "c37392cd996dcd9f38ae1a63ff6f1f24bfe08352833703c824c6706be98a4eae",
+      "source": "modis",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/modis/2023/modis_2023_Sri_Lanka.csv",
+      "year": 2023
+    },
+    {
+      "bytes": 495961,
+      "catalog_updated": "2025-06-19 14:01:46",
+      "country": "Sri_Lanka",
+      "date_range": [
+        "2023-01-01",
+        "2023-12-25"
+      ],
+      "fetched_at": "2026-11-15T07:09:05.655489+00:00",
+      "file_status": "present",
+      "observation_coverage": "unknown",
+      "path": "viirs-snpp/2023/viirs-snpp_2023_Sri_Lanka.csv",
+      "product_versions": [
+        "2"
+      ],
+      "rows": 6413,
+      "sensor_availability": "archive_file_present",
+      "sha256": "407bcd382c0805d19cf5c4d1026d7cf5e31ef67c2084267ed5d1a1cb1b668a8b",
+      "source": "viirs-snpp",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp/2023/viirs-snpp_2023_Sri_Lanka.csv",
+      "year": 2023
+    },
+    {
+      "bytes": 481461,
+      "catalog_updated": "2025-06-20 15:33:46",
+      "country": "Sri_Lanka",
+      "date_range": [
+        "2023-01-01",
+        "2023-12-23"
+      ],
+      "fetched_at": "2026-11-15T07:09:05.655489+00:00",
+      "file_status": "present",
+      "observation_coverage": "unknown",
+      "path": "viirs-jpss1/2023/viirs-jpss1_2023_Sri_Lanka.csv",
+      "product_versions": [
+        "2"
+      ],
+      "rows": 6071,
+      "sensor_availability": "archive_file_present",
+      "sha256": "5bda43f3efd0ee617c76c45340127ce4457d10f859a52d884e449ee4104a0fac",
+      "source": "viirs-jpss1",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-jpss1/2023/viirs-jpss1_2023_Sri_Lanka.csv",
+      "year": 2023
+    },
+    {
+      "bytes": 3898226,
+      "catalog_updated": "2024-06-03 14:07:26",
+      "country": "Argentina",
+      "date_range": [
+        "2023-01-01",
+        "2023-12-31"
+      ],
+      "fetched_at": "2026-11-15T07:09:05.655489+00:00",
+      "file_status": "present",
+      "observation_coverage": "unknown",
+      "path": "modis/2023/modis_2023_Argentina.csv",
+      "product_versions": [
+        "61.03"
+      ],
+      "rows": 47910,
+      "sensor_availability": "archive_file_present",
+      "sha256": "45152ac1c0569bfd4e0d77127b4a489ea96c1f49a2137536992118dc4440f47f",
+      "source": "modis",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/modis/2023/modis_2023_Argentina.csv",
+      "year": 2023
+    },
+    {
+      "bytes": 13782846,
+      "catalog_updated": "2025-06-19 14:01:34",
+      "country": "Argentina",
+      "date_range": [
+        "2023-01-01",
+        "2023-12-31"
+      ],
+      "fetched_at": "2026-11-15T07:09:05.655489+00:00",
+      "file_status": "present",
+      "observation_coverage": "unknown",
+      "path": "viirs-snpp/2023/viirs-snpp_2023_Argentina.csv",
+      "product_versions": [
+        "2"
+      ],
+      "rows": 171695,
+      "sensor_availability": "archive_file_present",
+      "sha256": "ca895e71b8e5d878e0c971e643dacb8a018893c237d0ff567c41c921081c1eac",
+      "source": "viirs-snpp",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp/2023/viirs-snpp_2023_Argentina.csv",
+      "year": 2023
+    },
+    {
+      "bytes": 13473948,
+      "catalog_updated": "2025-06-20 15:33:34",
+      "country": "Argentina",
+      "date_range": [
+        "2023-01-01",
+        "2023-12-31"
+      ],
+      "fetched_at": "2026-11-15T07:09:05.655489+00:00",
+      "file_status": "present",
+      "observation_coverage": "unknown",
+      "path": "viirs-jpss1/2023/viirs-jpss1_2023_Argentina.csv",
+      "product_versions": [
+        "2"
+      ],
+      "rows": 163741,
+      "sensor_availability": "archive_file_present",
+      "sha256": "4dde502dc54871c40d3517ce59da9aa566b85582348c7d13c1dd91e655f1e84f",
+      "source": "viirs-jpss1",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-jpss1/2023/viirs-jpss1_2023_Argentina.csv",
+      "year": 2023
+    },
+    {
+      "bytes": 42582,
+      "catalog_updated": "2025-05-30 10:28:45",
+      "country": "Sri_Lanka",
+      "date_range": [
+        "2024-01-23",
+        "2024-12-25"
+      ],
+      "fetched_at": "2026-11-15T07:09:05.655489+00:00",
+      "file_status": "present",
+      "observation_coverage": "unknown",
+      "path": "modis/2024/modis_2024_Sri_Lanka.csv",
+      "product_versions": [
+        "61.03"
+      ],
+      "rows": 553,
+      "sensor_availability": "archive_file_present",
+      "sha256": "d25d5a30f2c099087587fae7587744b3c4b0db7c5948eb729b26c6975d92a4c9",
+      "source": "modis",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/modis/2024/modis_2024_Sri_Lanka.csv",
+      "year": 2024
+    },
+    {
+      "bytes": 386150,
+      "catalog_updated": "2025-06-19 13:27:59",
+      "country": "Sri_Lanka",
+      "date_range": [
+        "2024-01-05",
+        "2024-12-26"
+      ],
+      "fetched_at": "2026-11-15T07:09:05.655489+00:00",
+      "file_status": "present",
+      "observation_coverage": "unknown",
+      "path": "viirs-snpp/2024/viirs-snpp_2024_Sri_Lanka.csv",
+      "product_versions": [
+        "2"
+      ],
+      "rows": 4999,
+      "sensor_availability": "archive_file_present",
+      "sha256": "c01db1cebfb8fcc551904c66feeec4a77bd78b629e696e260e3835351d6fc9fd",
+      "source": "viirs-snpp",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp/2024/viirs-snpp_2024_Sri_Lanka.csv",
+      "year": 2024
+    },
+    {
+      "bytes": 460128,
+      "catalog_updated": "2025-06-20 16:07:01",
+      "country": "Sri_Lanka",
+      "date_range": [
+        "2024-01-02",
+        "2024-12-29"
+      ],
+      "fetched_at": "2026-11-15T07:09:05.655489+00:00",
+      "file_status": "present",
+      "observation_coverage": "unknown",
+      "path": "viirs-jpss1/2024/viirs-jpss1_2024_Sri_Lanka.csv",
+      "product_versions": [
+        "2"
+      ],
+      "rows": 5802,
+      "sensor_availability": "archive_file_present",
+      "sha256": "e62b20b06a7c4b06993abfdd821e360741eea2e6baa2674d91cd2e5ccde9f89a",
+      "source": "viirs-jpss1",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-jpss1/2024/viirs-jpss1_2024_Sri_Lanka.csv",
+      "year": 2024
+    },
+    {
+      "bytes": 4043604,
+      "catalog_updated": "2025-05-30 10:28:42",
+      "country": "Argentina",
+      "date_range": [
+        "2024-01-01",
+        "2024-12-31"
+      ],
+      "fetched_at": "2026-11-15T07:09:05.655489+00:00",
+      "file_status": "present",
+      "observation_coverage": "unknown",
+      "path": "modis/2024/modis_2024_Argentina.csv",
+      "product_versions": [
+        "61.03"
+      ],
+      "rows": 49843,
+      "sensor_availability": "archive_file_present",
+      "sha256": "3bdedb8b223b7e3cf472108101ab64e4cefd4a2e41d11d9895d237c1c330c360",
+      "source": "modis",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/modis/2024/modis_2024_Argentina.csv",
+      "year": 2024
+    },
+    {
+      "bytes": 12276220,
+      "catalog_updated": "2025-06-19 13:27:48",
+      "country": "Argentina",
+      "date_range": [
+        "2024-01-01",
+        "2024-12-31"
+      ],
+      "fetched_at": "2026-11-15T07:09:05.655489+00:00",
+      "file_status": "present",
+      "observation_coverage": "unknown",
+      "path": "viirs-snpp/2024/viirs-snpp_2024_Argentina.csv",
+      "product_versions": [
+        "2"
+      ],
+      "rows": 152971,
+      "sensor_availability": "archive_file_present",
+      "sha256": "27d3c8e6d27b448e101b127decd4c721a20f664298a9475d1698104aa3dd8683",
+      "source": "viirs-snpp",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp/2024/viirs-snpp_2024_Argentina.csv",
+      "year": 2024
+    },
+    {
+      "bytes": 12982697,
+      "catalog_updated": "2025-06-20 16:06:49",
+      "country": "Argentina",
+      "date_range": [
+        "2024-01-01",
+        "2024-12-31"
+      ],
+      "fetched_at": "2026-11-15T07:09:05.655489+00:00",
+      "file_status": "present",
+      "observation_coverage": "unknown",
+      "path": "viirs-jpss1/2024/viirs-jpss1_2024_Argentina.csv",
+      "product_versions": [
+        "2"
+      ],
+      "rows": 157781,
+      "sensor_availability": "archive_file_present",
+      "sha256": "f5d22dd92fedb44d7077e1296e8f0d29196a7fdd0ca078c9e1ed27f776fc6a26",
+      "source": "viirs-jpss1",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-jpss1/2024/viirs-jpss1_2024_Argentina.csv",
+      "year": 2024
+    }
+  ],
+  "schema_version": 1
+}

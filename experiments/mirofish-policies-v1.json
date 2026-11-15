@@ -1,0 +1,60 @@
+{
+  "id": "mirofish-policies-v1-2026-11-15",
+  "status": "frozen_before_first_live_scenario",
+  "countries": [
+    "Sri_Lanka",
+    "Argentina"
+  ],
+  "month": "2025-08",
+  "policies": [
+    "independent",
+    "coordinated"
+  ],
+  "replicates": [
+    201,
+    202
+  ],
+  "max_rounds": 1,
+  "reviewers": 4,
+  "reviews_per_day": 20,
+  "maximum_total_scenarios": 8,
+  "maximum_concurrency": 2,
+  "maximum_prepared_personas": 8,
+  "roles": [
+    "district analyst",
+    "field coordinator",
+    "agricultural liaison",
+    "skeptical reviewer"
+  ],
+  "fixed_questions": [
+    "What was observed?",
+    "What does missing coverage prevent us concluding?",
+    "Which communication claims lack evidence?",
+    "What remains unresolved?"
+  ],
+  "evaluation": {
+    "human_blinded_scores_0_to_3": [
+      "unsupported_claims",
+      "uncertainty_omissions",
+      "contradictions",
+      "usefulness"
+    ],
+    "baseline": "deterministic evidence brief",
+    "automated_screening": "does not replace blinded domain review"
+  },
+  "replicate_labels_are_random_seeds": false,
+  "release_status": "synthetic_research_only",
+  "spending": "bounded scenarios/rounds/personas; provider monetary cost reported only if available, never inferred from round count",
+  "amendments": [
+    {
+      "reason": "Two setup runs generated initial posts then waited indefinitely for interview commands, with zero active discussion.",
+      "excluded_setup_runs": [
+        "70c67c0ea16f05711334",
+        "ea31ec5a18829f8eaa2f"
+      ],
+      "change": "Versioned runtime patch: force prepared participants active in each tabletop round, simulated hour 09, no interview wait, unbuffered progress.",
+      "scope": "Applied before any scored active discussion; both policies use the same patched runtime.",
+      "maximum_total_scenarios_including_excluded_setup": 10
+    }
+  ]
+}

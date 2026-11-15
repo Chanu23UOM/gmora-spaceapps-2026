@@ -13,11 +13,11 @@ def occupancy(records, resolution=8, quality=True, excluded=()):
             for r in records if r.kind == 0 and (r.quality or not quality) and r.source not in excluded}
 
 
-def analyze(records, country):
-    first = date(2025, 1, 1)
-    days = [(first+timedelta(days=i)).isoformat() for i in range(365)]
+def analyze(records, country, year=2025, source_manifest=None, include_map=True, diagnostics=True):
+    first = date(year, 1, 1)
+    days = [(first+timedelta(days=i)).isoformat() for i in range((date(year+1,1,1)-first).days)]
     daily = {d: {"date": d, "raw": 0, "vegetation_raw": 0, "filtered_raw": 0,
-                 "industrial_raw": 0, "active_cells": 0, "multi_sensor_cells": 0,
+                 "industrial_raw": 0, "active_cells": 0, "viirs_active_cells":0, "multi_sensor_cells": 0,
                  "by_source": {s: 0 for s in SOURCES},
                  "source_cells": {s: 0 for s in SOURCES}} for d in days}
     cell_sensors, source_sets = defaultdict(set), {s: set() for s in SOURCES}
@@ -37,6 +37,8 @@ def analyze(records, country):
             source_sets[r.source].add((r.day, r.cell))
         if r.kind not in (0, 2) or not r.quality:
             continue
+        if not include_map:
+            continue
         parent = h3.cell_to_parent(r.cell, 7)
         bucket = monthly[(r.day[:7], parent, r.kind)]
         bucket["raw"] += 1
@@ -48,6 +50,7 @@ def analyze(records, country):
     for (day, _), sensors in cell_sensors.items():
         daily[day]["active_cells"] += 1
         daily[day]["multi_sensor_cells"] += len(sensors) > 1
+        daily[day]['viirs_active_cells'] += any(s != 'modis' for s in sensors)
     for source, cells in source_sets.items():
         for day, _ in cells:
             daily[day]["source_cells"][source] += 1
@@ -68,7 +71,7 @@ def analyze(records, country):
     viirs = source_sets["viirs-snpp"] | source_sets["viirs-jpss1"]
     sensitivity = [{"resolution": res, "quality": quality,
                     "active_cell_days": len(occupancy(records, res, quality))}
-                   for res in (7, 8, 9) for quality in (True, False)]
+                   for res in (7, 8, 9) for quality in (True, False)] if diagnostics else []
     summary = {"raw_rows": len(records), "type_counts": dict(sorted(types.items())),
                "filtered_vegetation_rows": quality_rows, "active_cell_days": len(union),
                "multi_sensor_cell_days": sum(len(s) > 1 for s in cell_sensors.values()),
@@ -76,7 +79,24 @@ def analyze(records, country):
                "median_footprint_km2": {s: median(values) if (values := [r.footprint_km2 for r in records if r.source == s]) else None
                                          for s in SOURCES},
                "observation_reduction_fraction": 1-len(union)/quality_rows if quality_rows else 0}
-    return {"country": country, "year": 2025, "summary": summary, "daily": list(daily.values()),
+    source_status = {item['source']:item['file_status'] for item in source_manifest} if source_manifest is not None else {s:'present' for s in SOURCES}
+    complete = all(source_status.get(s) == 'present' for s in SOURCES)
+    for item in daily.values():
+        item['observation_coverage'] = 'unknown'
+        item['complete_source_inputs'] = complete
+        item['observed_active_cells'] = item['active_cells']
+        item['activity_status'] = ('qualifying_detections' if item['active_cells'] else
+                                   'no_recorded_qualifying_detections' if complete else 'unknown_missing_input')
+        if not complete:
+            item['active_cells'] = None
+    historical = source_manifest is not None or year != 2025
+    if not historical:
+        for item in daily.values():
+            for key in ('viirs_active_cells','observation_coverage','complete_source_inputs','observed_active_cells','activity_status'):
+                item.pop(key,None)
+    return {"country": country, "year": year,
+            **({'source_status':source_status,'observation_coverage':'unknown'} if historical else {}),
+            "summary": summary, "daily": list(daily.values()),
             "map_cells": map_cells, "sensor_dropout": dropouts, "sensitivity": sensitivity,
             "limitations": ["Active cell-days are observations, not distinct fires or burned area.",
                             "No cloud or observation-coverage masks: zero means no qualifying detections in these files.",

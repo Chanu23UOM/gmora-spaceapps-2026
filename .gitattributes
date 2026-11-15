@@ -1,0 +1,2 @@
+# Versioned upstream patches must preserve literal context whitespace.
+integrations/*.patch -whitespace

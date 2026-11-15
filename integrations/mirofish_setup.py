@@ -23,6 +23,12 @@ if current != pin['revision']:
 elif not (checkout/'backend/run.py').exists():
     subprocess.run(['git','-C',str(checkout),'checkout','--detach',pin['revision']],check=True)
 python = checkout/'backend/.venv/bin/python'
+patch = ROOT/'integrations/mirofish-tabletop.patch'
+if patch.exists():
+    already = subprocess.run(['git','-C',str(checkout),'apply','--reverse','--check',str(patch)],capture_output=True).returncode == 0
+    if not already:
+        subprocess.run(['git','-C',str(checkout),'apply','--check',str(patch)],check=True)
+        subprocess.run(['git','-C',str(checkout),'apply',str(patch)],check=True)
 if not python.exists():
     subprocess.run(['uv','venv','--python','3.12',str(python.parent.parent)],check=True)
 # Upstream's general lock pulls CUDA libraries on Linux. This application uses
