@@ -69,9 +69,27 @@
         "http_status": 200,
         "anonymous": true,
         "content_matches_local": true
+      },
+      {
+        "url": "https://raw.githubusercontent.com/Chanu23UOM/gmora-spaceapps-2026/submission-colombo-2026/submission/colombo-2026/HOW_TO_SUBMIT.md",
+        "http_status": 200,
+        "anonymous": true,
+        "content_matches_local": true
+      },
+      {
+        "url": "https://raw.githubusercontent.com/Chanu23UOM/gmora-spaceapps-2026/submission-colombo-2026/submission/colombo-2026/PROJECT_SUBMISSION.md",
+        "http_status": 200,
+        "anonymous": true,
+        "content_matches_local": true
+      },
+      {
+        "url": "https://raw.githubusercontent.com/Chanu23UOM/gmora-spaceapps-2026/submission-colombo-2026/submission/colombo-2026/HACKATHON_EVIDENCE.md",
+        "http_status": 200,
+        "anonymous": true,
+        "content_matches_local": true
       }
     ],
-    "note": "Video/PDF checks remain valid; updated text and guide must be checked after publishing this follow-up."
+    "note": "Updated guide, project text, and hackathon evidence checked anonymously after publication; demo/PDF hashes unchanged."
   },
   "files": {
     "PyroSync_Demo_Voice.mp3": "6d360d5e0e4251313e07d315d75769c5184e7b4961b68aae850a25eb3373c628",
