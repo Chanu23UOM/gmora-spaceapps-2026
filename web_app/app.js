@@ -6,6 +6,12 @@ const months = Array.from({ length: 12 }, (_, i) =>
     timeZone: "UTC",
   }),
 );
+const fullMonths = Array.from({ length: 12 }, (_, i) =>
+  new Date(Date.UTC(2025, i, 1)).toLocaleString("en", {
+    month: "long",
+    timeZone: "UTC",
+  }),
+);
 const labels = {
   last_week: "Last week",
   trailing_28: "28-day mean",
@@ -21,9 +27,12 @@ const fmt = (x) => Number(x).toLocaleString("en", { maximumFractionDigits: 0 });
 const decimal = (x) =>
   Number(x).toLocaleString("en", { maximumFractionDigits: 2 });
 const pct = (x) => (x == null ? "—" : `${(100 * x).toFixed(1)}%`);
+
 const state = {
+  view: "overview",
   country: "Sri_Lanka",
   month: "2025-08",
+  selectedDay: null,
   mode: "active_cells",
   data: null,
   packet: null,
@@ -31,17 +40,20 @@ const state = {
   boundaries: null,
   manifest: null,
 };
-let countryRequest = 0,
-  mapRequest = 0;
+
+let countryRequest = 0;
+let mapRequest = 0;
 const cache = new Map();
+
 function svgNode(tag, attrs = {}, text = "") {
   const n = document.createElementNS(ns, tag);
   for (const [k, v] of Object.entries(attrs)) n.setAttribute(k, v);
   if (text) n.textContent = text;
   return n;
 }
+
 async function json(path) {
-  if (!cache.has(path))
+  if (!cache.has(path)) {
     cache.set(
       path,
       fetch(path)
@@ -54,8 +66,10 @@ async function json(path) {
           throw e;
         }),
     );
+  }
   return cache.get(path);
 }
+
 function download(name, content, type = "application/json") {
   const a = document.createElement("a");
   const url = URL.createObjectURL(new Blob([content], { type }));
@@ -64,66 +78,248 @@ function download(name, content, type = "application/json") {
   a.click();
   setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
+
+function unitLabel(mode = state.mode) {
+  return mode === "raw" ? "raw detections" : "active cell-days";
+}
+
+function monthName(monthKey, full = false) {
+  const [year, m] = monthKey.split("-");
+  const idx = Number(m) - 1;
+  const list = full ? fullMonths : months;
+  return `${list[idx] ?? monthKey} ${year}`;
+}
+
 function rangeDays() {
   return state.data.daily.filter((d) => d.date.startsWith(state.month));
 }
+
 function color(v, max) {
   const t = max ? Math.log1p(v) / Math.log1p(max) : 0;
-  const a = [38, 48, 40],
-    b = [232, 244, 160];
+  const a = [38, 48, 40];
+  const b = [232, 244, 160];
   return `rgb(${a.map((x, i) => Math.round(x + (b[i] - x) * t)).join(",")})`;
+}
+
+function resetMetricPlaceholders() {
+  for (const id of [
+    "stat-cells",
+    "stat-raw",
+    "stat-peak",
+    "stat-multi",
+    "stat-industrial",
+  ]) {
+    $(id).textContent = "—";
+  }
+}
+
+function setLoadingBanner(message, isError = false) {
+  const banner = $("loading");
+  banner.hidden = false;
+  banner.classList.toggle("error", isError);
+  banner.setAttribute("role", isError ? "alert" : "status");
+  $("loading-text").textContent = message;
+  $("retry-load").hidden = !isError;
+}
+
+function switchView(view, moveFocus = false) {
+  const views = ["overview", "explore", "research"];
+  if (!views.includes(view)) return;
+  state.view = view;
+  for (const name of views) {
+    const active = name === view;
+    const tab = $(`tab-${name}`);
+    const panel = $(`view-${name}`);
+    tab.setAttribute("aria-selected", String(active));
+    tab.tabIndex = active ? 0 : -1;
+    panel.hidden = !active;
+  }
+  if (moveFocus) {
+    $(`view-${view}`).focus({ preventScroll: false });
+  }
+}
+
+function updateContext() {
+  const year = state.data?.year ?? state.manifest?.dataset_year ?? 2025;
+  const countryLabel = state.country.replaceAll("_", " ");
+  const shortMonth = monthName(state.month, false);
+  const upperMonth = shortMonth.toUpperCase();
+  $("ctx-country").textContent = countryLabel;
+  $("ctx-period").textContent = `Jan–Dec ${year} (Selected: ${shortMonth})`;
+  $("rail-year").textContent = String(year);
+  $("calendar-year-chip").textContent = String(year);
+  $("explore-month-chip").textContent = upperMonth;
+  $("explore-heading").textContent =
+    `Spatial footprint & sensor breakdown · ${shortMonth}`;
+  $("stat-cells-label").textContent = `ACTIVE CELL-DAYS · ${upperMonth}`;
+  $("stat-raw-label").textContent = `RAW DETECTIONS · ${upperMonth}`;
+  $("stat-peak-label").textContent = `PEAK RECORDED MONTH · ${year}`;
+  $("overview-next").textContent = `Explore ${shortMonth} map & sensors →`;
+}
+
+function updateDayReadout(dayRecord = null) {
+  const readout = $("day-readout");
+  if (dayRecord) {
+    readout.textContent = `${dayRecord.date}: ${fmt(dayRecord.active_cells)} active cell-days · ${fmt(dayRecord.raw)} raw detections`;
+    return;
+  }
+  const days = rangeDays();
+  const totalCells = days.reduce((sum, d) => sum + d.active_cells, 0);
+  const totalRaw = days.reduce((sum, d) => sum + d.raw, 0);
+  readout.textContent = `${monthName(state.month, true)}: ${fmt(totalCells)} active cell-days · ${fmt(totalRaw)} raw detections. Select any day tile for daily totals.`;
 }
 
 function renderCalendar() {
   const calendar = $("calendar");
   calendar.replaceChildren();
-  const max = Math.max(...state.data.daily.map((d) => d[state.mode]));
-  for (let m = 0; m < 12; m++) {
-    const key = `2025-${String(m + 1).padStart(2, "0")}`;
-    const label = document.createElement("span");
-    label.className = "month-label";
-    label.textContent = months[m];
-    calendar.append(label);
+  const year = state.data.year || 2025;
+  const maxDay = Math.max(0, ...state.data.daily.map((d) => d[state.mode]));
+  const monthRows = Array.from({ length: 12 }, (_, m) => {
+    const key = `${year}-${String(m + 1).padStart(2, "0")}`;
     const days = state.data.daily.filter((d) => d.date.startsWith(key));
-    days.forEach((d) => {
-      const b = document.createElement("button");
-      b.style.background = color(d[state.mode], max);
-      b.className = key === state.month ? "selected" : "";
-      b.title = `${d.date}: ${fmt(d[state.mode])} ${state.mode === "raw" ? "raw observations" : "active cell-days"}`;
-      b.setAttribute("aria-label", b.title);
-      b.onclick = () => {
-        state.month = key;
-        $("month").value = key;
+    const total = days.reduce((sum, d) => sum + d[state.mode], 0);
+    return { m, key, shortLabel: months[m], fullLabel: fullMonths[m], days, total };
+  });
+  const maxMonthTotal = Math.max(0, ...monthRows.map((r) => r.total));
+  const peakMonth = maxMonthTotal > 0 ? monthRows.find((r) => r.total === maxMonthTotal) : null;
+  const peakDayRecord =
+    maxDay > 0
+      ? state.data.daily.find((d) => d[state.mode] === maxDay)
+      : null;
+
+  const focusDate =
+    state.selectedDay && state.selectedDay.startsWith(state.month)
+      ? state.selectedDay
+      : `${state.month}-01`;
+
+  const dayButtons = [];
+
+  for (const rowData of monthRows) {
+    const isSelected = rowData.key === state.month;
+    const isPeak = peakMonth && rowData.key === peakMonth.key;
+    const row = document.createElement("div");
+    row.className = "calendar-row";
+    if (isSelected) row.classList.add("selected");
+    if (isPeak) row.classList.add("is-peak");
+
+    const monthBtn = document.createElement("button");
+    monthBtn.type = "button";
+    monthBtn.className = "month-btn";
+    monthBtn.textContent = rowData.shortLabel;
+    monthBtn.setAttribute("aria-pressed", String(isSelected));
+    monthBtn.setAttribute(
+      "aria-label",
+      `${rowData.fullLabel} ${year}: ${fmt(rowData.total)} ${unitLabel()}${isPeak ? ", peak month" : ""}`,
+    );
+    monthBtn.onclick = () => {
+      state.month = rowData.key;
+      state.selectedDay = null;
+      $("month").value = rowData.key;
+      renderMonth();
+    };
+    row.append(monthBtn);
+
+    const daysWrap = document.createElement("div");
+    daysWrap.className = "month-days";
+
+    rowData.days.forEach((d) => {
+      const tile = document.createElement("button");
+      tile.type = "button";
+      tile.className = "day-tile";
+      if (peakDayRecord && d.date === peakDayRecord.date) {
+        tile.classList.add("peak-day");
+      }
+      if (state.selectedDay === d.date) {
+        tile.classList.add("selected-day");
+      }
+      tile.dataset.date = d.date;
+      tile.style.background = color(d[state.mode], maxDay);
+      const label = `${d.date}: ${fmt(d[state.mode])} ${unitLabel()}`;
+      tile.title = label;
+      tile.setAttribute("aria-label", label);
+      tile.tabIndex = d.date === focusDate ? 0 : -1;
+      tile.onclick = () => {
+        state.month = rowData.key;
+        state.selectedDay = d.date;
+        $("month").value = rowData.key;
         renderMonth();
       };
-      calendar.append(b);
+      tile.onmouseenter = () => updateDayReadout(d);
+      tile.onfocus = () => updateDayReadout(d);
+      tile.onmouseleave = () => {
+        const selectedRecord = state.selectedDay
+          ? state.data.daily.find((item) => item.date === state.selectedDay)
+          : null;
+        updateDayReadout(selectedRecord || null);
+      };
+      dayButtons.push(tile);
+      daysWrap.append(tile);
     });
-    for (let n = days.length; n < 31; n++) {
+
+    for (let n = rowData.days.length; n < 31; n++) {
       const empty = document.createElement("span");
-      empty.className = "empty";
-      calendar.append(empty);
+      empty.className = "day-tile empty";
+      empty.setAttribute("aria-hidden", "true");
+      daysWrap.append(empty);
     }
+    row.append(daysWrap);
+
+    const meta = document.createElement("span");
+    meta.className = "month-meta";
+    const totalSpan = document.createElement("span");
+    totalSpan.textContent = fmt(rowData.total);
+    meta.append(totalSpan);
+    if (isPeak) {
+      const pill = document.createElement("span");
+      pill.className = "peak-pill";
+      pill.textContent = "PEAK";
+      meta.append(pill);
+    }
+    row.append(meta);
+    calendar.append(row);
   }
+
+  dayButtons.forEach((tile, idx) => {
+    tile.onkeydown = (e) => {
+      let nextIdx = null;
+      if (e.key === "ArrowRight") nextIdx = Math.min(dayButtons.length - 1, idx + 1);
+      else if (e.key === "ArrowLeft") nextIdx = Math.max(0, idx - 1);
+      else if (e.key === "ArrowDown") nextIdx = Math.min(dayButtons.length - 1, idx + 31);
+      else if (e.key === "ArrowUp") nextIdx = Math.max(0, idx - 31);
+      if (nextIdx !== null && nextIdx !== idx) {
+        e.preventDefault();
+        dayButtons[idx].tabIndex = -1;
+        dayButtons[nextIdx].tabIndex = 0;
+        dayButtons[nextIdx].focus();
+      }
+    };
+  });
+
   $("calendar-label").textContent =
     state.mode === "raw"
-      ? "All source types and confidence levels · raw observation counts"
-      : "Presumed vegetation · quality filtered · distinct H3 resolution-8 cells per UTC day";
+      ? "Showing raw satellite detections (all confidence levels & source types). Select a month row or day tile to focus that period."
+      : "Showing quality-filtered vegetation active cell-days (H3 resolution 8, UTC day). Select a month row or day tile to focus that period.";
+
+  const selectedRecord = state.selectedDay
+    ? state.data.daily.find((item) => item.date === state.selectedDay)
+    : null;
+  updateDayReadout(selectedRecord || null);
 }
 
 function chart(svg, series, width, height, options = {}) {
   svg.replaceChildren();
-  const left = 42,
-    right = 15,
-    top = 16,
-    bottom = 28;
+  const left = 42;
+  const right = 15;
+  const top = 16;
+  const bottom = 28;
   const all = series.flatMap((s) => s.values);
   const max = Math.max(1, ...all, ...(options.upper || [])) * 1.05;
   const n = series[0].values.length;
-  const x = (i) => left + (i * (width - left - right)) / Math.max(1, n - 1),
-    y = (v) => height - bottom - ((height - top - bottom) * v) / max;
+  const x = (i) => left + (i * (width - left - right)) / Math.max(1, n - 1);
+  const y = (v) => height - bottom - ((height - top - bottom) * v) / max;
   for (let i = 0; i < 4; i++) {
-    const value = (max * i) / 3,
-      yy = y(value);
+    const value = (max * i) / 3;
+    const yy = y(value);
     svg.append(
       svgNode("line", {
         x1: left,
@@ -165,7 +361,7 @@ function chart(svg, series, width, height, options = {}) {
     );
   }
   const ticks = [0, Math.floor((n - 1) / 2), n - 1];
-  for (const i of new Set(ticks))
+  for (const i of new Set(ticks)) {
     svg.append(
       svgNode(
         "text",
@@ -173,10 +369,21 @@ function chart(svg, series, width, height, options = {}) {
         options.labels?.[i] ?? String(i + 1),
       ),
     );
+  }
 }
 
 function renderActivity() {
   const days = rangeDays();
+  const hasAny = days.some((d) => d.active_cells > 0 || d.raw > 0);
+  const emptyNote = $("activity-empty");
+  if (!hasAny) {
+    emptyNote.hidden = false;
+    emptyNote.textContent =
+      "No qualifying detections recorded in this month’s archive files (observation coverage unknown; zero is not confirmed fire absence).";
+  } else {
+    emptyNote.hidden = true;
+    emptyNote.textContent = "";
+  }
   chart(
     $("activity-chart"),
     [
@@ -213,7 +420,7 @@ function showEvidence(c) {
   );
   c.samples.forEach((r) => {
     const p = document.createElement("div");
-    p.textContent = `${r.source}/2025/${r.source}_2025_${state.country}.csv:${r.row} · ${r.utc} · ${decimal(r.frp_mw)} MW`;
+    p.textContent = `${r.source}/${state.data.year || 2025}/${r.source}_${state.data.year || 2025}_${state.country}.csv:${r.row} · ${r.utc} · ${decimal(r.frp_mw)} MW`;
     box.append(p);
   });
   box.append(
@@ -234,20 +441,20 @@ function renderMap() {
       ? country.geometry.coordinates
       : [country.geometry.coordinates];
   const points = polygons.flat(2);
-  let [minLon, maxLon, minLat, maxLat] = [
+  const [minLon, maxLon, minLat, maxLat] = [
     Math.min(...points.map((p) => p[0])),
     Math.max(...points.map((p) => p[0])),
     Math.min(...points.map((p) => p[1])),
     Math.max(...points.map((p) => p[1])),
   ];
-  const midLat = (((minLat + maxLat) / 2) * Math.PI) / 180,
-    ratio = Math.cos(midLat);
+  const midLat = (((minLat + maxLat) / 2) * Math.PI) / 180;
+  const ratio = Math.cos(midLat);
   const scale = Math.min(
     490 / ((maxLon - minLon) * ratio),
     330 / (maxLat - minLat),
   );
-  const px = (lon) => 280 + (lon - (maxLon + minLon) / 2) * scale * ratio,
-    py = (lat) => 195 - (lat - (maxLat + minLat) / 2) * scale;
+  const px = (lon) => 280 + (lon - (maxLon + minLon) / 2) * scale * ratio;
+  const py = (lat) => 195 - (lat - (maxLat + minLat) / 2) * scale;
   for (let j = 0; j < 5; j++) {
     const lat = minLat + ((maxLat - minLat) * j) / 4;
     svg.append(
@@ -316,29 +523,65 @@ function renderMap() {
   });
   $("map-evidence").textContent = cells.length
     ? `${fmt(cells.length)} mapped parent cells. Select a dot; the 20 most active also support keyboard selection.`
-    : "No qualifying map observations for this selection.";
+    : "No qualifying map observations recorded for this selection (coverage unknown).";
 }
 
 async function loadMap() {
   const request = ++mapRequest;
-  const path = state.data.map_months[state.month].path;
+  const entry = state.data.map_months[state.month];
+  if (!entry) {
+    state.mapCells = [];
+    $("map").replaceChildren();
+    $("map-evidence").textContent =
+      "Map payload unavailable for this selected period.";
+    return;
+  }
   $("map-evidence").textContent = "Loading selected month…";
   $("map").replaceChildren();
   state.mapCells = [];
   try {
-    const cells = await json(path);
+    const cells = await json(entry.path);
     if (request !== mapRequest) return;
     state.mapCells = cells;
     renderMap();
   } catch (e) {
-    if (request === mapRequest)
-      $("map-evidence").textContent = `Map could not load: ${e.message}`;
+    if (request === mapRequest) {
+      $("map-evidence").textContent = `Map unavailable (offline or missing payload): ${e.message}`;
+    }
   }
 }
 
+function renderPeakMetric() {
+  const year = state.data.year || 2025;
+  const monthSums = Array.from({ length: 12 }, (_, m) => {
+    const key = `${year}-${String(m + 1).padStart(2, "0")}`;
+    const total = state.data.daily
+      .filter((d) => d.date.startsWith(key))
+      .reduce((sum, d) => sum + d[state.mode], 0);
+    return { key, total };
+  });
+  const peakMonth = monthSums.reduce((best, cur) =>
+    cur.total > best.total ? cur : best,
+  );
+  const peakDay = state.data.daily.reduce((best, cur) =>
+    cur[state.mode] > best[state.mode] ? cur : best,
+  );
+  if (peakMonth.total === 0) {
+    $("stat-peak").textContent = "None recorded";
+    $("stat-peak-note").textContent =
+      `No qualifying ${unitLabel()} recorded in ${year} (coverage unknown).`;
+    return;
+  }
+  $("stat-peak").textContent = monthName(peakMonth.key, false);
+  const peakDayShort = `${months[Number(peakDay.date.slice(5, 7)) - 1]} ${Number(peakDay.date.slice(8))}`;
+  $("stat-peak-note").textContent =
+    `${fmt(peakMonth.total)} ${unitLabel()} · Peak day: ${peakDayShort} (${fmt(peakDay[state.mode])})`;
+}
+
 function renderMonth() {
-  const days = rangeDays(),
-    sum = (k) => days.reduce((n, d) => n + d[k], 0);
+  if (!state.data) return;
+  const days = rangeDays();
+  const sum = (k) => days.reduce((n, d) => n + d[k], 0);
   $("stat-raw").textContent = fmt(sum("raw"));
   $("stat-cells").textContent = fmt(sum("active_cells"));
   $("stat-multi").textContent = fmt(sum("multi_sensor_cells"));
@@ -348,14 +591,16 @@ function renderMonth() {
     String(state.mode === "active_cells"),
   );
   $("raw-mode").setAttribute("aria-pressed", String(state.mode === "raw"));
+  updateContext();
+  renderPeakMetric();
   renderCalendar();
   renderActivity();
   loadMap();
 }
 
 function renderBenchmark() {
-  const b = state.data.benchmark,
-    body = $("benchmark");
+  const b = state.data.benchmark;
+  const body = $("benchmark");
   body.replaceChildren();
   for (const r of b.results) {
     const tr = document.createElement("tr");
@@ -382,10 +627,12 @@ function renderBenchmark() {
   }
   const promotion = $("promotion");
   promotion.replaceChildren();
+  const arrow = document.createElement("span");
+  arrow.textContent = "↳";
   const p = document.createElement("p");
   const ci = b.paired_mae_delta_ci95.map(decimal).join(" to ");
   p.textContent = `${b.promotion_passed ? "Offline gate passed." : "Research only · promotion gate not passed."} Selected-model MAE skill vs last week: ${pct(b.skill_vs_last_week)}. Paired weekly MAE difference, exploratory 95% block-bootstrap interval: ${ci}. Negative favors the candidate. ${b.results[0].holdout_origins} holdout origins; too little evidence for operational validation.`;
-  promotion.append(p);
+  promotion.append(arrow, p);
   $("forecast-model").textContent =
     `Candidate: ${labels[b.selected_model]} · target: daily active cell-days · shaded band: 80% calibration target`;
   chart(
@@ -468,10 +715,12 @@ async function loadCountry() {
   const request = ++countryRequest;
   mapRequest++;
   state.country = $("country").value;
+  state.selectedDay = null;
   const country = state.country;
-  $("loading").hidden = false;
-  $("loading").textContent = "Loading the observation archive…";
+  resetMetricPlaceholders();
+  setLoadingBanner(`Loading ${country.replaceAll("_", " ")} archive…`, false);
   $("app").hidden = true;
+  updateContext();
   try {
     const [data, packet] = await Promise.all([
       json(`data/${country}.json`),
@@ -486,39 +735,97 @@ async function loadCountry() {
     $("loading").hidden = true;
     $("app").hidden = false;
   } catch (e) {
-    if (request === countryRequest)
-      $("loading").textContent =
-        `Unable to load archive: ${e.message}. Serve web_app over HTTP; see README.`;
+    if (request === countryRequest) {
+      setLoadingBanner(
+        `Unable to load archive (offline or unbuilt): ${e.message}. Run pyrosync build and serve over HTTP.`,
+        true,
+      );
+    }
   }
 }
+
+async function initArchive() {
+  setLoadingBanner("Loading the 2025 observation archive…", false);
+  $("app").hidden = true;
+  resetMetricPlaceholders();
+  try {
+    if (!state.manifest || !state.boundaries) {
+      [state.manifest, state.boundaries] = await Promise.all([
+        json("data/manifest.json"),
+        json("data/boundaries.geojson"),
+      ]);
+    }
+    await loadCountry();
+  } catch (e) {
+    setLoadingBanner(
+      `Archive unavailable (offline or unbuilt): ${e.message}. Run pyrosync build and serve over HTTP.`,
+      true,
+    );
+  }
+}
+
+const tabs = Array.from(document.querySelectorAll('.view-tabs [role="tab"]'));
+tabs.forEach((tab, idx) => {
+  tab.onclick = () => switchView(tab.dataset.view, false);
+  tab.onkeydown = (e) => {
+    let target = null;
+    if (e.key === "ArrowRight") target = tabs[(idx + 1) % tabs.length];
+    else if (e.key === "ArrowLeft") target = tabs[(idx - 1 + tabs.length) % tabs.length];
+    else if (e.key === "Home") target = tabs[0];
+    else if (e.key === "End") target = tabs[tabs.length - 1];
+    if (target) {
+      e.preventDefault();
+      switchView(target.dataset.view, false);
+      target.focus();
+    }
+  };
+});
+
+$("overview-next").onclick = () => {
+  switchView("explore", true);
+  window.scrollTo({ top: 0, behavior: "smooth" });
+};
+$("explore-to-research").onclick = () => {
+  switchView("research", true);
+  window.scrollTo({ top: 0, behavior: "smooth" });
+};
+$("retry-load").onclick = initArchive;
 
 $("country").onchange = loadCountry;
 $("month").onchange = () => {
   state.month = $("month").value;
+  state.selectedDay = null;
   renderMonth();
 };
 $("industrial").onchange = renderMap;
+
 for (const [id, mode] of [
   ["cells-mode", "active_cells"],
   ["raw-mode", "raw"],
-])
+]) {
   $(id).onclick = () => {
     state.mode = mode;
-    renderCalendar();
+    if (state.data) {
+      renderPeakMetric();
+      renderCalendar();
+    }
     $("cells-mode").setAttribute(
       "aria-pressed",
       String(mode === "active_cells"),
     );
     $("raw-mode").setAttribute("aria-pressed", String(mode === "raw"));
   };
+}
+
 $("brief-download").onclick = async () => {
   const response = await fetch(`data/${state.country}_brief.md`);
-  if (response.ok)
+  if (response.ok) {
     download(
       `${state.country}_brief.md`,
       await response.text(),
       "text/markdown",
     );
+  }
 };
 $("packet-download").onclick = () =>
   download(
@@ -529,7 +836,7 @@ $("predictions-download").onclick = () => {
   const rows = [
     "model,split,origin,train_end,target_date,horizon,actual,predicted",
   ];
-  for (const fold of state.data.benchmark.predictions)
+  for (const fold of state.data.benchmark.predictions) {
     fold.actual.forEach((a, i) => {
       const d = new Date(`${fold.origin}T00:00:00Z`);
       d.setUTCDate(d.getUTCDate() + i);
@@ -546,6 +853,7 @@ $("predictions-download").onclick = () => {
         ].join(","),
       );
     });
+  }
   download(`${state.country}_forecast_folds.csv`, rows.join("\n"), "text/csv");
 };
 $("geojson-download").onclick = () =>
@@ -567,6 +875,7 @@ $("geojson-download").onclick = () =>
         })),
     }),
   );
+
 months.forEach((name, i) => {
   const o = document.createElement("option");
   o.value = `2025-${String(i + 1).padStart(2, "0")}`;
@@ -574,12 +883,5 @@ months.forEach((name, i) => {
   $("month").append(o);
 });
 $("month").value = state.month;
-try {
-  [state.manifest, state.boundaries] = await Promise.all([
-    json("data/manifest.json"),
-    json("data/boundaries.geojson"),
-  ]);
-  await loadCountry();
-} catch (e) {
-  $("loading").textContent = `Archive initialization failed: ${e.message}`;
-}
+
+await initArchive();
