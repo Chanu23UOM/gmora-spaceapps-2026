@@ -1,0 +1,190 @@
+{
+  "scope": "10-slide pitch plus four appendix slides; seven-slide submission cut",
+  "survey_status": "not_run",
+  "claims": [
+    {
+      "claim": "Sri Lanka 2025 MODIS raw rows",
+      "value": 684,
+      "source": "modis/2025/*_Sri_Lanka.csv"
+    },
+    {
+      "claim": "Sri Lanka 2025 S-NPP raw rows",
+      "value": 5519,
+      "source": "viirs-snpp/2025/*_Sri_Lanka.csv"
+    },
+    {
+      "claim": "Sri Lanka retained after removing modis",
+      "value": 0.9315472677918093,
+      "source": "processed_data/evaluation_summary.json#/Sri_Lanka/sensor_dropout"
+    },
+    {
+      "claim": "Sri Lanka retained after removing viirs-snpp",
+      "value": 0.5753570164050513,
+      "source": "processed_data/evaluation_summary.json#/Sri_Lanka/sensor_dropout"
+    },
+    {
+      "claim": "Sri Lanka retained after removing viirs-jpss1",
+      "value": 0.5760651481175498,
+      "source": "processed_data/evaluation_summary.json#/Sri_Lanka/sensor_dropout"
+    },
+    {
+      "claim": "Argentina 2023 MAE reduction vs last_week",
+      "value": 0.1918393169311542,
+      "source": "processed_data/evaluations/forecast_v2.json"
+    },
+    {
+      "claim": "Argentina 2024 MAE reduction vs last_week",
+      "value": 0.31900379604763474,
+      "source": "processed_data/evaluations/forecast_v2.json"
+    },
+    {
+      "claim": "Completed amended-study reports",
+      "value": 7,
+      "source": "processed_data/evaluations/policy_study.json#/runs"
+    },
+    {
+      "claim": "Eligible policy comparison pairs",
+      "value": 0,
+      "source": "processed_data/evaluations/policy_study.json#/comparisons"
+    },
+    {
+      "claim": "Historical source rows",
+      "value": 2966278,
+      "source": "docs/BACKEND_RESEARCH.md"
+    },
+    {
+      "claim": "Historical input files",
+      "value": 30,
+      "source": "processed_data/history_manifest.json"
+    }
+  ],
+  "slides": [
+    {
+      "slide": 1,
+      "timing": "00:00\u201301:00",
+      "sources": [
+        "README.md",
+        "docs/ARCHITECTURE_REVIEW.md"
+      ],
+      "detail": "Pause after the opening question. Do not imply operational warning capability."
+    },
+    {
+      "slide": 2,
+      "timing": "01:00\u201302:00",
+      "sources": [
+        "modis/2025/*_Sri_Lanka.csv",
+        "viirs-snpp/2025/*_Sri_Lanka.csv"
+      ],
+      "detail": "Raw rows, all types. Ratio is S-NPP VIIRS only divided by Terra/Aqua MODIS, not both VIIRS streams. The bar axis starts at zero; maximum 5,519."
+    },
+    {
+      "slide": 3,
+      "timing": "02:00\u201303:00",
+      "sources": [
+        "docs/ARCHITECTURE_REVIEW.md",
+        "pyrosync/pipeline.py"
+      ],
+      "detail": "Concept illustration. Active cell-day = at least one qualifying presumed-vegetation detection in an H3 resolution-8 cell on a UTC day. Cell-days are not distinct incidents or burned area."
+    },
+    {
+      "slide": 4,
+      "timing": "03:00\u201304:00",
+      "sources": [
+        "web_app/index.html",
+        "web_app/data/Sri_Lanka.json",
+        "web_app/data/Sri_Lanka_2025-08_map.json"
+      ],
+      "detail": "Screenshots captured from the real local dashboard, August 2025. Map dots aggregate resolution-8 cell-days into resolution-7 parent cells; they are not incident boundaries. Use the dashboard live if convenient. Slide-native labels remain readable; embedded UI is visual evidence, not text to read aloud."
+    },
+    {
+      "slide": 5,
+      "timing": "04:00\u201305:00",
+      "sources": [
+        "README.md",
+        "web_app/index.html"
+      ],
+      "detail": "This is a comparison of implemented capabilities with starting from separate CSV files, not a measured usability study, a competitor benchmark, or a claim of faster task completion."
+    },
+    {
+      "slide": 6,
+      "timing": "05:00\u201306:00",
+      "sources": [
+        "processed_data/evaluation_summary.json#/Sri_Lanka/sensor_dropout",
+        "docs/EVALUATION_PROTOCOL.md"
+      ],
+      "detail": "Each source stream is removed and the annual active-cell-day union is recomputed. Bars start at zero and have a 100% maximum. This measures observation redundancy, not the proportion of true fires recovered. Full grid/confidence sensitivity appears in appendix A2."
+    },
+    {
+      "slide": 7,
+      "timing": "06:00\u201307:00",
+      "sources": [
+        "processed_data/evaluations/forecast_v2.json",
+        "experiments/forecast-v2.json",
+        "docs/BACKEND_RESEARCH.md"
+      ],
+      "detail": "Forecast target is recorded quality-filtered active-cell counts, not ignition probability. Both Argentina folds passed an exploratory screening gate, not operational validation. Earlier years select ridge; a separate earlier year calibrates intervals; test years are 2023 and 2024. All bars share a zero baseline and scale 0\u2013450 active cells/day MAE. Sri Lanka improvements are inconclusive. Both original 2025 country selections failed promotion; see appendix A1."
+    },
+    {
+      "slide": 8,
+      "timing": "07:00\u201308:00",
+      "sources": [
+        "processed_data/evaluations/policy_study.json",
+        "docs/BACKEND_RESEARCH.md"
+      ],
+      "detail": "Synthetic MiroFish communication exercise, not physical fire prediction. Eight amended study attempts, seven completed reports, one prevented due to excessive prepared personas. Zero pairs maintained the intended four role identities. Two earlier setup runs excluded. Independent domain review pending. The visual depicts the policy comparison concept, not an observed successful coordination outcome."
+    },
+    {
+      "slide": 9,
+      "timing": "08:00\u201309:00",
+      "sources": [
+        "docs/EVALUATION_PROTOCOL.md#ui-ab-protocol-designed-not-run",
+        "docs/BACKEND_RESEARCH.md"
+      ],
+      "detail": "No participant survey, usability study, agency adoption, or operational benefit has been demonstrated. The user-study plan measures interpretation correctness, errors, completion time, and usability. No invented satisfaction percentages or sample sizes. Appendix A4 explains the planned study."
+    },
+    {
+      "slide": 10,
+      "timing": "09:00\u201310:00",
+      "sources": [
+        "README.md",
+        "docs/BACKEND_RESEARCH.md"
+      ],
+      "detail": "Look at the audience. Pause between compare, trace, and test. End on the ask; do not promise live warnings or existing agency customers."
+    },
+    {
+      "slide": 11,
+      "timing": "APPENDIX \u00b7 Q&A only",
+      "sources": [
+        "processed_data/evaluations/forecast_v2.json",
+        "processed_data/evaluation_summary.json"
+      ],
+      "detail": "2023/2024 use frozen historical outer folds. 2025 uses October\u2013December holdout and pre-July model choice. These experiments have separate evaluation windows. MAE reduction = 1 \u2212 selected MAE / baseline MAE. No post-hoc reselection."
+    },
+    {
+      "slide": 12,
+      "timing": "APPENDIX \u00b7 Q&A only",
+      "sources": [
+        "processed_data/evaluation_summary.json#/Sri_Lanka/sensitivity"
+      ],
+      "detail": "This is method sensitivity, not accuracy against a ground-truth inventory. Quality off still uses the intended source-type selection; it is not every raw thermal row."
+    },
+    {
+      "slide": 13,
+      "timing": "APPENDIX \u00b7 Q&A only",
+      "sources": [
+        "processed_data/history_manifest.json",
+        "docs/BACKEND_RESEARCH.md",
+        "docs/DATA_SOURCES.md"
+      ],
+      "detail": "Official catalog: https://firms.modaps.eosdis.nasa.gov/data/country/yearly_summary_files.txt . Seven Argentina records are quarantined under explicit numeric validity rules. Source rows remain unchanged. NASA FIRMS data courtesy NASA/GSFC ESDIS. Independent project; NASA source attribution does not imply endorsement. Product data: MODIS Terra/Aqua, S-NPP VIIRS, NOAA-20 VIIRS. No validated operational warnings, burned-area estimates, or 26-year harmonized record."
+    },
+    {
+      "slide": 14,
+      "timing": "APPENDIX \u00b7 Q&A only",
+      "sources": [
+        "docs/EVALUATION_PROTOCOL.md#ui-ab-protocol-designed-not-run"
+      ],
+      "detail": "The plan compares calendar + raw sensor counts with the same data plus unit explanations, source agreement, and evidence inspection. Primary measure: scientifically correct answers per participant. Secondary measures: critical interpretation errors, task completion time, confidence calibration, usability. Sample size and stopping rules must be set before collecting results. No fabricated sample sizes or significance."
+    }
+  ]
+}

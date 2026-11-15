@@ -1,0 +1,195 @@
+TEAM GMORA
+
+
+
+
+PyroSync
+Clearer evidence.
+Stronger decisions.
+
+Make satellite fire observations
+easier to compare and explain.
+THE PROBLEM · SRI LANKA, 2025
+
+
+Same country.
+Very different numbers.
+MODIS
+                                           8.07×
+                    684
+                                           as many
+VIIRS S-NPP                                observations
+                    5,519
+
+
+More observations ≠ more separate fires.
+THE IDEA
+
+
+One place. One day.
+One shared count.
+   MODIS
+
+   VIIRS S-NPP                                           1
+   VIIRS NOAA-20                                     active cell-day
+                         Same cell + same day
+
+
+
+ A shared counting rule. Source details stay attached.
+THE WORKING PRODUCT
+
+
+A full year. A clear place to start.
+Sri Lanka · 2025 activity calendar        August · mapped
+                                          observations
+
+
+
+
+01                      02                    03
+Select a month          Inspect an area       Trace the source
+THE USER VALUE
+
+
+Help an analyst explain the result.
+
+ Starting with separate files    With PyroSync
+
+ Separate sensor counts          One shared counting rule
+
+ A point on a map                Source rows and timestamps
+
+ Numbers to copy into a report   Data and a brief to download
+
+
+Compare → inspect → explain → share
+CHALLENGE THE RESULT
+
+
+What changes when
+a sensor is removed?
+Share of recorded cell-days retained · Sri Lanka, 2025
+
+Remove MODIS                                               93.2%
+Remove S-NPP                                               57.5%
+Remove NOAA-20                                             57.6%
+
+ Source dependence is visible, so users can question it.
+THE RESEARCH RESULTS · ARGENTINA
+
+
+A forecast has to earn its place.
+Seven-day forecasts · average error · lower is better
+
+2023               19.2%                  2024             31.9%
+                    less error                             less error
+
+Last week                                 Last week
+                                 343.7                                  399.5
+Selected model                            Selected model
+                                 277.8                                  272.0
+
+Sri Lanka: gains remain inconclusive.
+THE AI COMMUNICATION LAB
+
+
+Can teams turn evidence
+into a clearer update?
+
+ Separate updates
+                                      7   reports
+                                          completed
+                           Shared
+                           bulletin
+                                      0   valid comparison
+                                          pairs
+
+
+Roles changed between runs.
+No winning policy claimed.
+THE NEXT STEP
+
+
+Built. Tested.
+Ready for real users.
+
+01                     02                 03
+
+Work with              Improve coverage   Review the AI lab
+analysts
+Test clear questions   Add cloud and      Keep roles fixed.
+with real users.       observation        Bring in experts.
+                       information.
+PYROSYNC · TEAM GMORA
+
+
+
+
+Clearer evidence.
+Stronger decisions.
+
+Help us validate PyroSync
+with fire analysts and researchers.
+
+Compare. Trace. Test.
+A1 · FORECAST EVIDENCE
+
+
+Promising results. Clear limits.
+Test                     Sri Lanka                      Argentina
+
+2023                     +14.5%                         +19.2%
+                         Inconclusive                   Exploratory gate passed
+
+2024                     +11.5%                         +31.9%
+                         Inconclusive                   Exploratory gate passed
+
+
+2025 Q4                  -15.0%                         +21.2%
+                         Promotion gate failed          Promotion gate failed
+
+
+Percent reduction in average error versus last week. Research only.
+A2 · METHOD SENSITIVITY
+
+
+The counting choices change the total.
+Sri Lanka · 2025 recorded active cell-days
+
+Grid resolution            Quality filter on        All confidence
+
+7                          7,496                    8,184
+8 · default                8,473                    9,318
+9                          9,801                    10,854
+
+Finer cells can split observations across more places.
+A3 · DATA AND REPRODUCIBILITY
+
+
+A real archive. A traceable method.
+
+
+30                              2.97M              2
+official NASA files             source records     country cases
+
+
+
+
+2020–2024 historical experiments
+
+File hashes → row checks → shared units → held-out tests
+A4 · USER VALIDATION PLAN
+
+
+Does clearer evidence
+help people interpret the data?
+ User study planned · no survey results collected yet
+
+
+Compare two views           Use real tasks         Measure the result
+
+
+Calendar and counts         Explain a spike.       Correct answers,
+vs. the evidence view.      Check a forecast.      time and usability.
+

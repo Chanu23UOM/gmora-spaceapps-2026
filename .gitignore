@@ -53,3 +53,7 @@ processed_data/*_history.json
 processed_data/evaluations/*_predictions.json
 processed_data/policy_review_private/
 processed_data/policy_inputs/
+
+# Generated pitch recordings and exported media
+presentation/output/*
+!presentation/output/PyroSync_10min_Presenter.mp4
