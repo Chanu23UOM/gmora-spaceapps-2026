@@ -1,0 +1,38 @@
+{
+  "country": "Sri_Lanka",
+  "summary": {
+    "active_cell_days": 8473,
+    "filtered_vegetation_rows": 10391,
+    "median_footprint_km2": {
+      "modis": 1.1,
+      "viirs-jpss1": 0.192,
+      "viirs-snpp": 0.18150000000000002
+    },
+    "modis_viirs_jaccard": 0.0076714268854006845,
+    "multi_sensor_cell_days": 703,
+    "observation_reduction_fraction": 0.1845828120488885,
+    "raw_rows": 11654,
+    "type_counts": {
+      "0": 11551,
+      "2": 94,
+      "3": 9
+    }
+  },
+  "sensor_dropout": [
+    {
+      "lost_cell_days": 580,
+      "removed": "modis",
+      "retained_fraction": 0.9315472677918093
+    },
+    {
+      "lost_cell_days": 3598,
+      "removed": "viirs-snpp",
+      "retained_fraction": 0.5753570164050513
+    },
+    {
+      "lost_cell_days": 3592,
+      "removed": "viirs-jpss1",
+      "retained_fraction": 0.5760651481175498
+    }
+  ]
+}

@@ -1,0 +1,1243 @@
+{
+  "schema_version": 1,
+  "results": {
+    "forecast_v2": {
+      "countries": [
+        {
+          "country": "Sri_Lanka",
+          "coverage": "unknown; forecast of recorded observations only",
+          "outer_folds": [
+            {
+              "MAE_skill": 0.14538164758146344,
+              "calibration_year": 2022,
+              "paired_weekly_MAE_delta_ci95": [
+                -8.639195381530383,
+                0.9420427090079911
+              ],
+              "promotion_passed": false,
+              "results": [
+                {
+                  "coverage_80": 0.7955182072829131,
+                  "mean_interval_width": 41.476190476190474,
+                  "model": "last_week",
+                  "quarter_mae": {
+                    "1": 8.428571428571429,
+                    "2": 8.461538461538462,
+                    "3": 79.58241758241758,
+                    "4": 2.0238095238095237
+                  },
+                  "selection": {
+                    "mae": 25.04866562009419,
+                    "rmse": 51.60041497648719,
+                    "wape": 1.024791265253693
+                  },
+                  "test": {
+                    "mae": 25.067226890756302,
+                    "rmse": 56.78089492083763,
+                    "wape": 0.9297662337662338
+                  },
+                  "test_origins": 51
+                },
+                {
+                  "coverage_80": 0.803921568627451,
+                  "mean_interval_width": 49.648759503801514,
+                  "model": "trailing_28",
+                  "quarter_mae": {
+                    "1": 6.295918367346939,
+                    "2": 8.217817896389324,
+                    "3": 73.45015698587127,
+                    "4": 8.060799319727888
+                  },
+                  "selection": {
+                    "mae": 24.91831128055618,
+                    "rmse": 44.96868116618964,
+                    "wape": 1.0194582071749703
+                  },
+                  "test": {
+                    "mae": 24.318827531012403,
+                    "rmse": 49.97348361507181,
+                    "wape": 0.9020074211502782
+                  },
+                  "test_origins": 51
+                },
+                {
+                  "coverage_80": 0.7478991596638656,
+                  "mean_interval_width": 54.43242296918768,
+                  "model": "weekday_8w",
+                  "quarter_mae": {
+                    "1": 6.637362637362638,
+                    "2": 8.767857142857142,
+                    "3": 83.42857142857143,
+                    "4": 22.519345238095237
+                  },
+                  "selection": {
+                    "mae": 28.391287284144425,
+                    "rmse": 46.84171424160971,
+                    "wape": 1.1615446371226719
+                  },
+                  "test": {
+                    "mae": 30.491596638655462,
+                    "rmse": 56.76945874392702,
+                    "wape": 1.130961038961039
+                  },
+                  "test_origins": 51
+                },
+                {
+                  "coverage_80": 0.7478991596638656,
+                  "mean_interval_width": 27.459482969540637,
+                  "model": "ridge_ar",
+                  "quarter_mae": {
+                    "1": 6.720025408024505,
+                    "2": 6.629767943652162,
+                    "3": 69.04053598074715,
+                    "4": 1.7911865064632937
+                  },
+                  "selection": {
+                    "mae": 19.558095545644896,
+                    "rmse": 41.49130680597352,
+                    "wape": 0.8001610059457803
+                  },
+                  "test": {
+                    "mae": 21.422912145079785,
+                    "rmse": 48.70168148779809,
+                    "wape": 0.7945952868356866
+                  },
+                  "test_origins": 51
+                },
+                {
+                  "coverage_80": 0.803921568627451,
+                  "mean_interval_width": 42.406305965811654,
+                  "model": "ewma_14",
+                  "quarter_mae": {
+                    "1": 6.396266543128158,
+                    "2": 7.304017302194351,
+                    "3": 69.39676612919368,
+                    "4": 3.493340174540376
+                  },
+                  "selection": {
+                    "mae": 21.292422226585646,
+                    "rmse": 40.69059733579573,
+                    "wape": 0.8711157969386678
+                  },
+                  "test": {
+                    "mae": 22.003563367905787,
+                    "rmse": 46.66351031632663,
+                    "wape": 0.816132168555051
+                  },
+                  "test_origins": 51
+                }
+              ],
+              "selected_model": "ridge_ar",
+              "selection_years": [
+                2020,
+                2021
+              ],
+              "test_year": 2023
+            },
+            {
+              "MAE_skill": 0.11478296857185599,
+              "calibration_year": 2023,
+              "paired_weekly_MAE_delta_ci95": [
+                -7.162309647264758,
+                1.9644499996869154
+              ],
+              "promotion_passed": false,
+              "results": [
+                {
+                  "coverage_80": 0.8131868131868132,
+                  "mean_interval_width": 48.37637362637363,
+                  "model": "last_week",
+                  "quarter_mae": {
+                    "1": 20.45054945054945,
+                    "2": 5.263736263736264,
+                    "3": 51.505494505494504,
+                    "4": 7.967032967032967
+                  },
+                  "selection": {
+                    "mae": 22.99195171026157,
+                    "rmse": 47.88309455817158,
+                    "wape": 1.0370740118890955
+                  },
+                  "test": {
+                    "mae": 21.296703296703296,
+                    "rmse": 46.3966415988092,
+                    "wape": 0.9820116544210793
+                  },
+                  "test_origins": 52
+                },
+                {
+                  "coverage_80": 0.7692307692307693,
+                  "mean_interval_width": 53.13078885400314,
+                  "model": "trailing_28",
+                  "quarter_mae": {
+                    "1": 20.257064364207217,
+                    "2": 11.008241758241759,
+                    "3": 40.81868131868132,
+                    "4": 21.705259026687596
+                  },
+                  "selection": {
+                    "mae": 23.354412187410176,
+                    "rmse": 42.40050300665095,
+                    "wape": 1.053423139006476
+                  },
+                  "test": {
+                    "mae": 23.447311616954472,
+                    "rmse": 44.58740979739831,
+                    "wape": 1.0811782909262007
+                  },
+                  "test_origins": 52
+                },
+                {
+                  "coverage_80": 0.8626373626373627,
+                  "mean_interval_width": 83.54498626373626,
+                  "model": "weekday_8w",
+                  "quarter_mae": {
+                    "1": 20.942307692307693,
+                    "2": 16.72252747252747,
+                    "3": 40.87637362637363,
+                    "4": 30.34752747252747
+                  },
+                  "selection": {
+                    "mae": 25.975352112676056,
+                    "rmse": 43.74376788035321,
+                    "wape": 1.1716431456187322
+                  },
+                  "test": {
+                    "mae": 27.222184065934066,
+                    "rmse": 45.91728268576556,
+                    "wape": 1.2552413225234356
+                  },
+                  "test_origins": 52
+                },
+                {
+                  "coverage_80": 0.8543956043956044,
+                  "mean_interval_width": 49.55130280246527,
+                  "model": "ridge_ar",
+                  "quarter_mae": {
+                    "1": 24.261322995090307,
+                    "2": 5.744645235264299,
+                    "3": 40.07680862790207,
+                    "4": 5.326041027797954
+                  },
+                  "selection": {
+                    "mae": 17.723894886536602,
+                    "rmse": 38.89925427335107,
+                    "wape": 0.7994532612069422
+                  },
+                  "test": {
+                    "mae": 18.85220447151366,
+                    "rmse": 43.77644884981166,
+                    "wape": 0.8692934415544681
+                  },
+                  "test_origins": 52
+                },
+                {
+                  "coverage_80": 0.8104395604395604,
+                  "mean_interval_width": 48.448851782649825,
+                  "model": "ewma_14",
+                  "quarter_mae": {
+                    "1": 18.539554817623976,
+                    "2": 6.289937268658448,
+                    "3": 40.43026877254534,
+                    "4": 11.741947861977728
+                  },
+                  "selection": {
+                    "mae": 20.243732313435995,
+                    "rmse": 38.44944676005242,
+                    "wape": 0.913112942757879
+                  },
+                  "test": {
+                    "mae": 19.250427180201374,
+                    "rmse": 39.05815771652862,
+                    "wape": 0.8876558770703445
+                  },
+                  "test_origins": 52
+                }
+              ],
+              "selected_model": "ridge_ar",
+              "selection_years": [
+                2020,
+                2021,
+                2022
+              ],
+              "test_year": 2024
+            }
+          ],
+          "release_status": "research_only",
+          "status": "evaluated"
+        },
+        {
+          "country": "Argentina",
+          "coverage": "unknown; forecast of recorded observations only",
+          "outer_folds": [
+            {
+              "MAE_skill": 0.1918393169311542,
+              "calibration_year": 2022,
+              "paired_weekly_MAE_delta_ci95": [
+                -125.30696258267238,
+                -16.118897886340097
+              ],
+              "promotion_passed": true,
+              "results": [
+                {
+                  "coverage_80": 0.9131652661064426,
+                  "mean_interval_width": 1397.2773109243697,
+                  "model": "last_week",
+                  "quarter_mae": {
+                    "1": 230.73626373626374,
+                    "2": 177.56043956043956,
+                    "3": 678.7802197802198,
+                    "4": 283.0952380952381
+                  },
+                  "selection": {
+                    "mae": 721.7613814756672,
+                    "rmse": 1238.1909196614963,
+                    "wape": 0.750238650437893
+                  },
+                  "test": {
+                    "mae": 343.7086834733893,
+                    "rmse": 517.3827043350966,
+                    "wape": 0.7276091081593928
+                  },
+                  "test_origins": 51
+                },
+                {
+                  "coverage_80": 0.9551820728291317,
+                  "mean_interval_width": 1359.6907763105241,
+                  "model": "trailing_28",
+                  "quarter_mae": {
+                    "1": 208.99332810047093,
+                    "2": 134.2798273155416,
+                    "3": 477.4207221350079,
+                    "4": 276.6143707482993
+                  },
+                  "selection": {
+                    "mae": 633.8979591836735,
+                    "rmse": 1053.430649349761,
+                    "wape": 0.6589085556793909
+                  },
+                  "test": {
+                    "mae": 274.2822128851541,
+                    "rmse": 386.34940244461063,
+                    "wape": 0.5806377490512334
+                  },
+                  "test_origins": 51
+                },
+                {
+                  "coverage_80": 0.9663865546218487,
+                  "mean_interval_width": 1503.2356442577031,
+                  "model": "weekday_8w",
+                  "quarter_mae": {
+                    "1": 219.4532967032967,
+                    "2": 152.92582417582418,
+                    "3": 506.28434065934067,
+                    "4": 366.52232142857144
+                  },
+                  "selection": {
+                    "mae": 680.0990973312402,
+                    "rmse": 1096.3326759774227,
+                    "wape": 0.7069325708485839
+                  },
+                  "test": {
+                    "mae": 310.2135854341737,
+                    "rmse": 427.20486755425065,
+                    "wape": 0.6567021465844403
+                  },
+                  "test_origins": 51
+                },
+                {
+                  "coverage_80": 0.9159663865546218,
+                  "mean_interval_width": 1158.140232409937,
+                  "model": "ridge_ar",
+                  "quarter_mae": {
+                    "1": 219.18646251705334,
+                    "2": 138.33757915544712,
+                    "3": 498.9326816118701,
+                    "4": 252.70222186192763
+                  },
+                  "selection": {
+                    "mae": 547.8320963108919,
+                    "rmse": 971.051570222835,
+                    "wape": 0.5694469434794794
+                  },
+                  "test": {
+                    "mae": 277.77184441254803,
+                    "rmse": 407.39733738967305,
+                    "wape": 0.5880250738572086
+                  },
+                  "test_origins": 51
+                },
+                {
+                  "coverage_80": 0.9411764705882353,
+                  "mean_interval_width": 1227.9877359834622,
+                  "model": "ewma_14",
+                  "quarter_mae": {
+                    "1": 202.72870852843312,
+                    "2": 138.98665039127766,
+                    "3": 480.5017161718922,
+                    "4": 254.73753432803719
+                  },
+                  "selection": {
+                    "mae": 575.9553368366616,
+                    "rmse": 953.0913064929063,
+                    "wape": 0.5986797932266574
+                  },
+                  "test": {
+                    "mae": 269.5229880024958,
+                    "rmse": 375.5102179870542,
+                    "wape": 0.5705627770214124
+                  },
+                  "test_origins": 51
+                }
+              ],
+              "selected_model": "ridge_ar",
+              "selection_years": [
+                2020,
+                2021
+              ],
+              "test_year": 2023
+            },
+            {
+              "MAE_skill": 0.31900379604763474,
+              "calibration_year": 2023,
+              "paired_weekly_MAE_delta_ci95": [
+                -217.9831617401201,
+                -53.56148679004216
+              ],
+              "promotion_passed": true,
+              "results": [
+                {
+                  "coverage_80": 0.7967032967032966,
+                  "mean_interval_width": 840.4368131868132,
+                  "model": "last_week",
+                  "quarter_mae": {
+                    "1": 181.27472527472528,
+                    "2": 174.83516483516485,
+                    "3": 886.0439560439561,
+                    "4": 355.72527472527474
+                  },
+                  "selection": {
+                    "mae": 665.7967806841046,
+                    "rmse": 1114.4334378166977,
+                    "wape": 0.7373887736296845
+                  },
+                  "test": {
+                    "mae": 399.4697802197802,
+                    "rmse": 690.6773650029893,
+                    "wape": 0.8386897689388259
+                  },
+                  "test_origins": 52
+                },
+                {
+                  "coverage_80": 0.7637362637362637,
+                  "mean_interval_width": 716.8229003139718,
+                  "model": "trailing_28",
+                  "quarter_mae": {
+                    "1": 141.36930926216644,
+                    "2": 165.97527472527472,
+                    "3": 605.9383830455258,
+                    "4": 345.55219780219784
+                  },
+                  "selection": {
+                    "mae": 587.2260347801092,
+                    "rmse": 951.6698013088721,
+                    "wape": 0.6503694493460999
+                  },
+                  "test": {
+                    "mae": 314.7087912087912,
+                    "rmse": 503.90255377692245,
+                    "wape": 0.6607334433075317
+                  },
+                  "test_origins": 52
+                },
+                {
+                  "coverage_80": 0.760989010989011,
+                  "mean_interval_width": 797.5185439560439,
+                  "model": "weekday_8w",
+                  "quarter_mae": {
+                    "1": 129.32554945054946,
+                    "2": 182.14423076923077,
+                    "3": 619.0934065934066,
+                    "4": 451.5673076923077
+                  },
+                  "selection": {
+                    "mae": 643.4646629778672,
+                    "rmse": 1007.9345812813108,
+                    "wape": 0.712655321372622
+                  },
+                  "test": {
+                    "mae": 345.5326236263736,
+                    "rmse": 553.1757154141618,
+                    "wape": 0.7254483082815185
+                  },
+                  "test_origins": 52
+                },
+                {
+                  "coverage_80": 0.7884615384615384,
+                  "mean_interval_width": 697.067984893115,
+                  "model": "ridge_ar",
+                  "quarter_mae": {
+                    "1": 127.73636295836279,
+                    "2": 159.37765297523,
+                    "3": 554.7233174688181,
+                    "4": 246.3122822910127
+                  },
+                  "selection": {
+                    "mae": 509.9952289625372,
+                    "rmse": 883.8949262721408,
+                    "wape": 0.564834146622442
+                  },
+                  "test": {
+                    "mae": 272.03740392335595,
+                    "rmse": 441.1885092846269,
+                    "wape": 0.5711445489410266
+                  },
+                  "test_origins": 52
+                },
+                {
+                  "coverage_80": 0.7774725274725275,
+                  "mean_interval_width": 719.8501191934308,
+                  "model": "ewma_14",
+                  "quarter_mae": {
+                    "1": 137.40685180156444,
+                    "2": 156.75074855030903,
+                    "3": 604.5926277419925,
+                    "4": 272.46577382110377
+                  },
+                  "selection": {
+                    "mae": 535.087610581944,
+                    "rmse": 865.5369301162099,
+                    "wape": 0.5926246692662596
+                  },
+                  "test": {
+                    "mae": 292.8040004787424,
+                    "rmse": 467.0466556712867,
+                    "wape": 0.6147441725648727
+                  },
+                  "test_origins": 52
+                }
+              ],
+              "selected_model": "ridge_ar",
+              "selection_years": [
+                2020,
+                2021,
+                2022
+              ],
+              "test_year": 2024
+            }
+          ],
+          "release_status": "research_only",
+          "status": "evaluated"
+        }
+      ],
+      "input_manifest_sha256": "fe3d66c6e3e9e352bcbc83920f54ff71def23e74fc329a37061534f0c074798b",
+      "protocol_id": "forecast-v2-2026-11-15",
+      "protocol_sha256": "2ecdcf9c8be4ee3b104960c9bd50d707e01b4b69cb7eaabaab3781a1967c2823",
+      "schema_version": 1
+    },
+    "sensor_calibration_v1": {
+      "countries": [
+        {
+          "claim": "Held-out distribution comparison; no validated historical fire-incidence reconstruction.",
+          "country": "Sri_Lanka",
+          "outer_folds": [
+            {
+              "calibration_year": 2022,
+              "results": [
+                {
+                  "extreme_day_MAE": 142.85365853658536,
+                  "extreme_threshold_from_training": 67.0,
+                  "mean_bias": -22.81917808219178,
+                  "method": "identity",
+                  "test": {
+                    "mae": 22.84109589041096,
+                    "rmse": 54.73800612982257,
+                    "wape": 0.9183740912095175
+                  }
+                },
+                {
+                  "extreme_day_MAE": 114.87321330679784,
+                  "extreme_threshold_from_training": 67.0,
+                  "mean_bias": 3.8124551429111944,
+                  "method": "monthly_ratio",
+                  "test": {
+                    "mae": 23.14927667755997,
+                    "rmse": 61.28563978959654,
+                    "wape": 0.9307651451100892
+                  }
+                },
+                {
+                  "extreme_day_MAE": 67.83609649335023,
+                  "extreme_threshold_from_training": 67.0,
+                  "mean_bias": -0.8178145574306758,
+                  "method": "monthly_quantile_mapping",
+                  "test": {
+                    "mae": 16.09616399036172,
+                    "rmse": 33.099826788466274,
+                    "wape": 0.6471799797843167
+                  }
+                }
+              ],
+              "selected_mapping": "monthly_quantile_mapping",
+              "selection_years": [
+                2020,
+                2021
+              ],
+              "test_year": 2023
+            },
+            {
+              "calibration_year": 2023,
+              "results": [
+                {
+                  "extreme_day_MAE": 107.83720930232558,
+                  "extreme_threshold_from_training": 59.5,
+                  "mean_bias": -19.024590163934427,
+                  "method": "identity",
+                  "test": {
+                    "mae": 19.193989071038253,
+                    "rmse": 44.6156322919304,
+                    "wape": 0.9406802356722014
+                  }
+                },
+                {
+                  "extreme_day_MAE": 79.60408293179272,
+                  "extreme_threshold_from_training": 59.5,
+                  "mean_bias": -1.4173005564991532,
+                  "method": "monthly_ratio",
+                  "test": {
+                    "mae": 19.074798496961417,
+                    "rmse": 47.35397049709159,
+                    "wape": 0.9348388122506532
+                  }
+                },
+                {
+                  "extreme_day_MAE": 65.01805868133701,
+                  "extreme_threshold_from_training": 59.5,
+                  "mean_bias": -1.5723035903355995,
+                  "method": "monthly_quantile_mapping",
+                  "test": {
+                    "mae": 15.652126948082248,
+                    "rmse": 34.10242303101475,
+                    "wape": 0.7670967411620384
+                  }
+                }
+              ],
+              "selected_mapping": "monthly_quantile_mapping",
+              "selection_years": [
+                2020,
+                2021,
+                2022
+              ],
+              "test_year": 2024
+            }
+          ],
+          "reference": "VIIRS-only observed daily union; not ground truth"
+        },
+        {
+          "claim": "Held-out distribution comparison; no validated historical fire-incidence reconstruction.",
+          "country": "Argentina",
+          "outer_folds": [
+            {
+              "calibration_year": 2022,
+              "results": [
+                {
+                  "extreme_day_MAE": 1369.0,
+                  "extreme_threshold_from_training": 1882.0,
+                  "mean_bias": -285.3232876712329,
+                  "method": "identity",
+                  "test": {
+                    "mae": 285.3232876712329,
+                    "rmse": 377.7740028909797,
+                    "wape": 0.7142426050518144
+                  }
+                },
+                {
+                  "extreme_day_MAE": 81.93283166109256,
+                  "extreme_threshold_from_training": 1882.0,
+                  "mean_bias": 25.03760789285908,
+                  "method": "monthly_ratio",
+                  "test": {
+                    "mae": 110.18404947027902,
+                    "rmse": 179.80142989006535,
+                    "wape": 0.27582095794259504
+                  }
+                },
+                {
+                  "extreme_day_MAE": 271.5690701046972,
+                  "extreme_threshold_from_training": 1882.0,
+                  "mean_bias": 60.91241293431039,
+                  "method": "monthly_quantile_mapping",
+                  "test": {
+                    "mae": 125.03913419393977,
+                    "rmse": 195.89121152131594,
+                    "wape": 0.31300731766069323
+                  }
+                }
+              ],
+              "selected_mapping": "monthly_ratio",
+              "selection_years": [
+                2020,
+                2021
+              ],
+              "test_year": 2023
+            },
+            {
+              "calibration_year": 2023,
+              "results": [
+                {
+                  "extreme_day_MAE": 1426.2307692307693,
+                  "extreme_threshold_from_training": 1832.0,
+                  "mean_bias": -278.3606557377049,
+                  "method": "identity",
+                  "test": {
+                    "mae": 278.3606557377049,
+                    "rmse": 424.34714240555405,
+                    "wape": 0.6998742864208726
+                  }
+                },
+                {
+                  "extreme_day_MAE": 747.2622697674043,
+                  "extreme_threshold_from_training": 1832.0,
+                  "mean_bias": 39.73968392780335,
+                  "method": "monthly_ratio",
+                  "test": {
+                    "mae": 138.20608518327958,
+                    "rmse": 260.39842155624785,
+                    "wape": 0.3474876325115947
+                  }
+                },
+                {
+                  "extreme_day_MAE": 553.8332786127146,
+                  "extreme_threshold_from_training": 1832.0,
+                  "mean_bias": 73.15507097703275,
+                  "method": "monthly_quantile_mapping",
+                  "test": {
+                    "mae": 129.29298071338778,
+                    "rmse": 226.21433672643397,
+                    "wape": 0.32507766723065984
+                  }
+                }
+              ],
+              "selected_mapping": "monthly_ratio",
+              "selection_years": [
+                2020,
+                2021,
+                2022
+              ],
+              "test_year": 2024
+            }
+          ],
+          "reference": "VIIRS-only observed daily union; not ground truth"
+        }
+      ],
+      "input_manifest_sha256": "fe3d66c6e3e9e352bcbc83920f54ff71def23e74fc329a37061534f0c074798b",
+      "protocol_id": "forecast-v2-2026-11-15",
+      "protocol_sha256": "2ecdcf9c8be4ee3b104960c9bd50d707e01b4b69cb7eaabaab3781a1967c2823",
+      "schema_version": 1
+    },
+    "policy_study": {
+      "blinding_limit": "Identifiers/policy labels removed from filenames; narrative may reveal its policy. Reviewers must record unblinding guesses.",
+      "comparisons": [
+        {
+          "capacity_baseline_equal": true,
+          "completed": 3,
+          "country": "Sri_Lanka",
+          "eligible_pairs": 0,
+          "planned": 4
+        },
+        {
+          "capacity_baseline_equal": true,
+          "completed": 4,
+          "country": "Argentina",
+          "eligible_pairs": 0,
+          "planned": 4
+        }
+      ],
+      "efficacy_claim": "abstain: generated narratives and operational benefit are not validated",
+      "human_review_status": "pending independent blinded reviewers",
+      "protocol_id": "mirofish-policies-v1-2026-11-15",
+      "protocol_sha256": "a6deb24ec87fa5e68e6927cd52cd1c32ce30f6d94902649a59221769d2d50b03",
+      "provider_usage": {
+        "monetary_cost": null,
+        "observed_requests": 223,
+        "reported_models": [
+          "google/gemini-3.8-flash"
+        ],
+        "reported_total_tokens": 967762,
+        "scope": "Shared local relay after tabletop patch restart; not attributable per scenario. Streaming usage may be unavailable."
+      },
+      "replicate_labels_are_random_seeds": false,
+      "runs": [
+        {
+          "actual_personas": [
+            {
+              "description": "",
+              "name": "Asha"
+            },
+            {
+              "description": "",
+              "name": "Devi"
+            },
+            {
+              "description": "",
+              "name": "Chandra"
+            },
+            {
+              "description": "",
+              "name": "Bruno"
+            }
+          ],
+          "actual_profile_count": 4,
+          "capacity_baseline": {
+            "daily_capacity": 80,
+            "end_backlog": 1351,
+            "method": "Deterministic daily queue, starts empty; same assumptions for both policies. Not a MiroFish result.",
+            "peak_backlog": 1351
+          },
+          "country": "Sri_Lanka",
+          "graph_id": "mirofish_568bf1a3138d4cf2",
+          "id": "6a739de93b819d525969",
+          "last_error": null,
+          "metadata": {
+            "cost_note": "Provider invoice/price audit not available; not inferred from rounds.",
+            "elapsed_seconds": 356.77,
+            "model": "google/gemini-3.8-flash",
+            "monetary_cost": null,
+            "provider": "Google Vertex AI",
+            "replicate": 201,
+            "study": "mirofish-policies-v1-2026-11-15"
+          },
+          "month": "2025-08",
+          "persona_count": 4,
+          "phase": "completed",
+          "policy": "independent",
+          "project_id": "proj_985fd87cfc27",
+          "release_status": "synthetic_research_only",
+          "replicate": 201,
+          "report_id": "report_dfc6d3d8b3ee",
+          "report_sha256": "9dcb16bb7e2df9e49ddb0c3b1427946de30bb38335122365869f3c8c7c7f5c58",
+          "role_names_match": true,
+          "simulation_id": "sim_3dcafbed4024"
+        },
+        {
+          "actual_personas": [
+            {
+              "description": "",
+              "name": "Asha"
+            },
+            {
+              "description": "",
+              "name": "PyroSync"
+            },
+            {
+              "description": "",
+              "name": "field coordinator"
+            },
+            {
+              "description": "",
+              "name": "Chandra"
+            },
+            {
+              "description": "",
+              "name": "internal simulated discussion board"
+            },
+            {
+              "description": "",
+              "name": "Devi"
+            },
+            {
+              "description": "",
+              "name": "MiroFish"
+            },
+            {
+              "description": "",
+              "name": "Asha"
+            },
+            {
+              "description": "",
+              "name": "Bruno"
+            }
+          ],
+          "actual_profile_count": 9,
+          "capacity_baseline": {
+            "daily_capacity": 80,
+            "end_backlog": 1351,
+            "method": "Deterministic daily queue, starts empty; same assumptions for both policies. Not a MiroFish result.",
+            "peak_backlog": 1351
+          },
+          "country": "Sri_Lanka",
+          "graph_id": "mirofish_88fe2800710545bd",
+          "id": "0e663bdcbd47cb3394a5",
+          "last_error": "Prepared persona count is outside the 1..8 pilot limit; simulation not started.",
+          "metadata": {
+            "cost_note": "Provider invoice/price audit not available; not inferred from rounds.",
+            "elapsed_seconds": 121.52,
+            "model": "google/gemini-3.8-flash",
+            "monetary_cost": null,
+            "provider": "Google Vertex AI",
+            "replicate": 201,
+            "study": "mirofish-policies-v1-2026-11-15"
+          },
+          "month": "2025-08",
+          "persona_count": null,
+          "phase": "failed",
+          "policy": "coordinated",
+          "project_id": "proj_39a4a2defb98",
+          "release_status": "synthetic_research_only",
+          "replicate": 201,
+          "report_id": null,
+          "role_names_match": false,
+          "simulation_id": "sim_b5a496936511"
+        },
+        {
+          "actual_personas": [
+            {
+              "description": "",
+              "name": "Devi"
+            },
+            {
+              "description": "",
+              "name": "Bruno"
+            },
+            {
+              "description": "",
+              "name": "active cell-day review scenario"
+            },
+            {
+              "description": "",
+              "name": "Asha"
+            },
+            {
+              "description": "",
+              "name": "MiroFish"
+            },
+            {
+              "description": "",
+              "name": "Chandra"
+            }
+          ],
+          "actual_profile_count": 6,
+          "capacity_baseline": {
+            "daily_capacity": 80,
+            "end_backlog": 1351,
+            "method": "Deterministic daily queue, starts empty; same assumptions for both policies. Not a MiroFish result.",
+            "peak_backlog": 1351
+          },
+          "country": "Sri_Lanka",
+          "graph_id": "mirofish_87dd5a0e10534195",
+          "id": "ed9652f50ef97a5f3cc4",
+          "last_error": null,
+          "metadata": {
+            "cost_note": "Provider invoice/price audit not available; not inferred from rounds.",
+            "elapsed_seconds": 447.26,
+            "model": "google/gemini-3.8-flash",
+            "monetary_cost": null,
+            "provider": "Google Vertex AI",
+            "replicate": 202,
+            "study": "mirofish-policies-v1-2026-11-15"
+          },
+          "month": "2025-08",
+          "persona_count": 6,
+          "phase": "completed",
+          "policy": "independent",
+          "project_id": "proj_20564b3d57d7",
+          "release_status": "synthetic_research_only",
+          "replicate": 202,
+          "report_id": "report_ceae4acc6ee5",
+          "report_sha256": "22741bbe153223d0a570276438b6ec8056bdd4d24066b1da9edd2f542042ca17",
+          "role_names_match": false,
+          "simulation_id": "sim_ffb9399c308d"
+        },
+        {
+          "actual_personas": [
+            {
+              "description": "",
+              "name": "Chandra"
+            },
+            {
+              "description": "",
+              "name": "Bruno"
+            },
+            {
+              "description": "",
+              "name": "Asha"
+            },
+            {
+              "description": "",
+              "name": "internal simulated discussion board"
+            },
+            {
+              "description": "",
+              "name": "field coordinator"
+            },
+            {
+              "description": "",
+              "name": "Devi"
+            }
+          ],
+          "actual_profile_count": 6,
+          "capacity_baseline": {
+            "daily_capacity": 80,
+            "end_backlog": 1351,
+            "method": "Deterministic daily queue, starts empty; same assumptions for both policies. Not a MiroFish result.",
+            "peak_backlog": 1351
+          },
+          "country": "Sri_Lanka",
+          "graph_id": "mirofish_33ec403e6de145fb",
+          "id": "6a9bdca8411e46e2d581",
+          "last_error": null,
+          "metadata": {
+            "cost_note": "Provider invoice/price audit not available; not inferred from rounds.",
+            "elapsed_seconds": 336.94,
+            "model": "google/gemini-3.8-flash",
+            "monetary_cost": null,
+            "provider": "Google Vertex AI",
+            "replicate": 202,
+            "study": "mirofish-policies-v1-2026-11-15"
+          },
+          "month": "2025-08",
+          "persona_count": 6,
+          "phase": "completed",
+          "policy": "coordinated",
+          "project_id": "proj_3691b36d66f7",
+          "release_status": "synthetic_research_only",
+          "replicate": 202,
+          "report_id": "report_cd5f715fbd11",
+          "report_sha256": "07aacfcee240cc4981258428e20cfa2b0dad24fd6ba30845e514a61ef45ffbd8",
+          "role_names_match": false,
+          "simulation_id": "sim_9218d5082e9c"
+        },
+        {
+          "actual_personas": [
+            {
+              "description": "",
+              "name": "Bruno"
+            },
+            {
+              "description": "",
+              "name": "Devi"
+            },
+            {
+              "description": "",
+              "name": "Asha"
+            },
+            {
+              "description": "",
+              "name": "Chandra"
+            }
+          ],
+          "actual_profile_count": 4,
+          "capacity_baseline": {
+            "daily_capacity": 80,
+            "end_backlog": 33407,
+            "method": "Deterministic daily queue, starts empty; same assumptions for both policies. Not a MiroFish result.",
+            "peak_backlog": 33407
+          },
+          "country": "Argentina",
+          "graph_id": "mirofish_60758514d0b14701",
+          "id": "fcb52d436600229a61b3",
+          "last_error": null,
+          "metadata": {
+            "cost_note": "Provider invoice/price audit not available; not inferred from rounds.",
+            "elapsed_seconds": 315.89,
+            "model": "google/gemini-3.8-flash",
+            "monetary_cost": null,
+            "provider": "Google Vertex AI",
+            "replicate": 201,
+            "study": "mirofish-policies-v1-2026-11-15"
+          },
+          "month": "2025-08",
+          "persona_count": 4,
+          "phase": "completed",
+          "policy": "independent",
+          "project_id": "proj_218fd2d345ee",
+          "release_status": "synthetic_research_only",
+          "replicate": 201,
+          "report_id": "report_a3f27fa89782",
+          "report_sha256": "2e89bee99d3045af8e3a471c43ceed7ba1daaa79001a30a0126c87e6b983971b",
+          "role_names_match": true,
+          "simulation_id": "sim_29d5ea6c420c"
+        },
+        {
+          "actual_personas": [
+            {
+              "description": "",
+              "name": "Chandra"
+            },
+            {
+              "description": "",
+              "name": "Devi"
+            },
+            {
+              "description": "",
+              "name": "Asha"
+            },
+            {
+              "description": "",
+              "name": "field coordinator"
+            },
+            {
+              "description": "",
+              "name": "Bruno"
+            }
+          ],
+          "actual_profile_count": 5,
+          "capacity_baseline": {
+            "daily_capacity": 80,
+            "end_backlog": 33407,
+            "method": "Deterministic daily queue, starts empty; same assumptions for both policies. Not a MiroFish result.",
+            "peak_backlog": 33407
+          },
+          "country": "Argentina",
+          "graph_id": "mirofish_96f1c22ac2e847de",
+          "id": "95a26b972f24903599a4",
+          "last_error": null,
+          "metadata": {
+            "cost_note": "Provider invoice/price audit not available; not inferred from rounds.",
+            "elapsed_seconds": 395.62,
+            "model": "google/gemini-3.8-flash",
+            "monetary_cost": null,
+            "provider": "Google Vertex AI",
+            "replicate": 201,
+            "study": "mirofish-policies-v1-2026-11-15"
+          },
+          "month": "2025-08",
+          "persona_count": 5,
+          "phase": "completed",
+          "policy": "coordinated",
+          "project_id": "proj_77bab079c67f",
+          "release_status": "synthetic_research_only",
+          "replicate": 201,
+          "report_id": "report_724c375cfbed",
+          "report_sha256": "2cc346be607bb0c806b452a95806ca3ba4c6c4391366584711e048781e3c3683",
+          "role_names_match": false,
+          "simulation_id": "sim_c1df289b8852"
+        },
+        {
+          "actual_personas": [
+            {
+              "description": "",
+              "name": "Chandra"
+            },
+            {
+              "description": "",
+              "name": "Asha"
+            },
+            {
+              "description": "",
+              "name": "Bruno"
+            },
+            {
+              "description": "",
+              "name": "Chandra"
+            },
+            {
+              "description": "",
+              "name": "Devi"
+            },
+            {
+              "description": "",
+              "name": "Asha"
+            }
+          ],
+          "actual_profile_count": 6,
+          "capacity_baseline": {
+            "daily_capacity": 80,
+            "end_backlog": 33407,
+            "method": "Deterministic daily queue, starts empty; same assumptions for both policies. Not a MiroFish result.",
+            "peak_backlog": 33407
+          },
+          "country": "Argentina",
+          "graph_id": "mirofish_9e29e17afcd448e0",
+          "id": "ae0885a66b550433c783",
+          "last_error": null,
+          "metadata": {
+            "cost_note": "Provider invoice/price audit not available; not inferred from rounds.",
+            "elapsed_seconds": 308.13,
+            "model": "google/gemini-3.8-flash",
+            "monetary_cost": null,
+            "provider": "Google Vertex AI",
+            "replicate": 202,
+            "study": "mirofish-policies-v1-2026-11-15"
+          },
+          "month": "2025-08",
+          "persona_count": 6,
+          "phase": "completed",
+          "policy": "independent",
+          "project_id": "proj_d35105fd4fb1",
+          "release_status": "synthetic_research_only",
+          "replicate": 202,
+          "report_id": "report_ac8ff46aec39",
+          "report_sha256": "45db94efa772a86859fc26a827b039e81914e490057e301607bf7461ec515552",
+          "role_names_match": false,
+          "simulation_id": "sim_56896a4a50c7"
+        },
+        {
+          "actual_personas": [
+            {
+              "description": "",
+              "name": "Devi"
+            },
+            {
+              "description": "",
+              "name": "Chandra"
+            },
+            {
+              "description": "",
+              "name": "Bruno"
+            },
+            {
+              "description": "",
+              "name": "field coordinator"
+            },
+            {
+              "description": "",
+              "name": "MiroFish"
+            },
+            {
+              "description": "",
+              "name": "PyroSync"
+            },
+            {
+              "description": "",
+              "name": "Asha"
+            }
+          ],
+          "actual_profile_count": 7,
+          "capacity_baseline": {
+            "daily_capacity": 80,
+            "end_backlog": 33407,
+            "method": "Deterministic daily queue, starts empty; same assumptions for both policies. Not a MiroFish result.",
+            "peak_backlog": 33407
+          },
+          "country": "Argentina",
+          "graph_id": "mirofish_c97b4154a4be4ea4",
+          "id": "6d504107f57485994001",
+          "last_error": null,
+          "metadata": {
+            "cost_note": "Provider invoice/price audit not available; not inferred from rounds.",
+            "elapsed_seconds": 349.42,
+            "model": "google/gemini-3.8-flash",
+            "monetary_cost": null,
+            "provider": "Google Vertex AI",
+            "replicate": 202,
+            "study": "mirofish-policies-v1-2026-11-15"
+          },
+          "month": "2025-08",
+          "persona_count": 7,
+          "phase": "completed",
+          "policy": "coordinated",
+          "project_id": "proj_d8df08ebd323",
+          "release_status": "synthetic_research_only",
+          "replicate": 202,
+          "report_id": "report_9a55aa85b1cc",
+          "report_sha256": "647f0d4e7f3b3e618ba9f7240c980145f06019cf15c30b5a37ca25c2202736b9",
+          "role_names_match": false,
+          "simulation_id": "sim_a37efeadf0e3"
+        }
+      ],
+      "schema_version": 1
+    }
+  },
+  "purpose": "optional research view; not operational alerts"
+}

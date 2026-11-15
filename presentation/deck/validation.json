@@ -1,0 +1,10 @@
+{
+  "main_pitch_slides": 10,
+  "evidence_appendix_slides": 4,
+  "submission_slides": 7,
+  "rendered_pages": 14,
+  "rendered_text_missing": [],
+  "survey_status": "not_run",
+  "all_shape_bounds_checked": true,
+  "minimum_slide_font_pt": 18
+}

@@ -1,0 +1,38 @@
+{
+  "country": "Argentina",
+  "summary": {
+    "active_cell_days": 182998,
+    "filtered_vegetation_rows": 340993,
+    "median_footprint_km2": {
+      "modis": 1.32,
+      "viirs-jpss1": 0.20909999999999998,
+      "viirs-snpp": 0.205
+    },
+    "modis_viirs_jaccard": 0.07765658641078045,
+    "multi_sensor_cell_days": 52337,
+    "observation_reduction_fraction": 0.46333795708416303,
+    "raw_rows": 389118,
+    "type_counts": {
+      "0": 373892,
+      "2": 14280,
+      "3": 946
+    }
+  },
+  "sensor_dropout": [
+    {
+      "lost_cell_days": 28064,
+      "removed": "modis",
+      "retained_fraction": 0.8466431327118329
+    },
+    {
+      "lost_cell_days": 50758,
+      "removed": "viirs-snpp",
+      "retained_fraction": 0.7226308484245729
+    },
+    {
+      "lost_cell_days": 51839,
+      "removed": "viirs-jpss1",
+      "retained_fraction": 0.716723680040219
+    }
+  ]
+}
