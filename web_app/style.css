@@ -60,6 +60,12 @@ button:disabled {
   opacity: 0.4;
   cursor: default;
 }
+/* Disclosure triangles are the main touch control for optional detail.
+   Keep them at the 24px minimum target height on small screens. */
+summary {
+  min-height: 24px;
+  padding: 3px 0;
+}
 [hidden] {
   display: none !important;
 }
