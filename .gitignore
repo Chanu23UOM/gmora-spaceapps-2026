@@ -34,3 +34,18 @@ venv/
 Thumbs.db
 *.zip
 *.tar.gz
+
+# Reproducible analysis outputs and browser QA scratch files
+web_app/data/*_map.json
+web_app/data/Argentina.json
+web_app/data/Sri_Lanka.json
+web_app/data/*_daily.csv
+web_app/data/*_evidence.json
+web_app/data/*_brief.md
+web_app/data/manifest.json
+processed_data/*_evidence.json
+processed_data/*_brief.md
+.qa/
+.integrations/
+processed_data/scenarios/
+/log/

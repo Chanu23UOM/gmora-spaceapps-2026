@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="PyroSync: traceable satellite fire observations and honest forecast evaluation."
+    />
+    <title>PyroSync · Fire Observation Lab</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <aside class="rail">
+      <a href="#" class="brand" aria-label="PyroSync home">P<span>↗</span></a
+      ><span class="vertical">TEAM GMORA / OBSERVATION LAB</span
+      ><span class="rail-year">2025</span>
+    </aside>
+    <main>
+      <header>
+        <div class="wordmark">PYROSYNC<span> / FIRE OBSERVATION LAB</span></div>
+        <span class="status"><i></i> ARCHIVE RESEARCH PROTOTYPE</span>
+      </header>
+      <section class="intro">
+        <div>
+          <p class="eyebrow">01 / MAKE THE INSTRUMENT VISIBLE</p>
+          <h1>One landscape.<br /><em>Different observations.</em></h1>
+          <p class="lede">
+            Explore what the satellites saw, where they disagree,<br
+              class="desktop"
+            />
+            and whether a forecast earns your trust.
+          </p>
+        </div>
+        <div class="dataset-note">
+          <span class="tiny">NASA FIRMS · 2025 SNAPSHOT</span>
+          <p>
+            3 source streams<br />2 countries<br /><strong
+              >Every result traceable.</strong
+            >
+          </p>
+          <a href="#methods">Read the method ↗</a>
+        </div>
+      </section>
+      <nav class="toolbar" aria-label="Dataset controls">
+        <label
+          >REGION<select id="country">
+            <option value="Sri_Lanka">Sri Lanka</option>
+            <option value="Argentina">Argentina</option>
+          </select></label
+        ><label>MONTH<select id="month"></select></label>
+        <div class="segmented" aria-label="Activity metric">
+          <button id="cells-mode" aria-pressed="true">Active cell-days</button
+          ><button id="raw-mode" aria-pressed="false">Raw detections</button>
+        </div>
+        <a id="csv-download" class="button secondary" download
+          >Export daily CSV ↓</a
+        >
+      </nav>
+      <div id="loading" role="status">Loading the observation archive…</div>
+      <div id="app" hidden>
+        <section class="stats" aria-label="Selected month statistics">
+          <article>
+            <span class="tiny">RAW OBSERVATIONS · ALL TYPES</span
+            ><strong id="stat-raw"></strong
+            ><small>Multiple observations may describe one fire.</small>
+          </article>
+          <article>
+            <span class="tiny">VEGETATION ACTIVE CELL-DAYS</span
+            ><strong id="stat-cells"></strong
+            ><small>Quality filtered · H3 resolution 8 · UTC day</small>
+          </article>
+          <article>
+            <span class="tiny">MULTI-SOURCE CELL-DAYS</span
+            ><strong id="stat-multi"></strong
+            ><small>Agreement between source streams, not truth.</small>
+          </article>
+          <article>
+            <span class="tiny">STATIC THERMAL OBSERVATIONS</span
+            ><strong id="stat-industrial"></strong
+            ><small>Type 2 · excluded from the vegetation series</small>
+          </article>
+        </section>
+        <section class="explorer grid">
+          <article class="panel calendar-panel">
+            <div class="panel-title">
+              <div>
+                <p class="eyebrow">02 / THE OBSERVATION CALENDAR</p>
+                <h2>A year, day by day.</h2>
+              </div>
+              <span class="chip">2025</span>
+            </div>
+            <p id="calendar-label" class="subtext"></p>
+            <div
+              id="calendar"
+              class="calendar"
+              aria-label="Daily activity calendar"
+            ></div>
+            <div class="legend">
+              <span>Fewer observations</span><span class="gradient"></span
+              ><span>More</span>
+            </div>
+            <div class="callout">
+              <span>↳</span>
+              <p>
+                A blank day means
+                <strong>no qualifying detections in these files</strong>. Cloud
+                and coverage masks are unavailable; it does not prove there was
+                no fire.
+              </p>
+            </div>
+            <div class="panel-title compact">
+              <h3>Daily comparison</h3>
+              <span class="tiny">SELECTED MONTH</span>
+            </div>
+            <svg
+              id="activity-chart"
+              viewBox="0 0 620 170"
+              role="img"
+              aria-label="Daily activity by sensor and combined grid"
+            ></svg>
+            <div class="chart-key">
+              <span style="--key: #f08752">Combined cell-days</span
+              ><span style="--key: #75b9bb">MODIS cell-days</span
+              ><span style="--key: #a1a9ce">S-NPP cell-days</span
+              ><span style="--key: #c9b185">NOAA-20 cell-days</span>
+            </div>
+          </article>
+          <article class="panel map-panel">
+            <div class="panel-title">
+              <div>
+                <p class="eyebrow">03 / SPATIAL EVIDENCE</p>
+                <h2>Inspect the footprint.</h2>
+              </div>
+              <label class="check"
+                ><input type="checkbox" id="industrial" />Show static
+                sources</label
+              >
+            </div>
+            <p class="subtext">
+              Map dots group resolution-8 cell-days into resolution-7 parent
+              cells. Select a dot to inspect its evidence.
+            </p>
+            <svg
+              id="map"
+              viewBox="0 0 560 390"
+              role="img"
+              aria-label="Geographic distribution of selected observations"
+            ></svg>
+            <div id="map-evidence" class="map-evidence" aria-live="polite">
+              Select a mapped cell to see source counts and original CSV row
+              references.
+            </div>
+            <div class="map-footer">
+              <span>OUTLINES: NATURAL EARTH</span
+              ><button id="geojson-download" class="text-button">
+                Export selected GeoJSON ↗
+              </button>
+            </div>
+          </article>
+        </section>
+        <section class="lab-heading">
+          <div>
+            <p class="eyebrow">04 / EARN THE FORECAST</p>
+            <h2>Challenge the model.<br /><em>Keep the baseline.</em></h2>
+          </div>
+          <p>
+            Seven-day forecasts, tested forward in time. Model selection ends in
+            June; July–September calibrates uncertainty; October–December tests
+            the frozen choice.
+          </p>
+        </section>
+        <section class="grid">
+          <article class="panel benchmark-panel">
+            <div class="panel-title">
+              <h3>Forecast tournament</h3>
+              <span class="chip">HELD-OUT Q4</span>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Candidate</th>
+                    <th>MAE ↓</th>
+                    <th>WAPE ↓</th>
+                    <th>80% band coverage</th>
+                  </tr>
+                </thead>
+                <tbody id="benchmark"></tbody>
+              </table>
+            </div>
+            <div id="promotion" class="callout"></div>
+            <p class="subtext">
+              Bands use past calibration errors. Coverage is measured on Q4; the
+              80% target is not guaranteed. Foundation-model candidates must
+              face the same data cutoffs before admission.
+            </p>
+            <button id="predictions-download" class="text-button">
+              Download all fold predictions ↗
+            </button>
+          </article>
+          <article class="panel">
+            <div class="panel-title">
+              <h3>Archive continuation</h3>
+              <span class="chip">JAN 01–07, 2026</span>
+            </div>
+            <p id="forecast-model" class="subtext"></p>
+            <svg
+              id="forecast-chart"
+              viewBox="0 0 560 220"
+              role="img"
+              aria-label="Seven-day archival forecast and uncertainty bands"
+            ></svg>
+            <p class="callout">
+              This extends the December 2025 archive. It is not a forecast for
+              today or an operational warning.
+            </p>
+          </article>
+        </section>
+        <section class="grid lower">
+          <article class="panel">
+            <p class="eyebrow">05 / THE SENSOR STRESS TEST</p>
+            <h3>What disappears with a sensor?</h3>
+            <p class="subtext">
+              Remove one source stream and recompute the annual union. The
+              remaining fraction measures redundancy in these observations.
+            </p>
+            <div id="dropout"></div>
+            <div class="panel-title compact">
+              <h3>Grid & confidence sensitivity</h3>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>H3 resolution</th>
+                    <th>Quality filtered</th>
+                    <th>All confidence</th>
+                  </tr>
+                </thead>
+                <tbody id="sensitivity"></tbody>
+              </table>
+            </div>
+            <p class="subtext">
+              Changing the grid changes the unit of measurement. No resolution
+              is declared ground truth.
+            </p>
+          </article>
+          <article class="panel evidence-panel">
+            <p class="eyebrow">06 / EVIDENCE BEFORE NARRATIVE</p>
+            <h3>An inspectable analysis workflow.</h3>
+            <div class="workflow">
+              <span>01 <b>Scope</b></span
+              ><span>02 <b>Compute</b></span
+              ><span>03 <b>Verify</b></span>
+            </div>
+            <p class="subtext">
+              A deterministic planner, analyst and verifier bind each brief’s
+              numeric claims to artifact fields. These are automated workflow
+              roles; no LLM is running behind this page.
+            </p>
+            <div id="evidence-claims"></div>
+            <div class="evidence-actions">
+              <button id="brief-download" class="button">
+                Download evidence brief ↓</button
+              ><button id="packet-download" class="button secondary">
+                Scenario packet ↓
+              </button>
+            </div>
+            <p class="subtext">
+              The scenario packet provides evidence for the MiroFish
+              communication-policy lab below. Simulation narratives remain
+              separate from verified observations and forecasts.
+            </p>
+            <p class="tiny">RUN <span id="run-id"></span></p>
+          </article>
+        </section>
+        <section class="panel scenario-panel" aria-labelledby="scenario-title">
+          <div class="panel-title">
+            <div>
+              <p class="eyebrow">07 / MIROFISH TABLETOP</p>
+              <h2 id="scenario-title">Rehearse the communication.</h2>
+            </div>
+            <button id="mirofish-refresh" class="text-button">
+              Check connection ↗
+            </button>
+          </div>
+          <p class="subtext">
+            Compare independent stakeholder updates with one coordinated
+            evidence bulletin. Both policies receive the same selected
+            country/month workload. These are synthetic internal discussions,
+            not physical fire forecasts.
+          </p>
+          <p id="mirofish-status" role="status" class="callout">
+            Checking MiroFish connection…
+          </p>
+          <form id="scenario-form" class="scenario-controls">
+            <label
+              >COMMUNICATION POLICY<select id="scenario-policy">
+                <option value="coordinated">Coordinated bulletin</option>
+                <option value="independent">Independent updates</option>
+              </select></label
+            >
+            <label
+              >REVIEWERS<input
+                id="scenario-reviewers"
+                type="number"
+                min="1"
+                max="100"
+                value="4"
+                required
+            /></label>
+            <label
+              >REVIEWS / PERSON / DAY<input
+                id="scenario-capacity"
+                type="number"
+                min="1"
+                max="1000"
+                value="20"
+                required
+            /></label>
+            <label
+              >MAX ROUNDS<input
+                id="scenario-rounds"
+                type="number"
+                min="1"
+                max="12"
+                value="4"
+                required
+            /></label>
+            <label
+              >REPLICATE<input
+                id="scenario-replicate"
+                type="number"
+                min="0"
+                max="1000"
+                value="0"
+                required
+            /></label>
+            <button type="submit" class="button">Prepare scenario</button>
+          </form>
+          <p class="subtext">
+            Preparation is local. Starting a simulation sends this public
+            archive summary and fictional personas to the configured LLM and Zep
+            services. Rounds are capped; graph extraction and reporting have
+            separate provider costs. Reviewer capacity is a declared assumption,
+            not a measured staffing level.
+          </p>
+          <div id="scenario-detail" hidden>
+            <p id="scenario-summary" class="callout" aria-live="polite"></p>
+            <div class="evidence-actions">
+              <button id="scenario-start" class="button" disabled>
+                Start / resume MiroFish</button
+              ><button id="scenario-seed" class="button secondary">
+                Download scenario state</button
+              ><button id="scenario-report" class="button secondary" disabled>
+                Download synthetic report
+              </button>
+            </div>
+            <pre id="scenario-trace"></pre>
+          </div>
+        </section>
+        <section id="methods" class="methods">
+          <p class="eyebrow">07 / METHOD & LIMITS</p>
+          <div class="grid">
+            <div>
+              <h2>
+                Precise about the unit.<br /><em>Honest about the unknowns.</em>
+              </h2>
+              <p>
+                One active cell-day means at least one qualifying vegetation
+                detection within the same H3 resolution-8 cell and UTC date.
+                Instruments contribute to a union; their counts are not added as
+                distinct fires.
+              </p>
+            </div>
+            <div>
+              <ul id="limitations"></ul>
+              <p>
+                Quality rule: MODIS confidence ≥30; VIIRS nominal or high.
+                Confidence categories are quality flags, not calibrated
+                probabilities. No inter-sensor historical transfer function is
+                fitted.
+              </p>
+              <p>
+                <a
+                  href="https://firms.modaps.eosdis.nasa.gov/"
+                  target="_blank"
+                  rel="noreferrer"
+                  >NASA FIRMS ↗</a
+                >
+                ·
+                <a href="data/manifest.json" target="_blank"
+                  >Input hashes & method manifest ↗</a
+                >
+              </p>
+            </div>
+          </div>
+        </section>
+      </div>
+      <footer>
+        <span>PYROSYNC / TEAM GMORA</span
+        ><span>NASA FIRMS DATA · INDEPENDENT RESEARCH PROTOTYPE</span>
+      </footer>
+    </main>
+    <script type="module" src="app.js"></script>
+    <script type="module" src="scenario.js"></script>
+  </body>
+</html>

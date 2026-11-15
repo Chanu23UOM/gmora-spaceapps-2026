@@ -1,0 +1,7 @@
+{
+  "repository": "https://github.com/666ghj/MiroFish.git",
+  "revision": "7657031ac01184afe2cb220f5ee3545573b5e843",
+  "api_base": "http://127.0.0.1:5001",
+  "purpose": "Synthetic communication-policy tabletop; separate from physical fire forecasts",
+  "license": "AGPL-3.0 (upstream, maintained as a separate service)"
+}

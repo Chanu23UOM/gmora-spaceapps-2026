@@ -1,0 +1,7 @@
+torch==2.10.0+cpu
+# Compatibility pins from this upstream revision's uv.lock. Its broad dependency
+# ranges otherwise resolve MCP 2.x, which breaks camel-ai 0.2.78's FastMCP import.
+mcp==1.24.0
+numpy==2.3.5
+transformers==4.57.3
+PyMuPDF==1.26.7

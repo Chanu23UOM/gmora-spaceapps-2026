@@ -1,4 +1,5 @@
 # 🚀 TEAM GMORA: Master Plan & Step-by-Step Walkthrough Guide
+> **Implementation status (2026-11-15):** This is the original aspirational plan. Its multi-decade/global product descriptions, calibration methods and submission language are not measured results. The [architecture review](docs/ARCHITECTURE_REVIEW.md) supersedes scientific and implementation claims here. See [README](README.md) for the working 2025 prototype and [evaluation protocol](docs/EVALUATION_PROTOCOL.md) for measured checks. Do not copy the submission draft as a statement of completed work.
 **Event:** NASA Space Apps Challenge 2026 — Sri Lanka (Colombo Virtual Track)  
 **Challenge:** Harmonization of MODIS and VIIRS Hot Spots  
 **Challenge Author:** Marina Companuchi, CONAE (*Comisión Nacional de Actividades Espaciales* — Argentina Space Agency, Teófilo Tabanera Space Center, Córdoba)  
@@ -61,7 +62,7 @@ Look at the actual row counts in our `D:\SpaceApps` 2025 datasets:
   - `modis_2025_Sri_Lanka.csv`: **684 rows** (Terra + Aqua combined)
   - `viirs-snpp_2025_Sri_Lanka.csv`: **5,519 rows** (**8.07×** MODIS!)
   - `viirs-jpss1_2025_Sri_Lanka.csv`: **5,451 rows** (**7.97×** MODIS!)
-  - *Why?* Sri Lanka's fires are predominantly sub-kilometer montane bushfires and smallholder *Chena* agricultural burns. VIIRS (375m) detects them; MODIS (1km) misses ~85% of them! Furthermore, in `viirs-snpp_2025_Sri_Lanka.csv`, coordinates around `7.989°N, 79.865°E` (Puttalam) appear repeatedly with `type = 2` (industrial cement kiln heat), which inflates raw counts if not separated from `type = 0` vegetation fires.
+  - *Interpretation:* The observation-count ratio alone cannot establish the fraction of distinct fires missed by MODIS or attribute detections to a particular land-use activity. `type=2` static thermal sources should be separated from presumed vegetation detections. Attribution to a specific facility requires independent verification.
 - **Argentina (2025):**
   - `modis_2025_Argentina.csv`: **48,121 rows**
   - `viirs-snpp_2025_Argentina.csv`: **170,674 rows** (**3.55×** MODIS)
@@ -147,7 +148,7 @@ Even after spatial clustering (Stage 3), VIIRS still detects small sub-canopy or
 2. **Cross-Sensor Transfer Function (Empirical Quantile Mapping / Seasonal Scaling):**
    - Compute the seasonal biome scaling factor $\gamma_{R, m}$ and quantile distribution mapping during the overlap period:
      $$\hat{H}_{t} = \begin{cases} F_{\text{Harmonized}}^{-1}\left(F_{\text{MODIS}, m}(M_t)\right) & \text{if } t < 2012 \text{ (MODIS-only era)} \\ w_M \cdot \tilde{M}_t + w_V \cdot \tilde{V}_t & \text{if } 2012 \le t \le \text{MODIS retirement (Overlap era)} \\ \tilde{V}_t & \text{if post-MODIS retirement (VIIRS continuity era)} \end{cases}$$
-   - **Result:** A single, seamless **Harmonized Fire Activity Index (HFAI)** from **2000 to 2026+** with zero artificial jump in 2012 (when S-NPP launched), zero artificial jump in 2018 (when NOAA-20 launched), and zero artificial drop when Terra/Aqua retire!
+   - **Research objective, not an achieved result:** A comparable historical activity index. Any reduction in sensor-transition artifacts must be measured on withheld periods without suppressing genuine changes. Only 2025 data is present; no historical transfer function is currently fitted.
 
 ### Stage 5: Climatological Baseline, Trends & Anomaly Detection
 For the **Burning Activity Calendar**, compute for every cell `(Year y, Month/Week m)`:
@@ -294,7 +295,7 @@ From `NASA Space Apps Colombo 2026 Contestant Judging Guide.pdf`:
 1. **Slide 1 — Title Slide:** *Project Name* by Team Gmora | Harmonizing 26 Years of NASA MODIS & VIIRS Hotspots into a Unified Global & Sri Lankan Burning Activity Calendar.
 2. **Slide 2 — The Problem (Backed by Our 2025 Data):** Why raw MODIS and VIIRS cannot be compared. Show the real numbers from our dataset: *Sri Lanka 2025 has 684 MODIS hotspots vs. 10,970 VIIRS hotspots (S-NPP + NOAA-20) — a 16× raw count explosion! With MODIS retiring, 25 years of baseline history is at risk.*
 3. **Slide 3 — Our 5-Stage Harmonization Architecture:** Clean visual diagram of: (1) Schema & `type=0` Vegetation Filtering $\rightarrow$ (2) `scan × track` Footprint Area Normalization $\rightarrow$ (3) H3 Hexagonal Spatio-Temporal Clustering $\rightarrow$ (4) 2012–2025 Overlap Quantile Calibration $\rightarrow$ (5) $Z$-Score Anomaly Indexing.
-4. **Slide 4 — Scientific Proof & Validation:** Before-and-After Time Series (2000–2025) showing how raw counts suffer artificial step-jumps in 2012 and 2018, while our Harmonized Index forms a continuous, sensor-agnostic series ($R^2 > 0.89$ in overlap validation).
+4. **Slide 4 — Measured Evaluation:** Present actual 2025 grid/confidence sensitivity, source-dropout diagnostics and forward forecast errors. Do not claim a validated 2000–2025 record or an overlap R²: neither has been computed. Both current forecast candidates fail the promotion gate.
 5. **Slide 5 — The Interactive Web App & Burning Activity Calendar:** Annotated UI showcase highlighting the Year $\times$ Month Calendar Matrix, Raw-vs-Harmonized Toggle, H3 Footprint Map, Seasonality Clock, and One-Click Analytics Export.
 6. **Slide 6 — Dual Real-World Case Studies (Argentina CONAE & Sri Lanka DMC):**
    - *Argentina:* Tracking the July winter fire anomaly in Chilecito / La Rioja & Córdoba (CONAE use case).
