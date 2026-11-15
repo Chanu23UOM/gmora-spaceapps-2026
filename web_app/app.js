@@ -404,30 +404,103 @@ function renderActivity() {
   );
 }
 
+function coordLabel(lat, lon) {
+  const ns = `${Math.abs(lat).toFixed(2)}°${lat >= 0 ? "N" : "S"}`;
+  const ew = `${Math.abs(lon).toFixed(2)}°${lon >= 0 ? "E" : "W"}`;
+  return `${ns}, ${ew}`;
+}
+
+// Focused inspection panel for one selected map cell: a plain-language summary
+// first, with source rows and exact grid details behind optional disclosures.
+// Reuses the existing #map-evidence element — no new always-visible section.
 function showEvidence(c) {
   const box = $("map-evidence");
   box.replaceChildren();
-  const strong = document.createElement("strong");
-  strong.textContent = `${c.h3} · ${fmt(c.cell_days)} active cell-days · type ${c.type}`;
-  box.append(strong, document.createElement("br"));
-  box.append(
-    document.createTextNode(
-      Object.entries(c.sensors)
-        .map(([s, n]) => `${sourceLabels[s]}: ${fmt(n)} observations`)
-        .join(" · "),
-    ),
-    document.createElement("br"),
+  box.classList.add("inspecting");
+  const year = state.data.year || 2025;
+  const countryLabel = state.country.replaceAll("_", " ");
+  const period = monthName(state.month, true);
+  const isStatic = c.type === 2;
+  const streams = Object.entries(c.sensors);
+  const streamNames = streams.map(([s]) => sourceLabels[s]);
+
+  const heading = document.createElement("div");
+  heading.className = "evidence-heading";
+  const title = document.createElement("strong");
+  title.textContent = isStatic
+    ? "Static thermal source · excluded from the vegetation series"
+    : `${fmt(c.cell_days)} active cell-day${c.cell_days === 1 ? "" : "s"} recorded here`;
+  const where = document.createElement("span");
+  where.className = "evidence-where";
+  where.textContent = `Near ${coordLabel(c.lat, c.lon)} · ${countryLabel} · ${period}`;
+  heading.append(title, where);
+  box.append(heading);
+
+  // Plain summary: label raw observations and aggregated cell-days consistently,
+  // and explain the difference as repeat views, not false detections.
+  const summary = document.createElement("p");
+  summary.className = "evidence-summary";
+  if (isStatic) {
+    summary.textContent =
+      `This grid cell holds ${fmt(c.raw)} raw detection${c.raw === 1 ? "" : "s"} flagged as a static thermal source (type 2) — a persistent stationary heat signature. It is shown only as an optional layer and is kept out of the vegetation active cell-day counts. The source type is a satellite flag; no specific facility is identified here.`;
+  } else if (c.raw === c.cell_days) {
+    summary.textContent =
+      `${fmt(c.raw)} raw detection${c.raw === 1 ? "" : "s"} from ${streamNames.length} satellite stream${streamNames.length === 1 ? "" : "s"} (${streamNames.join(", ")}), counted as ${fmt(c.cell_days)} active cell-day${c.cell_days === 1 ? "" : "s"}.`;
+  } else {
+    summary.textContent =
+      `${fmt(c.raw)} raw detections here group into ${fmt(c.cell_days)} active cell-day${c.cell_days === 1 ? "" : "s"}. The same landscape is seen by many 375 m pixels and several satellite passes, so each grid cell counts once per UTC day. The difference is repeat views of the same area, not a count of false detections.`;
+  }
+  box.append(summary);
+
+  // Selected period, source counts and the active filters, shown together.
+  const chips = document.createElement("div");
+  chips.className = "evidence-chips";
+  const addChip = (text) => {
+    const span = document.createElement("span");
+    span.textContent = text;
+    chips.append(span);
+  };
+  streams.forEach(([s, n]) =>
+    addChip(`${sourceLabels[s]}: ${fmt(n)} obs`),
   );
+  addChip("Quality filter: on");
+  addChip($("industrial").checked ? "Static sources: shown" : "Static sources: hidden");
+  box.append(chips);
+
+  // Optional source timestamps and CSV row references, on demand.
+  const sources = document.createElement("details");
+  sources.className = "evidence-details";
+  const sourcesSummary = document.createElement("summary");
+  sourcesSummary.textContent = "Source timestamps & CSV rows";
+  sources.append(sourcesSummary);
+  const sampleList = document.createElement("div");
+  sampleList.className = "evidence-samples";
   c.samples.forEach((r) => {
-    const p = document.createElement("div");
-    p.textContent = `${r.source}/${state.data.year || 2025}/${r.source}_${state.data.year || 2025}_${state.country}.csv:${r.row} · ${r.utc} · ${decimal(r.frp_mw)} MW`;
-    box.append(p);
+    const row = document.createElement("div");
+    row.textContent = `${r.source}/${year}/${r.source}_${year}_${state.country}.csv:${r.row} · ${r.utc} · ${decimal(r.frp_mw)} MW`;
+    sampleList.append(row);
   });
-  box.append(
-    document.createTextNode(
-      "Up to 3 source-row examples. Map cells and samples use the quality filter.",
-    ),
-  );
+  const note = document.createElement("p");
+  note.className = "evidence-sample-note";
+  note.textContent =
+    c.cell_days > c.samples.length || c.raw > c.samples.length
+      ? `Showing ${c.samples.length} example row${c.samples.length === 1 ? "" : "s"} only — not the full set for this cell. Use “Export selected GeoJSON” or the daily CSV for every record.`
+      : `Example row${c.samples.length === 1 ? "" : "s"} for this cell. Use the GeoJSON/CSV exports for machine-readable detail.`;
+  sources.append(sampleList, note);
+  box.append(sources);
+
+  // Advanced disclosure: exact grid definition kept out of the plain summary.
+  const grid = document.createElement("details");
+  grid.className = "evidence-details";
+  const gridSummary = document.createElement("summary");
+  gridSummary.textContent = "How this point is aggregated (advanced)";
+  grid.append(gridSummary);
+  const gridBody = document.createElement("p");
+  gridBody.className = "evidence-grid-body";
+  gridBody.textContent =
+    `Map points combine H3 resolution-8 cell-days (~0.74 km²) into their resolution-7 parent cell (~5.16 km²) for a readable footprint. Each point sits at the parent-cell centre. Parent cell: ${c.h3}. An active cell-day means at least one quality-filtered detection in one resolution-8 cell on one UTC day — not a distinct fire or burned area.`;
+  grid.append(gridBody);
+  box.append(grid);
 }
 
 function renderMap() {
@@ -521,8 +594,10 @@ function renderMap() {
     };
     svg.append(dot);
   });
-  $("map-evidence").textContent = cells.length
-    ? `${fmt(cells.length)} mapped parent cells. Select a dot; the 20 most active also support keyboard selection.`
+  const evidence = $("map-evidence");
+  evidence.classList.remove("inspecting");
+  evidence.textContent = cells.length
+    ? `${fmt(cells.length)} mapped parent cells for ${monthName(state.month, true)}. Select a dot to inspect what was observed and why counts differ; the 20 most active also support keyboard selection.`
     : "No qualifying map observations recorded for this selection (coverage unknown).";
 }
 
@@ -536,7 +611,9 @@ async function loadMap() {
       "Map payload unavailable for this selected period.";
     return;
   }
-  $("map-evidence").textContent = "Loading selected month…";
+  const evidence = $("map-evidence");
+  evidence.classList.remove("inspecting");
+  evidence.textContent = "Loading selected month…";
   $("map").replaceChildren();
   state.mapCells = [];
   try {
