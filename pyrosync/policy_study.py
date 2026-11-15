@@ -23,6 +23,18 @@ def role_names_match(profiles):
     return len(names)==len(ROLES) and set(names)==set(ROLES)
 
 
+def role_comparable(result):
+    """Only runs with exactly one profile per intended actor can be paired.
+
+    Prefers the lock recorded durably at simulation-start time; falls back to a
+    post-hoc profile listing. Absence of evidence is not treated as a match.
+    """
+    lock=result.get('role_lock')
+    if isinstance(lock,dict) and 'satisfied' in lock:
+        return bool(lock['satisfied'])
+    return result.get('role_names_match') is True
+
+
 def freeze_inputs(plan,root=ROOT):
     directory=root/'processed_data/policy_inputs';directory.mkdir(parents=True,exist_ok=True)
     marker=directory/'manifest.json'
@@ -42,7 +54,8 @@ def freeze_inputs(plan,root=ROOT):
 
 def execute(case, plan):
     country,policy,replicate=case;store=ScenarioStore(evidence_root=freeze_inputs(plan))
-    state=store.prepare(country,plan['month'],policy,plan['reviewers'],plan['reviews_per_day'],plan['max_rounds'],replicate)
+    state=store.prepare(country,plan['month'],policy,plan['reviewers'],plan['reviews_per_day'],
+                        plan['max_rounds'],replicate,plan.get('require_exact_roles',False))
     start=time.monotonic();last=None
     try:
         while time.monotonic()-start<2400:
@@ -59,13 +72,14 @@ def execute(case, plan):
     return store.get(state['id'])
 
 
-def summarize(plan,root=ROOT):
+def summarize(plan,root=ROOT,plan_path=None):
     evidence_root=freeze_inputs(plan,root)
     store=ScenarioStore(root,evidence_root=evidence_root);results=[];review=[]
     for country,policy,replicate in cases(plan):
-        state=store.prepare(country,plan['month'],policy,plan['reviewers'],plan['reviews_per_day'],plan['max_rounds'],replicate)
+        state=store.prepare(country,plan['month'],policy,plan['reviewers'],plan['reviews_per_day'],
+                            plan['max_rounds'],replicate,plan.get('require_exact_roles',False))
         path=store.path(state['id']);metadata=json.loads((path/'study_metadata.json').read_text()) if (path/'study_metadata.json').exists() else {}
-        result={k:state.get(k) for k in ('id','country','month','policy','phase','project_id','graph_id','simulation_id','report_id','persona_count','last_error','capacity_baseline')}
+        result={k:state.get(k) for k in ('id','country','month','policy','phase','project_id','graph_id','simulation_id','report_id','persona_count','last_error','capacity_baseline','require_exact_roles','role_lock')}
         result.update({'replicate':replicate,'metadata':metadata,'release_status':'synthetic_research_only'})
         if state.get('simulation_id'):
             try:
@@ -99,7 +113,8 @@ def summarize(plan,root=ROOT):
     for item in review:
         (review_dir/(item['blind_id']+'.md')).write_text(item['text'])
     save(review_dir/'unblinding_key.json',[{k:v for k,v in item.items() if k!='text'} for item in review])
-    fields=('blind_id','reviewer','unsupported_claims_0_3','uncertainty_omissions_0_3','contradictions_0_3','usefulness_0_3','notes')
+    fields=('blind_id','reviewer','unsupported_claims_0_3','uncertainty_omissions_0_3','contradictions_0_3',
+            'usefulness_0_3','unblinding_guess','incomplete','notes')
     scores_path=review_dir/'scores.csv'
     existing=list(csv.DictReader(scores_path.open())) if scores_path.exists() else []
     valid_ids={item['blind_id'] for item in review}
@@ -113,12 +128,17 @@ def summarize(plan,root=ROOT):
     comparisons=[]
     for country in plan['countries']:
         rows=[r for r in results if r['country']==country]
+        def cell(rep,policy):
+            return next(r for r in rows if r['replicate']==rep and r['policy']==policy)
         comparisons.append({'country':country,'completed':sum(r['phase']=='completed' for r in rows),
              'planned':len(rows),'capacity_baseline_equal':len({json.dumps(r['capacity_baseline'],sort_keys=True) for r in rows})==1,
-             'eligible_pairs':sum(all(next(r for r in rows if r['replicate']==rep and r['policy']==policy)['phase']=='completed' and
-                                      next(r for r in rows if r['replicate']==rep and r['policy']==policy).get('role_names_match') is True
+             'role_comparable_runs':sum(r['phase']=='completed' and role_comparable(r) for r in rows),
+             'eligible_pairs':sum(all(cell(rep,policy)['phase']=='completed' and role_comparable(cell(rep,policy))
                                       for policy in plan['policies']) for rep in plan['replicates'])})
-    output={'schema_version':1,'protocol_id':plan['id'],'protocol_sha256':hashlib.sha256((root/'experiments/mirofish-policies-v1.json').read_bytes()).hexdigest(),
+    plan_file=Path(plan_path) if plan_path else root/'experiments/mirofish-policies-v1.json'
+    output={'schema_version':1,'protocol_id':plan['id'],'protocol_path':str(plan_file.relative_to(root)),
+            'protocol_sha256':hashlib.sha256(plan_file.read_bytes()).hexdigest(),
+            'require_exact_roles':plan.get('require_exact_roles',False),
             'runs':results,'comparisons':comparisons,'human_review_status':'pending independent blinded reviewers',
             'efficacy_claim':'abstain: generated narratives and operational benefit are not validated',
             'blinding_limit':'Identifiers/policy labels removed from filenames; narrative may reveal its policy. Reviewers must record unblinding guesses.',
@@ -136,6 +156,7 @@ def summarize(plan,root=ROOT):
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--run',action='store_true');parser.add_argument('--pilot',action='store_true')
+    parser.add_argument('--plan',help='frozen protocol JSON (default: experiments/mirofish-policies-v1.json)')
     parser.add_argument('--wait-services',action='store_true');args=parser.parse_args()
     if args.wait_services:
         for _ in range(60):
@@ -145,16 +166,17 @@ def main():
                 return
             except OSError:time.sleep(2)
         raise SystemExit('Pilot services did not start')
-    plan=json.loads((ROOT/'experiments/mirofish-policies-v1.json').read_text())
+    plan_path=Path(args.plan) if args.plan else ROOT/'experiments/mirofish-policies-v1.json'
+    plan=json.loads(plan_path.read_text())
     if args.run:
         freeze_inputs(plan)
         todo=cases(plan)[:1] if args.pilot else cases(plan)
         with concurrent.futures.ThreadPoolExecutor(max_workers=2) as pool:
             completed=list(pool.map(lambda case:execute(case,plan),todo))
-        output=summarize(plan)
+        output=summarize(plan,plan_path=plan_path)
         if args.pilot and completed[0]['phase']!='completed':
             raise SystemExit('Pilot did not complete; inspect sanitized result and local upstream logs')
-    else:output=summarize(plan)
+    else:output=summarize(plan,plan_path=plan_path)
     print('Completed scenarios:',sum(r['phase']=='completed' for r in output['runs']),'of',len(output['runs']))
 
 

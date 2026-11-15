@@ -29,6 +29,43 @@ ROLES = {
 }
 
 
+def profile_names(profiles):
+    """Names of the personas MiroFish actually prepared, in upstream order."""
+    return [(item.get('name') or item.get('username') or '').strip()
+            for item in (profiles.get('profiles') or [])]
+
+
+def role_lock_status(profiles):
+    """Is there exactly one prepared profile per intended fictional actor?
+
+    Graph extraction has been observed to add non-actors (the platform, the
+    project, the scenario itself) and to duplicate a role. Either makes a run
+    incomparable with a matched run under the other policy, so the outcome is
+    recorded explicitly instead of being inferred from a persona count.
+    """
+    expected = set(ROLES)
+    names = profile_names(profiles)
+    if not names:
+        count = profiles.get('count')
+        return {'satisfied': False, 'expected': sorted(expected), 'observed': [],
+                'missing': sorted(expected), 'unexpected': [], 'duplicated': [],
+                'reason': f'upstream returned no profile names (count={count!r}); cannot verify the role lock.'}
+    observed = set(names)
+    missing = sorted(expected - observed)
+    unexpected = sorted(observed - expected)
+    duplicated = sorted({name for name in names if names.count(name) > 1})
+    problems = []
+    if missing:
+        problems.append('missing ' + ', '.join(missing))
+    if unexpected:
+        problems.append('unexpected ' + ', '.join(unexpected))
+    if duplicated:
+        problems.append('duplicated ' + ', '.join(duplicated))
+    return {'satisfied': not problems, 'expected': sorted(expected), 'observed': names,
+            'missing': missing, 'unexpected': unexpected, 'duplicated': duplicated,
+            'reason': '; '.join(problems) if problems else 'exactly one profile per intended role.'}
+
+
 def save(path, value):
     path.parent.mkdir(parents=True, exist_ok=True)
     temporary = path.with_suffix('.tmp')
@@ -141,9 +178,11 @@ class ScenarioStore:
         return result
 
     def prepare(self, country, month, policy='coordinated', reviewers=4,
-                reviews_per_day=20, max_rounds=4, replicate=0):
+                reviews_per_day=20, max_rounds=4, replicate=0, require_exact_roles=True):
         if country not in COUNTRIES or policy not in POLICIES:
             raise ValueError('unknown country or policy')
+        if type(require_exact_roles) is not bool:
+            raise ValueError('require_exact_roles must be a boolean')
         if not isinstance(month, str) or not re.fullmatch(r'2025-(0[1-9]|1[0-2])', month):
             raise ValueError('month must be in 2025')
         for name, value, low, high in [('reviewers',reviewers,1,100), ('reviews_per_day',reviews_per_day,1,1000),
@@ -161,7 +200,11 @@ class ScenarioStore:
                 'upstream_revision':PIN['revision'], 'artifact_sha256':packet['artifact_sha256'],
                 'runtime_patch_sha256':hashlib.sha256((ROOT/'integrations/mirofish-tabletop.patch').read_bytes()).hexdigest() if (ROOT/'integrations/mirofish-tabletop.patch').exists() else None,
                 'daily_workload':[{'date':d['date'], 'review_tickets':d['active_cells']} for d in days],
-                'roles': ROLES, 'release_status':'synthetic_research_only'}
+                'roles': ROLES,
+                # Only recorded in the identity-bearing spec when enforced, so that
+                # pre-lock runs keep their original run_id and stay reconcilable.
+                **({'require_exact_roles': True} if require_exact_roles else {}),
+                'release_status':'synthetic_research_only'}
         run_id = hashlib.sha256(json.dumps(spec,sort_keys=True).encode()).hexdigest()[:20]
         path = self.path(run_id)
         if (path/'state.json').exists():
@@ -188,6 +231,7 @@ class ScenarioStore:
                                 'phase':'prepared','requirement':requirement,'max_rounds':max_rounds,
                                 'capacity_baseline':spec['capacity_baseline'], 'trace':[],
                                 'upstream_revision':PIN['revision'], 'pending_operation':None,
+                                'require_exact_roles':require_exact_roles, 'role_lock':None,
                                 'release_status':'synthetic_research_only'})
         return self.get(run_id)
 
@@ -250,6 +294,15 @@ class ScenarioStore:
                     state['phase'] = 'failed'
                     raise MiroFishError('Prepared persona count is outside the 1..8 pilot limit; simulation not started.')
                 state['persona_count'] = profiles['count']
+                # Graph extraction can invent or duplicate actors, which makes a run
+                # incomparable across policies. Record the lock result, and stop before
+                # the paid simulation rather than scoring drifted personas.
+                state['role_lock'] = role_lock_status(profiles)
+                if state.get('require_exact_roles') and not state['role_lock']['satisfied']:
+                    state['phase'] = 'failed'
+                    raise MiroFishError(
+                        'Prepared personas do not match the locked roles exactly (one profile per intended actor required): '
+                        + state['role_lock']['reason'] + ' Simulation not started; this run is not policy-comparable.')
                 mutate('simulation_start', lambda: self.client.request('/api/simulation/start',
                        {'simulation_id':state['simulation_id'],'platform':'reddit','max_rounds':state['max_rounds'],
                         'enable_graph_memory_update':False,'force':False}))
