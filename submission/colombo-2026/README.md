@@ -2,6 +2,8 @@
 
 Prepared from upstream `4b39801` against the two user-supplied submission booklets. This package replaces the older ten-minute material for competition purposes.
 
+**Live dashboard:** https://pyrosync-gmora.vercel.app (public archive, exports, research summaries, and scenario preparation; new paid AI simulations use the local backend).
+
 ## Paste into the official form
 
 Copy [PROJECT_SUBMISSION.md](PROJECT_SUBMISSION.md). It contains the 151-word summary, project details, actual NASA/other sources, AI disclosure, and the separate project-source link. Paste only the single designated demo URL into the Project Demo field:

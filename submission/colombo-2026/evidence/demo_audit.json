@@ -5,7 +5,7 @@
     "web_app/style.css": "4f4fe5eaa9d9ee081800eb4dbaca210789c7a1cc11870b2eb809363b8be4df3e"
   },
   "status": "passed",
-  "git_commit": "50eccf9db8102e1d544bd9aa8a9cf066c511369b",
+  "git_commit": "352f6636169b118e978bc0a8c1997d2493b92d32",
   "working_tree_changes_included": true,
   "run_id": "d42d038c3d40114a",
   "kind": "deterministic browser checks; not human study or WCAG certification",

@@ -1,0 +1,95 @@
+{
+  "tested_url": "https://pyrosync-gmora.vercel.app",
+  "source_sha256": {
+    "web_app/app.js": "9c504456d353a1518a19bb194ac503705d9107a381dcd70c45b82f118d0e374e",
+    "web_app/index.html": "6996da079ca0bdafbf1f1fcb03a67a4e39a71f4abcebc14ac21486a4644160e5",
+    "web_app/style.css": "4f4fe5eaa9d9ee081800eb4dbaca210789c7a1cc11870b2eb809363b8be4df3e"
+  },
+  "status": "passed",
+  "git_commit": "352f6636169b118e978bc0a8c1997d2493b92d32",
+  "working_tree_changes_included": true,
+  "run_id": "d42d038c3d40114a",
+  "kind": "deterministic browser checks; not human study or WCAG certification",
+  "participant_count": 0,
+  "checks": [
+    {
+      "country": "Sri_Lanka",
+      "check": "selected-country-and-month-counts",
+      "passed": true,
+      "raw": 4151,
+      "active_cell_days": 2938
+    },
+    {
+      "country": "Sri_Lanka",
+      "check": "peak-month-agrees-with-data",
+      "passed": true,
+      "peak_month": "2025-08"
+    },
+    {
+      "country": "Sri_Lanka",
+      "check": "brief-unit-coverage-and-download",
+      "passed": true,
+      "filename": "Sri_Lanka_2025-08_period_brief.md"
+    },
+    {
+      "country": "Sri_Lanka",
+      "check": "calendar-keyboard-day-navigation",
+      "passed": true
+    },
+    {
+      "country": "Sri_Lanka",
+      "check": "keyboard-map-evidence-period-source-and-export-scope",
+      "passed": true
+    },
+    {
+      "country": "Sri_Lanka",
+      "check": "research-gate-failure-visible",
+      "passed": true
+    },
+    {
+      "country": "Sri_Lanka",
+      "check": "390px-no-page-overflow-and-24px-day-targets",
+      "passed": true
+    },
+    {
+      "country": "Argentina",
+      "check": "selected-country-and-month-counts",
+      "passed": true,
+      "raw": 64550,
+      "active_cell_days": 35887
+    },
+    {
+      "country": "Argentina",
+      "check": "peak-month-agrees-with-data",
+      "passed": true,
+      "peak_month": "2025-08"
+    },
+    {
+      "country": "Argentina",
+      "check": "brief-unit-coverage-and-download",
+      "passed": true,
+      "filename": "Argentina_2025-08_period_brief.md"
+    },
+    {
+      "country": "Argentina",
+      "check": "calendar-keyboard-day-navigation",
+      "passed": true
+    },
+    {
+      "country": "Argentina",
+      "check": "keyboard-map-evidence-period-source-and-export-scope",
+      "passed": true
+    },
+    {
+      "country": "Argentina",
+      "check": "research-gate-failure-visible",
+      "passed": true
+    },
+    {
+      "country": "Argentina",
+      "check": "390px-no-page-overflow-and-24px-day-targets",
+      "passed": true
+    }
+  ],
+  "page_errors": []
+}

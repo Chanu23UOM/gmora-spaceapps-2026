@@ -1,6 +1,7 @@
 // MiroFish calls go through the local PyroSync server; no API keys in the page.
 const $ = (id) => document.getElementById(id);
 let connected = false;
+let publicArchive = false;
 let scenario = null;
 let timer = null;
 let generation = 0;
@@ -50,6 +51,7 @@ async function check() {
   try {
     const status = await request("/api/mirofish");
     connected = status.connected;
+    publicArchive = status.hosting_mode === "public_archive";
     $("mirofish-status").textContent = status.message;
   } catch (e) {
     connected = false;
@@ -86,6 +88,7 @@ $("scenario-form").onsubmit = async (event) => {
     if (token !== generation) return;
     scenario = value;
     localStorage.setItem("pyrosync-scenario", scenario.id);
+    localStorage.setItem("pyrosync-prepared-state", JSON.stringify(scenario));
     render();
     if (scenario.busy) poll(scenario.id, token);
   } catch (e) {
@@ -117,5 +120,14 @@ $("scenario-report").onclick = async () => {
 };
 await check();
 const previous = localStorage.getItem("pyrosync-scenario");
-if (previous && /^[0-9a-f]{20}$/.test(previous))
-  await poll(previous, generation);
+if (previous && /^[0-9a-f]{20}$/.test(previous)) {
+  if (publicArchive) {
+    try {
+      const saved = JSON.parse(localStorage.getItem("pyrosync-prepared-state") || "null");
+      if (saved?.id === previous && saved.phase === "prepared") {
+        scenario = saved;
+        render();
+      }
+    } catch { localStorage.removeItem("pyrosync-prepared-state"); }
+  } else await poll(previous, generation);
+}

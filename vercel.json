@@ -1,0 +1,15 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "buildCommand": "",
+  "outputDirectory": "web_app",
+  "functions": {
+    "api/index.py": {
+      "includeFiles": "{web_app/data/**,processed_data/evaluations/*.json,integrations/mirofish.json,integrations/mirofish-tabletop.patch}",
+      "excludeFiles": "{.integrations/**,.venv/**,.qa/**,presentation/**,submission/**,modis/**,viirs-snpp/**,viirs-jpss1/**}",
+      "maxDuration": 30
+    }
+  },
+  "rewrites": [{"source": "/api/:path*", "destination": "/api/index"}],
+  "headers": [{"source": "/data/:path*", "headers": [{"key": "Cache-Control", "value": "public, max-age=300"}]}]
+}

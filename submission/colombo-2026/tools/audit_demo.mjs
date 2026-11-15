@@ -4,7 +4,7 @@ import fs from 'node:fs/promises';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {execFileSync} from 'node:child_process';
-const out=new URL('../evidence/demo_audit.json',import.meta.url);
+const out=process.env.PYROSYNC_AUDIT_OUTPUT || new URL('../evidence/demo_audit.json',import.meta.url);
 const browser=await chromium.launch({executablePath:'/usr/bin/google-chrome',headless:true,args:['--no-sandbox']});
 const checks=[];const errors=[];
 const page=await browser.newPage({viewport:{width:1440,height:1000},acceptDownloads:true});
@@ -51,6 +51,6 @@ try{
  assert.deepEqual(errors,[]);
  const manifest=await page.evaluate(async()=>(await fetch('data/manifest.json')).json());
  const source_sha256={};for(const f of ['web_app/app.js','web_app/index.html','web_app/style.css'])source_sha256[f]=createHash('sha256').update(await fs.readFile(f)).digest('hex');
- await fs.writeFile(out,JSON.stringify({source_sha256,status:'passed',git_commit:execFileSync('git',['rev-parse','HEAD']).toString().trim(),working_tree_changes_included:true,run_id:manifest.run_id,kind:'deterministic browser checks; not human study or WCAG certification',participant_count:0,checks,page_errors:errors},null,2)+'\n');
+ await fs.writeFile(out,JSON.stringify({tested_url:base,source_sha256,status:'passed',git_commit:execFileSync('git',['rev-parse','HEAD']).toString().trim(),working_tree_changes_included:true,run_id:manifest.run_id,kind:'deterministic browser checks; not human study or WCAG certification',participant_count:0,checks,page_errors:errors},null,2)+'\n');
  console.log(`${checks.length} deterministic demo checks passed; zero participants claimed.`);
 }finally{await browser.close();}

@@ -57,3 +57,7 @@ processed_data/policy_inputs/
 # Generated pitch recordings and exported media
 presentation/output/*
 !presentation/output/PyroSync_10min_Presenter.mp4
+
+# Vercel account/project linkage
+.vercel/
+.vercel

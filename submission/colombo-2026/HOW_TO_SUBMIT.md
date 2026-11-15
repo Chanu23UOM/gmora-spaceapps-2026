@@ -64,13 +64,13 @@ The supplied rules allow seven slides OR the 30-second subtitled video. The prep
 
 ### Link to Project — this is a separate field
 
-Paste the public source branch that includes the submission and latest evidence fixes:
+Paste the public working website:
 
 ```text
-https://github.com/Chanu23UOM/gmora-spaceapps-2026/tree/submission-colombo-2026
+https://pyrosync-gmora.vercel.app
 ```
 
-This is runnable source, not a claim of a hosted operational warning service. Setup instructions are in the repository README. Keep this branch available while judging is in progress. No merge is required for the link to work.
+The site requires no login. Observation views, source evidence, exports, research summaries, and scenario preparation work online. New paid MiroFish simulations run only through the separately configured local backend. The source remains available at https://github.com/Chanu23UOM/gmora-spaceapps-2026/tree/submission-colombo-2026 .
 
 ### Project Details
 
@@ -145,6 +145,6 @@ For the AI question, say:
 
 ## 6. What is ready, and what is later work
 
-**Ready:** working prototype, reproducible input pipeline, source inspection, exports, two-country historical comparisons, exploratory transition diagnostics, deterministic browser checks, 44 automated tests, public demo, summary, deck, citations and disclosure.
+**Ready:** working prototype, reproducible input pipeline, source inspection, exports, two-country historical comparisons, exploratory transition diagnostics, deterministic browser checks, 47 automated tests, public demo, summary, deck, citations and disclosure.
 
 **After the event:** real-user sessions, independent domain review, full observation-coverage inputs, real sensor-transition/longer-history validation, and operational benefit measurement. These are useful validation milestones, not fabricated results or extra submission prerequisites in the supplied booklets.

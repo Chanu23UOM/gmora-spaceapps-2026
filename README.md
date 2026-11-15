@@ -1,5 +1,7 @@
 # PyroSync · Team Gmora
 
+**Live dashboard:** https://pyrosync-gmora.vercel.app — no login required.
+
 An instrument-aware fire observation lab for the NASA Space Apps harmonization challenge. Compare MODIS and VIIRS observations, inspect source evidence, stress-test sensor availability, and evaluate seven-day forecasts against baselines.
 
 **Dashboard scope:** Sri Lanka and Argentina, 2025 archive. The backend also acquires 2020–2024 archives and evaluates frozen historical forecast and sensor-comparison experiments. This is a research prototype: active cell-days are not distinct fires or burned area, and the archive is not a live warning feed. Climate anomalies and operational historical harmonization are not validated.

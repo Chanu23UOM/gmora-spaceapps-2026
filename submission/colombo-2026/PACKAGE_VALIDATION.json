@@ -1,6 +1,6 @@
 {
   "upstream_revision": "4b39801",
-  "tests_passed": 44,
+  "tests_passed": 47,
   "javascript_syntax": "passed",
   "slide_count": 7,
   "rendered_text_complete": true,
@@ -106,5 +106,23 @@
   "si_disclosure": {
     "visible_video_label": "SI-assisted visuals | SI-generated voice",
     "embedded_audio_video_metadata": true
+  },
+  "hosted_site": {
+    "url": "https://pyrosync-gmora.vercel.app",
+    "platform": "Vercel",
+    "status": "verified_public",
+    "python_version": "3.12",
+    "local_core_checks": 14,
+    "production_core_checks": 14,
+    "local_deployment_checks": 16,
+    "production_deployment_checks": 16,
+    "authentication_required": false,
+    "ai_execution": "separately configured local backend; public scenario preparation and exports work",
+    "reports": [
+      "evidence/vercel_before.json",
+      "evidence/vercel_after.json",
+      "evidence/vercel_exports_before.json",
+      "evidence/vercel_exports_after.json"
+    ]
   }
 }

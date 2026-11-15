@@ -1,0 +1,110 @@
+{
+  "tested_url": "http://127.0.0.1:8767",
+  "status": "passed",
+  "checks": [
+    {
+      "country": "Sri_Lanka",
+      "check": "download",
+      "file": "Sri_Lanka_2025-08_period_brief.md",
+      "bytes": 1588,
+      "passed": true
+    },
+    {
+      "country": "Sri_Lanka",
+      "check": "download",
+      "file": "Sri_Lanka_daily.csv",
+      "bytes": 9527,
+      "passed": true
+    },
+    {
+      "country": "Sri_Lanka",
+      "check": "download",
+      "file": "Sri_Lanka_2025-08_map.geojson",
+      "bytes": 743958,
+      "passed": true
+    },
+    {
+      "country": "Sri_Lanka",
+      "check": "download",
+      "file": "Sri_Lanka_brief.md",
+      "bytes": 1054,
+      "passed": true
+    },
+    {
+      "country": "Sri_Lanka",
+      "check": "download",
+      "file": "Sri_Lanka_evidence_and_scenario.json",
+      "bytes": 2358,
+      "passed": true
+    },
+    {
+      "country": "Sri_Lanka",
+      "check": "download",
+      "file": "Sri_Lanka_forecast_folds.csv",
+      "bytes": 74876,
+      "passed": true
+    },
+    {
+      "country": "Argentina",
+      "check": "download",
+      "file": "Argentina_2025-08_period_brief.md",
+      "bytes": 1602,
+      "passed": true
+    },
+    {
+      "country": "Argentina",
+      "check": "download",
+      "file": "Argentina_daily.csv",
+      "bytes": 12964,
+      "passed": true
+    },
+    {
+      "country": "Argentina",
+      "check": "download",
+      "file": "Argentina_2025-08_map.geojson",
+      "bytes": 7699610,
+      "passed": true
+    },
+    {
+      "country": "Argentina",
+      "check": "download",
+      "file": "Argentina_brief.md",
+      "bytes": 1057,
+      "passed": true
+    },
+    {
+      "country": "Argentina",
+      "check": "download",
+      "file": "Argentina_evidence_and_scenario.json",
+      "bytes": 2360,
+      "passed": true
+    },
+    {
+      "country": "Argentina",
+      "check": "download",
+      "file": "Argentina_forecast_folds.csv",
+      "bytes": 77555,
+      "passed": true
+    },
+    {
+      "check": "public-scenario-prepare-and-state-download",
+      "passed": true
+    },
+    {
+      "check": "prepared-state-restored-after-reload",
+      "passed": true
+    },
+    {
+      "check": "/api/research",
+      "passed": true
+    },
+    {
+      "check": "/api/mirofish",
+      "passed": true
+    }
+  ],
+  "page_errors": [],
+  "failed_site_responses": [],
+  "credentials_used": false,
+  "scope": "archive, exports, research summaries, public scenario preparation; live AI execution remains local"
+}

@@ -26,11 +26,13 @@ This is the 30-second video option with burned-in English subtitles and an adult
 
 ## Link to Project
 
-https://github.com/Chanu23UOM/gmora-spaceapps-2026/tree/submission-colombo-2026
+https://pyrosync-gmora.vercel.app
 
-The repository provides runnable source, data definitions, results, and reproduction instructions. A public hosted application is not claimed. Initial local setup requires Python and dependency installation; the core dashboard requires no paid account or API key.
+The public Vercel site opens without login and supports the observation calendar, maps, evidence inspection, exports, research summaries, and scenario preparation/state downloads. Starting new paid MiroFish simulations requires the separately configured local backend. Source and reproduction instructions: https://github.com/Chanu23UOM/gmora-spaceapps-2026/tree/submission-colombo-2026 .
 
 ## Project details
+
+**Try the working prototype:** https://pyrosync-gmora.vercel.app — choose Sri Lanka or Argentina, select a month, read the period brief, inspect source evidence, and download the results. The public site requires no account or API key. New paid AI simulations remain a separately configured local feature.
 
 ### What it does
 
