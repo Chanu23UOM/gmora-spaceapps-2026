@@ -54,7 +54,30 @@
   "user_study": "not_run",
   "policy_study_v2": "not_run",
   "official_form_submission": "not_performed",
-  "public_access": "pending publication",
+  "public_access": {
+    "status": "verified",
+    "method": "Unauthenticated HTTPS GET of public raw artifacts; response SHA-256 equals local artifact",
+    "checks": [
+      {
+        "url": "https://raw.githubusercontent.com/Chanu23UOM/gmora-spaceapps-2026/submission-colombo-2026/submission/colombo-2026/PyroSync_Demo_30s.mp4",
+        "http_status": 200,
+        "anonymous": true,
+        "content_matches_local": true
+      },
+      {
+        "url": "https://raw.githubusercontent.com/Chanu23UOM/gmora-spaceapps-2026/submission-colombo-2026/submission/colombo-2026/PyroSync_Submission_7_Slides.pdf",
+        "http_status": 200,
+        "anonymous": true,
+        "content_matches_local": true
+      },
+      {
+        "url": "https://raw.githubusercontent.com/Chanu23UOM/gmora-spaceapps-2026/submission-colombo-2026/submission/colombo-2026/PROJECT_SUBMISSION.md",
+        "http_status": 200,
+        "anonymous": true,
+        "content_matches_local": true
+      }
+    ]
+  },
   "files": {
     "PyroSync_Demo_Voice.mp3": "6d360d5e0e4251313e07d315d75769c5184e7b4961b68aae850a25eb3373c628",
     "PyroSync_Live_Pitch_5min.mp3": "551b97f06db269383115a979d8412b3fd28f9188eb62c1a47d4ccad172deadec",
