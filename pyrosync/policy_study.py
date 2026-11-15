@@ -18,6 +18,11 @@ def cases(plan):
     return [(c,p,r) for c in plan['countries'] for r in plan['replicates'] for p in plan['policies']]
 
 
+def role_names_match(profiles):
+    names=[profile.get('name') for profile in profiles]
+    return len(names)==len(ROLES) and set(names)==set(ROLES)
+
+
 def freeze_inputs(plan,root=ROOT):
     directory=root/'processed_data/policy_inputs';directory.mkdir(parents=True,exist_ok=True)
     marker=directory/'manifest.json'
@@ -66,7 +71,8 @@ def summarize(plan,root=ROOT):
             try:
                 profiles=store.client.request('/api/simulation/'+state['simulation_id']+'/profiles')
                 result['actual_personas']=[{'name':p.get('name') or p.get('username'),'description':p.get('description','')[:300]} for p in profiles.get('profiles',[])]
-                result['role_names_match']= {p.get('name') for p in result['actual_personas']} == set(ROLES)
+                result['actual_profile_count']=profiles.get('count')
+                result['role_names_match']=role_names_match(result['actual_personas'])
             except MiroFishError:result['actual_personas_status']='unavailable'
         if state['phase']=='completed':
             text=(path/'report.md').read_text()

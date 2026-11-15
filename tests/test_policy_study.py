@@ -3,10 +3,16 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from pyrosync.policy_study import freeze_inputs,cases
+from pyrosync.policy_study import freeze_inputs,cases,role_names_match
 
 
 class PolicyStudyTests(unittest.TestCase):
+    def test_duplicate_personas_do_not_pass_role_fidelity(self):
+        profiles=[{'name':n} for n in ('Asha','Bruno','Chandra','Devi')]
+        self.assertTrue(role_names_match(profiles))
+        self.assertFalse(role_names_match(profiles+[{'name':'Asha'}]))
+        self.assertFalse(role_names_match(profiles[:-1]))
+
     def test_dashboard_rebuild_cannot_change_frozen_study_inputs(self):
         with tempfile.TemporaryDirectory() as tmp:
             root=Path(tmp);source=root/'web_app/data';source.mkdir(parents=True)

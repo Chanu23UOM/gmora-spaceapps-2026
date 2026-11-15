@@ -75,3 +75,9 @@ Give reviewers only the randomized Markdown files, blank score sheet and this ru
 | 3 | Dominant or severe issues | Clear, relevant and well-supported for the exercise |
 
 For every nonzero error score, cite a passage and the source evidence or missing support. Do not judge policy benefit from persuasive wording alone. Record whether the reviewer guessed the policy and why; this narrative experiment cannot promise perfect blinding.
+
+### Recorded live outcome
+
+All eight amended study attempts reached a terminal state: **seven completed reports and one prevented simulation** due to excessive prepared personas. In addition, the two earlier inactive/interview-wait setup runs remain excluded and documented. Actual persona graphs drifted or duplicated identities, leaving **zero pairs with matching intended four-person roles**. Capacity baselines remained equal within each country. This is evidence that the current upstream graph/persona step is unsuitable for an isolated causal policy comparison without identity locking; it is not evidence that either policy is better.
+
+The shared relay recorded 223 non-streaming responses and 967,762 provider-reported tokens after the runtime patch restart. This scope includes extraction/configuration/report generation and is not a per-run bill; monetary cost remains unavailable. Results, phases, failures, actual identities and report hashes are in `processed_data/evaluations/policy_study.json`. Domain reviewers can still assess narrative quality, but a policy-benefit study requires locked actor identities and a newly frozen protocol. Issue #6 remains open for that follow-up and independent human review.
