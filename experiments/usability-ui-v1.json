@@ -1,0 +1,119 @@
+{
+  "id": "usability-ui-v1-2026-11-15",
+  "status": "frozen_before_any_participant_session",
+  "document": "docs/USABILITY_STUDY_PROTOCOL.md",
+  "question": "Can a first-time user interpret the recorded observations and their limitations while completing core tasks, and does the simplified navigation change accuracy, critical errors or effort?",
+  "conditions": [
+    {
+      "id": "A",
+      "label": "baseline single-page dashboard",
+      "version_identifier": "git commit b17fedf"
+    },
+    {
+      "id": "B",
+      "label": "simplified Overview/Explore/Research views with period brief and evidence drilldown",
+      "version_identifier": "git commit and manifest run_id recorded at session time"
+    }
+  ],
+  "held_constant": [
+    "generated archive build and manifest run_id",
+    "country payloads and selected period",
+    "colour palette and fonts",
+    "interaction mechanics"
+  ],
+  "assignment": {
+    "type": "between_participants",
+    "randomisation": "balanced blocks of 4 with a seed recorded before the first session",
+    "task_order": "Latin-square counterbalanced",
+    "independent_unit": "participant"
+  },
+  "sample": {
+    "target_completed_sessions": 12,
+    "per_condition": 6,
+    "stopping_rule": "stop at 12 completed sessions or the prearranged cutoff date, whichever comes first",
+    "power_statement": "Underpowered pilot. Detects only very large differences; intended to surface reproducible defects and interpretation failure modes, not to estimate effect sizes.",
+    "exclusions": [
+      "withdrew mid-session",
+      "technical failure preventing completion",
+      "prior exposure to the dashboard",
+      "declined consent",
+      "build or run_id does not match the recorded plan"
+    ]
+  },
+  "covariates": [
+    "self-reported prior familiarity with satellite fire data, GIS or remote sensing (0-3), collected before tasks"
+  ],
+  "tasks": [
+    {
+      "id": "T1",
+      "name": "select region and period",
+      "correct": "reaches the stated country and month; stated figures correspond to that selection",
+      "critical_error": "reports figures from a different country or period"
+    },
+    {
+      "id": "T2",
+      "name": "identify peak recorded activity",
+      "correct": "names the highest recorded month for the active metric and names the metric",
+      "critical_error": "states the peak as the month with the most fires"
+    },
+    {
+      "id": "T3",
+      "name": "explain raw versus aggregated counts",
+      "correct": "explains repeat pixels and passes counted once per cell per UTC day",
+      "critical_error": "says the difference is false detections, errors or double-reported fires"
+    },
+    {
+      "id": "T4",
+      "name": "distinguish no detections from absence of fire",
+      "correct": "states no qualifying detections were recorded and coverage is unknown",
+      "critical_error": "asserts that no fire occurred"
+    },
+    {
+      "id": "T5",
+      "name": "identify forecast or scenario research status",
+      "correct": "identifies the forecast as research-only or the MiroFish output as a synthetic discussion",
+      "critical_error": "treats a forecast or synthetic narrative as a verified observation or operational warning"
+    },
+    {
+      "id": "T6",
+      "name": "report the activity unit",
+      "correct": "states the metric is grid cell-days, not distinct fires or burned area",
+      "critical_error": "states the metric is a count of fires or an area burned"
+    }
+  ],
+  "measures": {
+    "primary": "correct answers per participant (0-6)",
+    "safety": "critical interpretation errors per participant (0-6)",
+    "secondary": [
+      "per-task completion time in seconds",
+      "per-task confidence (0-3)",
+      "high-confidence critical errors",
+      "post-session usability rating (0-10)"
+    ],
+    "precedence": "safety outcome takes precedence over effort when they conflict"
+  },
+  "accessibility_checks": [
+    "keyboard-only operation of tabs, selects, calendar tiles, brief disclosure and map evidence selection with visible focus",
+    "screen-reader labels announce period, unit and value",
+    "touch completion of T1-T3 at 390px width with no horizontal page scroll"
+  ],
+  "analysis": {
+    "reporting": "descriptive statistics per condition with actual completed sample size and all exclusions; differences with uncertainty intervals described as pilot estimates",
+    "prohibited": [
+      "inventing participant counts",
+      "reporting significance as confirmatory at this sample size",
+      "describing the simplified design as validated, proven or preferred",
+      "summarising only favourable comments"
+    ],
+    "null_result_handling": "a null result is the expected outcome at this sample size and must be published as such"
+  },
+  "privacy": {
+    "identifiers": "participant codes P01..Pnn only",
+    "stored": "anonymous task outcomes, times, confidence, pass/fail accessibility notes",
+    "not_stored": "names, employers, faces, voices, contact details, raw recordings",
+    "public_artifacts": "no identifiable detail in the repository or any public issue"
+  },
+  "results_artifact": "processed_data/evaluations/usability_ui_v1.json",
+  "results_status": "not_collected",
+  "release_status": "no usability result exists; none may be cited"
+}

@@ -44,6 +44,8 @@ Before autonomous narration, create a fixed question set with expected evidence 
 
 ## UI A/B protocol (designed, not run)
 
+The tasks, scoring rubric, sample-size rationale, stopping rule, consent and privacy rules, accessibility checks and analysis constraints are preregistered in full in [UI usability study protocol](USABILITY_STUDY_PROTOCOL.md), with the machine-readable plan in `experiments/usability-ui-v1.json` and blank collection sheets under `experiments/usability/`. No participant has been recruited and no scores exist; `processed_data/evaluations/usability_ui_v1.json` is deliberately absent until data is collected. The summary below remains the design rationale.
+
 Question: does showing sensor evidence improve interpretation without making the task unreasonably slow?
 
 - A: calendar + raw sensor counts. B: same data plus active-cell unit explanations, source agreement and evidence inspector. Match colors, period and interaction mechanics to isolate evidence presentation.

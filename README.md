@@ -110,6 +110,7 @@ The work for KusalPabasara's issues #2/#3/#4/#6 is documented in [Backend resear
 
 - [Architecture review and technology decisions](docs/ARCHITECTURE_REVIEW.md)
 - [Evaluation protocol, forecasting and proposed UI A/B study](docs/EVALUATION_PROTOCOL.md)
+- [UI usability study protocol](docs/USABILITY_STUDY_PROTOCOL.md): preregistered tasks, scoring rubric and accessibility checks. Not yet run; no usability result exists.
 - [Data sources and attribution](docs/DATA_SOURCES.md)
 - [Original master plan](TEAM_GMORA_MASTER_PLAN.md): aspirational competition strategy, superseded by the review for current implementation and claims.
 - Local PDFs: project submission requirements and Colombo judging guide.
