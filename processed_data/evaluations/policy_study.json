@@ -1,0 +1,503 @@
+{
+  "blinding_limit": "Identifiers/policy labels removed from filenames; narrative may reveal its policy. Reviewers must record unblinding guesses.",
+  "comparisons": [
+    {
+      "capacity_baseline_equal": true,
+      "completed": 3,
+      "country": "Sri_Lanka",
+      "eligible_pairs": 0,
+      "planned": 4
+    },
+    {
+      "capacity_baseline_equal": true,
+      "completed": 4,
+      "country": "Argentina",
+      "eligible_pairs": 0,
+      "planned": 4
+    }
+  ],
+  "efficacy_claim": "abstain: generated narratives and operational benefit are not validated",
+  "human_review_status": "pending independent blinded reviewers",
+  "protocol_id": "mirofish-policies-v1-2026-11-15",
+  "protocol_sha256": "a6deb24ec87fa5e68e6927cd52cd1c32ce30f6d94902649a59221769d2d50b03",
+  "provider_usage": {
+    "monetary_cost": null,
+    "observed_requests": 223,
+    "reported_models": [
+      "google/gemini-3.8-flash"
+    ],
+    "reported_total_tokens": 967762,
+    "scope": "Shared local relay after tabletop patch restart; not attributable per scenario. Streaming usage may be unavailable."
+  },
+  "replicate_labels_are_random_seeds": false,
+  "runs": [
+    {
+      "actual_personas": [
+        {
+          "description": "",
+          "name": "Asha"
+        },
+        {
+          "description": "",
+          "name": "Devi"
+        },
+        {
+          "description": "",
+          "name": "Chandra"
+        },
+        {
+          "description": "",
+          "name": "Bruno"
+        }
+      ],
+      "actual_profile_count": 4,
+      "capacity_baseline": {
+        "daily_capacity": 80,
+        "end_backlog": 1351,
+        "method": "Deterministic daily queue, starts empty; same assumptions for both policies. Not a MiroFish result.",
+        "peak_backlog": 1351
+      },
+      "country": "Sri_Lanka",
+      "graph_id": "mirofish_568bf1a3138d4cf2",
+      "id": "6a739de93b819d525969",
+      "last_error": null,
+      "metadata": {
+        "cost_note": "Provider invoice/price audit not available; not inferred from rounds.",
+        "elapsed_seconds": 356.77,
+        "model": "google/gemini-3.8-flash",
+        "monetary_cost": null,
+        "provider": "Google Vertex AI",
+        "replicate": 201,
+        "study": "mirofish-policies-v1-2026-11-15"
+      },
+      "month": "2025-08",
+      "persona_count": 4,
+      "phase": "completed",
+      "policy": "independent",
+      "project_id": "proj_985fd87cfc27",
+      "release_status": "synthetic_research_only",
+      "replicate": 201,
+      "report_id": "report_dfc6d3d8b3ee",
+      "report_sha256": "9dcb16bb7e2df9e49ddb0c3b1427946de30bb38335122365869f3c8c7c7f5c58",
+      "role_names_match": true,
+      "simulation_id": "sim_3dcafbed4024"
+    },
+    {
+      "actual_personas": [
+        {
+          "description": "",
+          "name": "Asha"
+        },
+        {
+          "description": "",
+          "name": "PyroSync"
+        },
+        {
+          "description": "",
+          "name": "field coordinator"
+        },
+        {
+          "description": "",
+          "name": "Chandra"
+        },
+        {
+          "description": "",
+          "name": "internal simulated discussion board"
+        },
+        {
+          "description": "",
+          "name": "Devi"
+        },
+        {
+          "description": "",
+          "name": "MiroFish"
+        },
+        {
+          "description": "",
+          "name": "Asha"
+        },
+        {
+          "description": "",
+          "name": "Bruno"
+        }
+      ],
+      "actual_profile_count": 9,
+      "capacity_baseline": {
+        "daily_capacity": 80,
+        "end_backlog": 1351,
+        "method": "Deterministic daily queue, starts empty; same assumptions for both policies. Not a MiroFish result.",
+        "peak_backlog": 1351
+      },
+      "country": "Sri_Lanka",
+      "graph_id": "mirofish_88fe2800710545bd",
+      "id": "0e663bdcbd47cb3394a5",
+      "last_error": "Prepared persona count is outside the 1..8 pilot limit; simulation not started.",
+      "metadata": {
+        "cost_note": "Provider invoice/price audit not available; not inferred from rounds.",
+        "elapsed_seconds": 121.52,
+        "model": "google/gemini-3.8-flash",
+        "monetary_cost": null,
+        "provider": "Google Vertex AI",
+        "replicate": 201,
+        "study": "mirofish-policies-v1-2026-11-15"
+      },
+      "month": "2025-08",
+      "persona_count": null,
+      "phase": "failed",
+      "policy": "coordinated",
+      "project_id": "proj_39a4a2defb98",
+      "release_status": "synthetic_research_only",
+      "replicate": 201,
+      "report_id": null,
+      "role_names_match": false,
+      "simulation_id": "sim_b5a496936511"
+    },
+    {
+      "actual_personas": [
+        {
+          "description": "",
+          "name": "Devi"
+        },
+        {
+          "description": "",
+          "name": "Bruno"
+        },
+        {
+          "description": "",
+          "name": "active cell-day review scenario"
+        },
+        {
+          "description": "",
+          "name": "Asha"
+        },
+        {
+          "description": "",
+          "name": "MiroFish"
+        },
+        {
+          "description": "",
+          "name": "Chandra"
+        }
+      ],
+      "actual_profile_count": 6,
+      "capacity_baseline": {
+        "daily_capacity": 80,
+        "end_backlog": 1351,
+        "method": "Deterministic daily queue, starts empty; same assumptions for both policies. Not a MiroFish result.",
+        "peak_backlog": 1351
+      },
+      "country": "Sri_Lanka",
+      "graph_id": "mirofish_87dd5a0e10534195",
+      "id": "ed9652f50ef97a5f3cc4",
+      "last_error": null,
+      "metadata": {
+        "cost_note": "Provider invoice/price audit not available; not inferred from rounds.",
+        "elapsed_seconds": 447.26,
+        "model": "google/gemini-3.8-flash",
+        "monetary_cost": null,
+        "provider": "Google Vertex AI",
+        "replicate": 202,
+        "study": "mirofish-policies-v1-2026-11-15"
+      },
+      "month": "2025-08",
+      "persona_count": 6,
+      "phase": "completed",
+      "policy": "independent",
+      "project_id": "proj_20564b3d57d7",
+      "release_status": "synthetic_research_only",
+      "replicate": 202,
+      "report_id": "report_ceae4acc6ee5",
+      "report_sha256": "22741bbe153223d0a570276438b6ec8056bdd4d24066b1da9edd2f542042ca17",
+      "role_names_match": false,
+      "simulation_id": "sim_ffb9399c308d"
+    },
+    {
+      "actual_personas": [
+        {
+          "description": "",
+          "name": "Chandra"
+        },
+        {
+          "description": "",
+          "name": "Bruno"
+        },
+        {
+          "description": "",
+          "name": "Asha"
+        },
+        {
+          "description": "",
+          "name": "internal simulated discussion board"
+        },
+        {
+          "description": "",
+          "name": "field coordinator"
+        },
+        {
+          "description": "",
+          "name": "Devi"
+        }
+      ],
+      "actual_profile_count": 6,
+      "capacity_baseline": {
+        "daily_capacity": 80,
+        "end_backlog": 1351,
+        "method": "Deterministic daily queue, starts empty; same assumptions for both policies. Not a MiroFish result.",
+        "peak_backlog": 1351
+      },
+      "country": "Sri_Lanka",
+      "graph_id": "mirofish_33ec403e6de145fb",
+      "id": "6a9bdca8411e46e2d581",
+      "last_error": null,
+      "metadata": {
+        "cost_note": "Provider invoice/price audit not available; not inferred from rounds.",
+        "elapsed_seconds": 336.94,
+        "model": "google/gemini-3.8-flash",
+        "monetary_cost": null,
+        "provider": "Google Vertex AI",
+        "replicate": 202,
+        "study": "mirofish-policies-v1-2026-11-15"
+      },
+      "month": "2025-08",
+      "persona_count": 6,
+      "phase": "completed",
+      "policy": "coordinated",
+      "project_id": "proj_3691b36d66f7",
+      "release_status": "synthetic_research_only",
+      "replicate": 202,
+      "report_id": "report_cd5f715fbd11",
+      "report_sha256": "07aacfcee240cc4981258428e20cfa2b0dad24fd6ba30845e514a61ef45ffbd8",
+      "role_names_match": false,
+      "simulation_id": "sim_9218d5082e9c"
+    },
+    {
+      "actual_personas": [
+        {
+          "description": "",
+          "name": "Bruno"
+        },
+        {
+          "description": "",
+          "name": "Devi"
+        },
+        {
+          "description": "",
+          "name": "Asha"
+        },
+        {
+          "description": "",
+          "name": "Chandra"
+        }
+      ],
+      "actual_profile_count": 4,
+      "capacity_baseline": {
+        "daily_capacity": 80,
+        "end_backlog": 33407,
+        "method": "Deterministic daily queue, starts empty; same assumptions for both policies. Not a MiroFish result.",
+        "peak_backlog": 33407
+      },
+      "country": "Argentina",
+      "graph_id": "mirofish_60758514d0b14701",
+      "id": "fcb52d436600229a61b3",
+      "last_error": null,
+      "metadata": {
+        "cost_note": "Provider invoice/price audit not available; not inferred from rounds.",
+        "elapsed_seconds": 315.89,
+        "model": "google/gemini-3.8-flash",
+        "monetary_cost": null,
+        "provider": "Google Vertex AI",
+        "replicate": 201,
+        "study": "mirofish-policies-v1-2026-11-15"
+      },
+      "month": "2025-08",
+      "persona_count": 4,
+      "phase": "completed",
+      "policy": "independent",
+      "project_id": "proj_218fd2d345ee",
+      "release_status": "synthetic_research_only",
+      "replicate": 201,
+      "report_id": "report_a3f27fa89782",
+      "report_sha256": "2e89bee99d3045af8e3a471c43ceed7ba1daaa79001a30a0126c87e6b983971b",
+      "role_names_match": true,
+      "simulation_id": "sim_29d5ea6c420c"
+    },
+    {
+      "actual_personas": [
+        {
+          "description": "",
+          "name": "Chandra"
+        },
+        {
+          "description": "",
+          "name": "Devi"
+        },
+        {
+          "description": "",
+          "name": "Asha"
+        },
+        {
+          "description": "",
+          "name": "field coordinator"
+        },
+        {
+          "description": "",
+          "name": "Bruno"
+        }
+      ],
+      "actual_profile_count": 5,
+      "capacity_baseline": {
+        "daily_capacity": 80,
+        "end_backlog": 33407,
+        "method": "Deterministic daily queue, starts empty; same assumptions for both policies. Not a MiroFish result.",
+        "peak_backlog": 33407
+      },
+      "country": "Argentina",
+      "graph_id": "mirofish_96f1c22ac2e847de",
+      "id": "95a26b972f24903599a4",
+      "last_error": null,
+      "metadata": {
+        "cost_note": "Provider invoice/price audit not available; not inferred from rounds.",
+        "elapsed_seconds": 395.62,
+        "model": "google/gemini-3.8-flash",
+        "monetary_cost": null,
+        "provider": "Google Vertex AI",
+        "replicate": 201,
+        "study": "mirofish-policies-v1-2026-11-15"
+      },
+      "month": "2025-08",
+      "persona_count": 5,
+      "phase": "completed",
+      "policy": "coordinated",
+      "project_id": "proj_77bab079c67f",
+      "release_status": "synthetic_research_only",
+      "replicate": 201,
+      "report_id": "report_724c375cfbed",
+      "report_sha256": "2cc346be607bb0c806b452a95806ca3ba4c6c4391366584711e048781e3c3683",
+      "role_names_match": false,
+      "simulation_id": "sim_c1df289b8852"
+    },
+    {
+      "actual_personas": [
+        {
+          "description": "",
+          "name": "Chandra"
+        },
+        {
+          "description": "",
+          "name": "Asha"
+        },
+        {
+          "description": "",
+          "name": "Bruno"
+        },
+        {
+          "description": "",
+          "name": "Chandra"
+        },
+        {
+          "description": "",
+          "name": "Devi"
+        },
+        {
+          "description": "",
+          "name": "Asha"
+        }
+      ],
+      "actual_profile_count": 6,
+      "capacity_baseline": {
+        "daily_capacity": 80,
+        "end_backlog": 33407,
+        "method": "Deterministic daily queue, starts empty; same assumptions for both policies. Not a MiroFish result.",
+        "peak_backlog": 33407
+      },
+      "country": "Argentina",
+      "graph_id": "mirofish_9e29e17afcd448e0",
+      "id": "ae0885a66b550433c783",
+      "last_error": null,
+      "metadata": {
+        "cost_note": "Provider invoice/price audit not available; not inferred from rounds.",
+        "elapsed_seconds": 308.13,
+        "model": "google/gemini-3.8-flash",
+        "monetary_cost": null,
+        "provider": "Google Vertex AI",
+        "replicate": 202,
+        "study": "mirofish-policies-v1-2026-11-15"
+      },
+      "month": "2025-08",
+      "persona_count": 6,
+      "phase": "completed",
+      "policy": "independent",
+      "project_id": "proj_d35105fd4fb1",
+      "release_status": "synthetic_research_only",
+      "replicate": 202,
+      "report_id": "report_ac8ff46aec39",
+      "report_sha256": "45db94efa772a86859fc26a827b039e81914e490057e301607bf7461ec515552",
+      "role_names_match": false,
+      "simulation_id": "sim_56896a4a50c7"
+    },
+    {
+      "actual_personas": [
+        {
+          "description": "",
+          "name": "Devi"
+        },
+        {
+          "description": "",
+          "name": "Chandra"
+        },
+        {
+          "description": "",
+          "name": "Bruno"
+        },
+        {
+          "description": "",
+          "name": "field coordinator"
+        },
+        {
+          "description": "",
+          "name": "MiroFish"
+        },
+        {
+          "description": "",
+          "name": "PyroSync"
+        },
+        {
+          "description": "",
+          "name": "Asha"
+        }
+      ],
+      "actual_profile_count": 7,
+      "capacity_baseline": {
+        "daily_capacity": 80,
+        "end_backlog": 33407,
+        "method": "Deterministic daily queue, starts empty; same assumptions for both policies. Not a MiroFish result.",
+        "peak_backlog": 33407
+      },
+      "country": "Argentina",
+      "graph_id": "mirofish_c97b4154a4be4ea4",
+      "id": "6d504107f57485994001",
+      "last_error": null,
+      "metadata": {
+        "cost_note": "Provider invoice/price audit not available; not inferred from rounds.",
+        "elapsed_seconds": 349.42,
+        "model": "google/gemini-3.8-flash",
+        "monetary_cost": null,
+        "provider": "Google Vertex AI",
+        "replicate": 202,
+        "study": "mirofish-policies-v1-2026-11-15"
+      },
+      "month": "2025-08",
+      "persona_count": 7,
+      "phase": "completed",
+      "policy": "coordinated",
+      "project_id": "proj_d8df08ebd323",
+      "release_status": "synthetic_research_only",
+      "replicate": 202,
+      "report_id": "report_9a55aa85b1cc",
+      "report_sha256": "647f0d4e7f3b3e618ba9f7240c980145f06019cf15c30b5a37ca25c2202736b9",
+      "role_names_match": false,
+      "simulation_id": "sim_a37efeadf0e3"
+    }
+  ],
+  "schema_version": 1
+}

@@ -60,7 +60,7 @@ Monthly map files are generated locally and ignored by Git. The small evaluation
 | Ridge autoregression | Implemented alongside 3 simple baselines | Past-only holdout skill and uncertainty behavior |
 | TimesFM / Chronos | Promising additional forecasting candidates; not installed | Exact model/version, pretrained cutoff, compute cost, same frozen origins and no future weather; account for possible pretraining contamination |
 | Weather-informed model | High priority after more data | Weather forecast vintages available at issue time; observed future reanalysis cannot stand in for forecasts |
-| MiroFish | Integrated REST workflow and isolated upstream runtime; cloud execution awaits credentials | Fixed assumptions, independent versus coordinated communication, repeated runs and independent domain review |
+| MiroFish | Integrated REST workflow and isolated runtime; Zep authentication and Vertex JSON call verified locally; full simulation evaluation pending | Fixed assumptions, independent versus coordinated communication, repeated runs and independent domain review |
 | Agent tools | Implemented as bounded local evidence/brief/verification CLI; deterministic workflow roles | Measure unsupported-claim rejection, reproducibility and analyst effort before adding autonomous loops |
 | RAG / vector database | No current need: small, structured dataset with direct row pointers | Add only when a versioned document corpus improves a defined decision |
 | Live NASA ingestion | Deferred; 2025 archive is not live data | Availability manifest, product-version controls, missing-day handling and data freshness UI |

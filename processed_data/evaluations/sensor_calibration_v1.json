@@ -1,0 +1,200 @@
+{
+  "countries": [
+    {
+      "claim": "Held-out distribution comparison; no validated historical fire-incidence reconstruction.",
+      "country": "Sri_Lanka",
+      "outer_folds": [
+        {
+          "calibration_year": 2022,
+          "results": [
+            {
+              "extreme_day_MAE": 142.85365853658536,
+              "extreme_threshold_from_training": 67.0,
+              "mean_bias": -22.81917808219178,
+              "method": "identity",
+              "test": {
+                "mae": 22.84109589041096,
+                "rmse": 54.73800612982257,
+                "wape": 0.9183740912095175
+              }
+            },
+            {
+              "extreme_day_MAE": 114.87321330679784,
+              "extreme_threshold_from_training": 67.0,
+              "mean_bias": 3.8124551429111944,
+              "method": "monthly_ratio",
+              "test": {
+                "mae": 23.14927667755997,
+                "rmse": 61.28563978959654,
+                "wape": 0.9307651451100892
+              }
+            },
+            {
+              "extreme_day_MAE": 67.83609649335023,
+              "extreme_threshold_from_training": 67.0,
+              "mean_bias": -0.8178145574306758,
+              "method": "monthly_quantile_mapping",
+              "test": {
+                "mae": 16.09616399036172,
+                "rmse": 33.099826788466274,
+                "wape": 0.6471799797843167
+              }
+            }
+          ],
+          "selected_mapping": "monthly_quantile_mapping",
+          "selection_years": [
+            2020,
+            2021
+          ],
+          "test_year": 2023
+        },
+        {
+          "calibration_year": 2023,
+          "results": [
+            {
+              "extreme_day_MAE": 107.83720930232558,
+              "extreme_threshold_from_training": 59.5,
+              "mean_bias": -19.024590163934427,
+              "method": "identity",
+              "test": {
+                "mae": 19.193989071038253,
+                "rmse": 44.6156322919304,
+                "wape": 0.9406802356722014
+              }
+            },
+            {
+              "extreme_day_MAE": 79.60408293179272,
+              "extreme_threshold_from_training": 59.5,
+              "mean_bias": -1.4173005564991532,
+              "method": "monthly_ratio",
+              "test": {
+                "mae": 19.074798496961417,
+                "rmse": 47.35397049709159,
+                "wape": 0.9348388122506532
+              }
+            },
+            {
+              "extreme_day_MAE": 65.01805868133701,
+              "extreme_threshold_from_training": 59.5,
+              "mean_bias": -1.5723035903355995,
+              "method": "monthly_quantile_mapping",
+              "test": {
+                "mae": 15.652126948082248,
+                "rmse": 34.10242303101475,
+                "wape": 0.7670967411620384
+              }
+            }
+          ],
+          "selected_mapping": "monthly_quantile_mapping",
+          "selection_years": [
+            2020,
+            2021,
+            2022
+          ],
+          "test_year": 2024
+        }
+      ],
+      "reference": "VIIRS-only observed daily union; not ground truth"
+    },
+    {
+      "claim": "Held-out distribution comparison; no validated historical fire-incidence reconstruction.",
+      "country": "Argentina",
+      "outer_folds": [
+        {
+          "calibration_year": 2022,
+          "results": [
+            {
+              "extreme_day_MAE": 1369.0,
+              "extreme_threshold_from_training": 1882.0,
+              "mean_bias": -285.3232876712329,
+              "method": "identity",
+              "test": {
+                "mae": 285.3232876712329,
+                "rmse": 377.7740028909797,
+                "wape": 0.7142426050518144
+              }
+            },
+            {
+              "extreme_day_MAE": 81.93283166109256,
+              "extreme_threshold_from_training": 1882.0,
+              "mean_bias": 25.03760789285908,
+              "method": "monthly_ratio",
+              "test": {
+                "mae": 110.18404947027902,
+                "rmse": 179.80142989006535,
+                "wape": 0.27582095794259504
+              }
+            },
+            {
+              "extreme_day_MAE": 271.5690701046972,
+              "extreme_threshold_from_training": 1882.0,
+              "mean_bias": 60.91241293431039,
+              "method": "monthly_quantile_mapping",
+              "test": {
+                "mae": 125.03913419393977,
+                "rmse": 195.89121152131594,
+                "wape": 0.31300731766069323
+              }
+            }
+          ],
+          "selected_mapping": "monthly_ratio",
+          "selection_years": [
+            2020,
+            2021
+          ],
+          "test_year": 2023
+        },
+        {
+          "calibration_year": 2023,
+          "results": [
+            {
+              "extreme_day_MAE": 1426.2307692307693,
+              "extreme_threshold_from_training": 1832.0,
+              "mean_bias": -278.3606557377049,
+              "method": "identity",
+              "test": {
+                "mae": 278.3606557377049,
+                "rmse": 424.34714240555405,
+                "wape": 0.6998742864208726
+              }
+            },
+            {
+              "extreme_day_MAE": 747.2622697674043,
+              "extreme_threshold_from_training": 1832.0,
+              "mean_bias": 39.73968392780335,
+              "method": "monthly_ratio",
+              "test": {
+                "mae": 138.20608518327958,
+                "rmse": 260.39842155624785,
+                "wape": 0.3474876325115947
+              }
+            },
+            {
+              "extreme_day_MAE": 553.8332786127146,
+              "extreme_threshold_from_training": 1832.0,
+              "mean_bias": 73.15507097703275,
+              "method": "monthly_quantile_mapping",
+              "test": {
+                "mae": 129.29298071338778,
+                "rmse": 226.21433672643397,
+                "wape": 0.32507766723065984
+              }
+            }
+          ],
+          "selected_mapping": "monthly_ratio",
+          "selection_years": [
+            2020,
+            2021,
+            2022
+          ],
+          "test_year": 2024
+        }
+      ],
+      "reference": "VIIRS-only observed daily union; not ground truth"
+    }
+  ],
+  "input_manifest_sha256": "fe3d66c6e3e9e352bcbc83920f54ff71def23e74fc329a37061534f0c074798b",
+  "protocol_id": "forecast-v2-2026-11-15",
+  "protocol_sha256": "2ecdcf9c8be4ee3b104960c9bd50d707e01b4b69cb7eaabaab3781a1967c2823",
+  "schema_version": 1
+}

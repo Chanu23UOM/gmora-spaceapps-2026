@@ -23,6 +23,32 @@ Configure these values in `.integrations/mirofish/.env`:
 
 Keep keys in the ignored file. Do not enter them in the dashboard or commit them. PyroSync only returns their presence as booleans. Upstream reads its own `.env`; account balances and provider authentication are not established by a local presence check.
 
+### Vertex AI provider
+
+For Vertex, run `make vertex-setup` and configure the ignored MiroFish `.env`:
+
+```dotenv
+LLM_BASE_URL=http://127.0.0.1:5002/v1
+LLM_API_KEY=GENERATE_A_PRIVATE_RANDOM_LOCAL_BRIDGE_KEY
+LLM_MODEL_NAME=google/gemini-3.8-flash
+VERTEX_PROJECT=YOUR_GOOGLE_CLOUD_PROJECT_ID
+VERTEX_LOCATION=global
+```
+
+The local bridge key authenticates MiroFish to the relay; it is not a Google access token. Select a Gemini model available in the chosen project/location. An OAuth web-client JSON identifies an application and does not grant Vertex access. Do not point `GOOGLE_APPLICATION_CREDENTIALS` at that web-client file.
+
+Sign in as an account authorized for the target project using [Google's local ADC flow](https://docs.cloud.google.com/docs/authentication/set-up-adc-local-dev-environment):
+
+```sh
+gcloud auth application-default login --project=YOUR_GOOGLE_CLOUD_PROJECT_ID
+```
+
+The project needs Vertex API access, appropriate IAM permissions and billing. The bridge uses Application Default Credentials, independently of the active `gcloud` CLI account; it does not fall back to an unrelated configured project. Use `GOOGLE_APPLICATION_CREDENTIALS` only for a supported service-account/federated credential when that is your intended authentication method.
+
+For a service-account file, keep a private copy under ignored `.integrations/`, restrict it to mode `0600`, and set `GOOGLE_APPLICATION_CREDENTIALS` to its absolute path in MiroFish's ignored `.env`. The relay explicitly loads that file and uses `VERTEX_PROJECT` as the target/quota project. An explicit file takes precedence over ambient ADC; no `gcloud` sign-in is required when that credential is valid.
+
+Start `make vertex-start` in a separate terminal, then `make mirofish-start` and `make serve`. The loopback relay replaces its local key with Google authorization and lets the official authentication library refresh expiring credentials before requests. This also covers MiroFish's simulation subprocesses. It relays only chat-completion requests to the configured Vertex project, supports streaming, and does not log prompts or credentials. Live model access must be checked after sign-in; a healthy local relay alone does not establish Google authorization.
+
 Start two terminals:
 
 ```sh
@@ -78,6 +104,6 @@ CLI `advance` performs one transition, without a long polling loop. Dashboard St
 
 Tests exercise the real HTTP adapter against a local API stub through the complete lifecycle, including multipart upload, bounded start parameters, policy isolation, deterministic capacity baseline, malformed/failed responses and persistence across restart. Local server tests cover preparation and cross-origin rejection. Browser checks cover offline setup, preparation, downloads, reload recovery and mobile layout. Upstream app initialization/health and OASIS imports are separate runtime smoke checks.
 
-**No real LLM/Zep simulation or generated report is validated here because neither credential is configured.** Stub results are not recorded as MiroFish research findings.
+**Local provider smoke checks passed:** service-account authentication and a real MiroFish JSON request through the Vertex relay, plus a read-only Zep graph listing. A complete real LLM/Zep simulation and generated report remain unvalidated. Stub results are not recorded as MiroFish research findings.
 
 To evaluate policy usefulness, preregister a question set; use matched independent/coordinated runs with identical evidence and assumptions; repeat across runs and countries; have blinded domain reviewers score unsupported claims, omission of uncertainty, internal contradictions and usefulness. Record provider model/version, actual personas, round counts, tokens/cost and latency. Generated confidence or agreement is not forecast calibration. Numeric capacity outcomes require a separate validated operational model, not counting simulated posts.

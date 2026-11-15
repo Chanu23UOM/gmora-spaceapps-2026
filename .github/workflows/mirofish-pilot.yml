@@ -1,0 +1,56 @@
+name: Manual MiroFish cloud pilot
+on:
+  workflow_dispatch:
+    inputs:
+      run_paid_pilot:
+        description: Run one real one-round LLM/Zep scenario
+        type: boolean
+        default: false
+        required: true
+permissions:
+  contents: read
+concurrency:
+  group: mirofish-cloud-pilot
+  cancel-in-progress: false
+jobs:
+  pilot:
+    if: github.repository == 'Chanu23UOM/gmora-spaceapps-2026' && github.ref == 'refs/heads/main' && inputs.run_paid_pilot
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install credential-free runtime and build archive
+        run: |
+          python -m pip install uv==0.9.5
+          make setup
+          make build
+          make vertex-setup
+          make mirofish-setup
+      - name: Inject provider credentials locally
+        env:
+          PILOT_ZEP_KEY: ${{ secrets.ZEP_API_KEY }}
+          PILOT_BRIDGE_KEY: ${{ secrets.LLM_API_KEY }}
+          PILOT_VERTEX_JSON: ${{ secrets.GOOGLE_VERTEX_SERVICE_ACCOUNT_JSON }}
+          PILOT_PROJECT: ${{ vars.VERTEX_PROJECT }}
+          PILOT_LOCATION: ${{ vars.VERTEX_LOCATION }}
+          PILOT_MODEL: ${{ vars.LLM_MODEL_NAME }}
+        run: .venv/bin/python -m pyrosync.pilot_config
+      - name: Start local services
+        run: |
+          make vertex-start > "$RUNNER_TEMP/vertex.log" 2>&1 &
+          make mirofish-start > "$RUNNER_TEMP/mirofish.log" 2>&1 &
+          .venv/bin/python -m pyrosync.policy_study --wait-services
+      - name: Run the bounded pilot
+        run: .venv/bin/python -m pyrosync.policy_study --run --pilot
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: sanitized-pilot-results
+          path: processed_data/evaluations/policy_study.json
+          if-no-files-found: ignore
+      - name: Remove credential files
+        if: always()
+        run: rm -f .integrations/vertex-service-account.json .integrations/mirofish/.env

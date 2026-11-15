@@ -59,27 +59,41 @@ def parse_row(row: dict, source: str, line: int, resolution: int = 8) -> Detecti
                      h3.latlng_to_cell(lat, lon, resolution), line)
 
 
-def load_country(root: Path, country: str, year: int = 2025):
+def load_country(root: Path, country: str, year: int = 2025, allow_missing=False, invalid_rows='raise'):
+    if invalid_rows not in ('raise','quarantine'):
+        raise ValueError('unknown invalid-row policy')
     records, manifest = [], []
     for source in SOURCES:
         relative = f"{source}/{year}/{source}_{year}_{country}.csv"
         path = root / relative
+        if not path.exists() and allow_missing:
+            manifest.append({'path':relative,'source':source,'year':year,'country':country,
+                             'file_status':'missing','sensor_availability':'unknown',
+                             'observation_coverage':'unknown','rows':None})
+            continue
         rows = 0
         seen = set()
         duplicates = 0
+        quarantined=[]
         with path.open(newline="") as stream:
             for line, row in enumerate(csv.DictReader(stream), 2):
+                rows += 1
                 try:
                     record = parse_row(row, source, line)
                     if not record.day.startswith(str(year) + "-"):
                         raise ValueError("record outside requested year")
                 except (ValueError, KeyError, TypeError) as exc:
+                    if invalid_rows=='quarantine':
+                        quarantined.append({'line':line,'reason':str(exc)})
+                        continue
                     raise ValueError(f"{relative}:{line}: {exc}") from exc
                 key = tuple(row.values())
                 duplicates += key in seen
                 seen.add(key)
                 records.append(record)
-                rows += 1
         manifest.append({"path": relative, "sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
-                         "rows": rows, "exact_duplicate_rows": duplicates})
+                         "rows": rows, "exact_duplicate_rows": duplicates,'source':source,
+                         'year':year,'country':country,'file_status':'present',
+                         'accepted_rows':rows-len(quarantined),'quarantined_rows':quarantined,
+                         'sensor_availability':'archive_file_present','observation_coverage':'unknown'})
     return records, manifest

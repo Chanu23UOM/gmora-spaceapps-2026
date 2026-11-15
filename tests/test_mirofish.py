@@ -172,6 +172,10 @@ class MiroFishTests(unittest.TestCase):
             self.assertEqual(state['phase'],'prepared')
             with urllib.request.urlopen(base+'/api/scenarios/'+state['id']) as response:
                 self.assertEqual(json.load(response)['id'],state['id'])
+            with urllib.request.urlopen(base+'/api/research') as response:
+                research=json.load(response)
+                self.assertEqual(research['schema_version'],1)
+                self.assertEqual(research['results']['forecast_v2']['status'],'not_built')
             request.add_header('Origin','https://foreign.example')
             with self.assertRaises(urllib.error.HTTPError) as error:
                 urllib.request.urlopen(request)

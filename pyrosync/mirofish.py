@@ -121,8 +121,9 @@ def doctor(root=ROOT, client=None):
 
 
 class ScenarioStore:
-    def __init__(self, root=ROOT, client=None):
+    def __init__(self, root=ROOT, client=None, evidence_root=None):
         self.root = Path(root)
+        self.evidence_root=Path(evidence_root) if evidence_root else self.root/'web_app/data'
         self.directory = self.root/'processed_data/scenarios'
         self.client = client or Client()
         self.lock = threading.Lock()
@@ -149,7 +150,7 @@ class ScenarioStore:
                                        ('max_rounds',max_rounds,1,12), ('replicate',replicate,0,1000)]:
             if type(value) is not int or not low <= value <= high:
                 raise ValueError(f'{name} must be an integer in {low}..{high}')
-        payload = json.loads((self.root/'web_app/data'/f'{country}.json').read_text())
+        payload = json.loads((self.evidence_root/f'{country}.json').read_text())
         packet = evidence_packet(payload)
         render_brief(payload, packet)  # Same evidence gate as the existing brief.
         days = [d for d in payload['daily'] if d['date'].startswith(month)]
@@ -158,6 +159,7 @@ class ScenarioStore:
         spec = {'schema_version':1, 'country':country, 'month':month, 'policy':policy,
                 'assumptions': assumption, 'max_rounds':max_rounds, 'replicate':replicate,
                 'upstream_revision':PIN['revision'], 'artifact_sha256':packet['artifact_sha256'],
+                'runtime_patch_sha256':hashlib.sha256((ROOT/'integrations/mirofish-tabletop.patch').read_bytes()).hexdigest() if (ROOT/'integrations/mirofish-tabletop.patch').exists() else None,
                 'daily_workload':[{'date':d['date'], 'review_tickets':d['active_cells']} for d in days],
                 'roles': ROLES, 'release_status':'synthetic_research_only'}
         run_id = hashlib.sha256(json.dumps(spec,sort_keys=True).encode()).hexdigest()[:20]
