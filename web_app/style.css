@@ -637,6 +637,137 @@ input {
 .map-evidence.inspecting {
   color: var(--text);
 }
+.demo-journey {
+  margin-top: 16px;
+  border-top: 1px solid var(--line);
+  padding-top: 12px;
+}
+.demo-journey summary {
+  cursor: pointer;
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 500;
+}
+.demo-journey ol {
+  margin: 10px 0 0;
+  padding-left: 20px;
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+.demo-journey li {
+  margin-bottom: 4px;
+}
+.demo-journey strong {
+  color: var(--text);
+  font-weight: 500;
+}
+.demo-journey p {
+  margin: 10px 0 0;
+  font-size: 11px;
+  color: var(--muted);
+}
+.period-brief {
+  margin-top: 16px;
+  border-top: 1px solid var(--line);
+  padding-top: 16px;
+}
+.brief-title {
+  margin: 0;
+  font-size: 15px;
+  color: var(--accent);
+  letter-spacing: 0.3px;
+}
+.brief-meta {
+  margin: 6px 0 0;
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+.brief-list {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0;
+  margin: 14px 0 0;
+  font-size: 12px;
+}
+.brief-list dt {
+  padding: 7px 0;
+  border-bottom: 1px solid var(--line);
+  color: var(--muted);
+}
+.brief-list dd {
+  margin: 0;
+  padding: 7px 0 7px 18px;
+  border-bottom: 1px solid var(--line);
+  text-align: right;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+.brief-note,
+.brief-caution {
+  margin: 10px 0 0;
+  font-size: 11px;
+  line-height: 1.55;
+  color: var(--muted);
+}
+.brief-caution {
+  border-left: 2px solid var(--accent);
+  padding-left: 10px;
+  color: var(--text);
+}
+.brief-actions {
+  margin-top: 18px;
+  flex-wrap: wrap;
+}
+@media print {
+  body.printing-brief {
+    background: #fff;
+    color: #000;
+  }
+  body.printing-brief > *,
+  body.printing-brief .rail,
+  body.printing-brief footer {
+    display: none !important;
+  }
+  body.printing-brief main,
+  body.printing-brief #app,
+  body.printing-brief #view-overview,
+  body.printing-brief .brief-panel,
+  body.printing-brief #period-brief,
+  body.printing-brief #brief-body {
+    display: block !important;
+  }
+  body.printing-brief #view-overview > *:not(.brief-panel),
+  body.printing-brief .brief-panel > .subtext,
+  body.printing-brief .brief-panel .panel-title button,
+  body.printing-brief .brief-actions,
+  body.printing-brief .controls-shell,
+  body.printing-brief header,
+  body.printing-brief .intro,
+  body.printing-brief #loading {
+    display: none !important;
+  }
+  body.printing-brief .brief-panel {
+    border: 0;
+    padding: 0;
+  }
+  body.printing-brief .brief-title,
+  body.printing-brief .brief-caution {
+    color: #000;
+  }
+  body.printing-brief .brief-meta,
+  body.printing-brief .brief-note,
+  body.printing-brief .brief-list dt {
+    color: #333;
+  }
+  body.printing-brief .brief-list dd {
+    color: #000;
+  }
+  body.printing-brief .brief-caution {
+    border-left: 2px solid #000;
+  }
+}
 .evidence-heading {
   display: flex;
   flex-direction: column;

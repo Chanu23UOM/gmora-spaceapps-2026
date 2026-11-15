@@ -33,6 +33,34 @@
             detections with combined grid cells, and explore deeper research on
             demand.
           </p>
+          <details class="demo-journey">
+            <summary>Two-minute guided tour</summary>
+            <ol>
+              <li>
+                <strong>Choose a region</strong> — pick Sri Lanka or Argentina
+                and a month in the controls below.
+              </li>
+              <li>
+                <strong>Inspect the period</strong> — read the summary figures
+                and the activity calendar, then open the
+                <em>selected-period brief</em>.
+              </li>
+              <li>
+                <strong>Understand a source discrepancy</strong> — open
+                <em>Explore map &amp; sensors</em> and select a mapped cell to
+                see why raw detections and active cell-days differ.
+              </li>
+              <li>
+                <strong>Export</strong> — download the brief, the daily CSV or
+                the selected GeoJSON.
+              </li>
+            </ol>
+            <p>
+              Research &amp; scenarios adds forecast evaluation and synthetic
+              communication exercises. No account, API key or paid service is
+              needed for steps 1–4.
+            </p>
+          </details>
         </div>
         <div class="context-card" aria-label="Archive metadata">
           <div class="context-row">
@@ -210,6 +238,48 @@
                 <strong>no qualifying detections in these files</strong>;
                 satellite cloud and coverage masks are unavailable.
               </p>
+            </div>
+          </article>
+
+          <article class="panel brief-panel">
+            <div class="panel-title">
+              <div>
+                <p class="eyebrow">SELECTED-PERIOD BRIEF</p>
+                <h2 id="brief-heading">What was recorded this period.</h2>
+              </div>
+              <button
+                id="period-brief-toggle"
+                type="button"
+                class="button secondary"
+                aria-expanded="false"
+                aria-controls="period-brief"
+              >
+                Show period brief
+              </button>
+            </div>
+            <p class="subtext">
+              A short plain-language account of the selected region and month,
+              built from the same archive figures shown above. Observations
+              only — forecast estimates and synthetic discussion scenarios stay
+              in Research &amp; scenarios.
+            </p>
+            <div id="period-brief" class="period-brief" hidden>
+              <div id="brief-body"></div>
+              <div class="evidence-actions brief-actions">
+                <button id="brief-period-download" type="button" class="button">
+                  Download this brief ↓
+                </button>
+                <button
+                  id="brief-period-print"
+                  type="button"
+                  class="button secondary"
+                >
+                  Print brief ↗
+                </button>
+                <a id="brief-csv-link" class="text-button" download
+                  >Daily CSV for this region ↓</a
+                >
+              </div>
             </div>
           </article>
 
