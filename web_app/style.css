@@ -1158,17 +1158,30 @@ footer {
   .view-header h2 {
     font-size: 22px;
   }
+  /* 31 day columns cannot each reach the 24px minimum target at phone width
+     (that needs ~744px), so the calendar keeps full-size targets and scrolls
+     horizontally as one unit instead of shrinking the tiles to ~5px. */
+  .calendar-list {
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    padding-bottom: 8px;
+  }
   .calendar-row {
-    grid-template-columns: 34px minmax(0, 1fr) 74px;
+    grid-template-columns: 44px max-content 74px;
+    min-width: max-content;
     gap: 6px;
     padding: 4px;
   }
+  .month-btn {
+    min-height: 24px;
+  }
   .month-days {
-    gap: 1px;
+    grid-template-columns: repeat(31, 24px);
+    gap: 2px;
   }
   .day-tile,
   .day-tile.empty {
-    height: 13px;
+    height: 24px;
   }
   .month-meta {
     font-size: 10px;
