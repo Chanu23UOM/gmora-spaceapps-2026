@@ -1,0 +1,55 @@
+{
+  "provider": "Google Vertex AI",
+  "model": "gemini-2.5-pro-tts",
+  "voice": "Charon",
+  "adult_synthetic_voice": true,
+  "style": "Warm professional documentary narration; natural conversational delivery",
+  "music": false,
+  "human_recordings": false,
+  "live_sections": [
+    {
+      "slide": 1,
+      "slot_seconds": 35,
+      "generated_audio_seconds": 30.930958333333333,
+      "tempo_factor": 1
+    },
+    {
+      "slide": 2,
+      "slot_seconds": 35,
+      "generated_audio_seconds": 29.050958333333334,
+      "tempo_factor": 1
+    },
+    {
+      "slide": 3,
+      "slot_seconds": 35,
+      "generated_audio_seconds": 32.53095833333333,
+      "tempo_factor": 1
+    },
+    {
+      "slide": 4,
+      "slot_seconds": 45,
+      "generated_audio_seconds": 36.370958333333334,
+      "tempo_factor": 1
+    },
+    {
+      "slide": 5,
+      "slot_seconds": 55,
+      "generated_audio_seconds": 42.49095833333333,
+      "tempo_factor": 1
+    },
+    {
+      "slide": 6,
+      "slot_seconds": 50,
+      "generated_audio_seconds": 43.370958333333334,
+      "tempo_factor": 1
+    },
+    {
+      "slide": 7,
+      "slot_seconds": 45,
+      "generated_audio_seconds": 41.81095833333333,
+      "tempo_factor": 1
+    }
+  ],
+  "transcript_file": "narration.json",
+  "tts_documentation": "https://docs.cloud.google.com/text-to-speech/docs/gemini-tts"
+}

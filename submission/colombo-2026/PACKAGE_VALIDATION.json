@@ -1,0 +1,71 @@
+{
+  "upstream_revision": "4b39801",
+  "tests_passed": 41,
+  "javascript_syntax": "passed",
+  "slide_count": 7,
+  "rendered_text_complete": true,
+  "summary_word_count": 138,
+  "media": {
+    "PyroSync_Live_Pitch_5min.mp4": {
+      "programs": [],
+      "streams": [
+        {
+          "codec_type": "video",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "codec_type": "audio"
+        }
+      ],
+      "format": {
+        "duration": "300.010000",
+        "size": "9523842"
+      }
+    },
+    "PyroSync_Demo_30s.mp4": {
+      "programs": [],
+      "streams": [
+        {
+          "codec_type": "video",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "codec_type": "audio"
+        }
+      ],
+      "format": {
+        "duration": "30.000000",
+        "size": "1010147"
+      }
+    }
+  },
+  "english_subtitles": "burned in, SRT also supplied",
+  "demo_caption_timing": "audio-derived Vertex transcription",
+  "demo_audio_review": {
+    "complete_ending": true,
+    "concerns": []
+  },
+  "voice_provider": "Google Vertex AI",
+  "voice_model": "gemini-2.5-pro-tts",
+  "voice_name": "Charon",
+  "synthetic_adult_voice": true,
+  "user_study": "not_run",
+  "policy_study_v2": "not_run",
+  "official_form_submission": "not_performed",
+  "public_access": "pending publication",
+  "files": {
+    "PyroSync_Demo_Voice.mp3": "6d360d5e0e4251313e07d315d75769c5184e7b4961b68aae850a25eb3373c628",
+    "PyroSync_Live_Pitch_5min.mp3": "551b97f06db269383115a979d8412b3fd28f9188eb62c1a47d4ccad172deadec",
+    "PyroSync_Live_Pitch_5min.mp4": "c20155f047da7626f818f6cb7635bfa0632cea03445cd9eea2be2b708997c4e2",
+    "PyroSync_Submission_7_Slides.pdf": "66f97096bc043b7787b1be568cb46df120471d16f20f78ba3bc86a3247db8947",
+    "PyroSync_Demo_30s.en.srt": "7d1a2d0fb8c5b2c12e3e9b5f656a21089978d6855c0786334fc8d40dd95f32c3",
+    "PyroSync_Submission_7_Slides.pptx": "9186c8507e97a6ee2d752bafc5c5a5e45d73f74eb0b92848c4a0bb72185dbc84",
+    "PyroSync_Demo_30s.mp4": "c369292fd5fd57c761ce245fcb3c48e06a11f3867a67ee0e9d71d1429053fbaa"
+  },
+  "local_only_rehearsal_files": [
+    "PyroSync_Live_Pitch_5min.mp4",
+    "PyroSync_Live_Pitch_5min.mp3"
+  ]
+}

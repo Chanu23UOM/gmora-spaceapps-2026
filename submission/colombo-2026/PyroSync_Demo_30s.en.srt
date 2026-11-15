@@ -1,0 +1,32 @@
+1
+00:00:01,390 --> 00:00:04,090
+Two satellites, two very different counts.
+
+2
+00:00:04,590 --> 00:00:06,690
+PyroSync helps explain why.
+
+3
+00:00:07,290 --> 00:00:12,590
+Using NASA data, explore fire observations in
+Sri Lanka and Argentina.
+
+4
+00:00:13,190 --> 00:00:14,490
+Read the calendar,
+
+5
+00:00:14,990 --> 00:00:16,090
+inspect the map,
+
+6
+00:00:16,590 --> 00:00:17,990
+trace the evidence.
+
+7
+00:00:18,690 --> 00:00:19,590
+PyroSync,
+
+8
+00:00:20,090 --> 00:00:22,790
+clearer evidence, stronger decisions.
