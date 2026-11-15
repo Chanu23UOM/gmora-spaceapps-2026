@@ -100,6 +100,8 @@ make mirofish-start
 
 In another terminal, `make serve`, then use **MiroFish Tabletop** in the dashboard. Prepare locally, check connection, and start the workflow. Runs and reports persist under ignored `processed_data/scenarios/`. The pilot defaults to 4 rounds, supports up to 12, and checks that 1–8 personas were prepared before starting the simulation. Extraction and report generation also incur provider usage; a round cap is not a monetary budget.
 
+Before a simulation starts, the adapter requires exactly one prepared profile per intended fictional actor and fails the run before any paid simulation if extraction drifts, so incomparable runs are neither paid for nor scored. The first policy study (`mirofish-policies-v1`) is a recorded negative result: no role-comparable independent/coordinated pair was produced. The replacement protocol `mirofish-policies-v2` is frozen but not yet run, and no blinded human scores exist, so no policy difference is claimed. See [blinded review rubric](docs/POLICY_REVIEW_RUBRIC.md).
+
 `make mirofish-status` checks setup and connection without exposing keys. For CLI preparation and one-step workflow advancement, see [MiroFish integration guide](docs/MIROFISH_INTEGRATION.md). Local Zep authentication and a real MiroFish JSON call through Vertex have passed. A complete cloud simulation/report has not yet been validated; lifecycle tests use a local HTTP stub.
 
 Vertex AI is also supported through `make vertex-start`, a local relay that refreshes Google Application Default Credentials for MiroFish and its simulation subprocesses. See the Vertex section in the integration guide. A Google OAuth web-client file alone is not an authenticated Vertex credential. Optional dependencies: `make vertex-setup`.

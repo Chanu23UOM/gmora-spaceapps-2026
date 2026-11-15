@@ -1,0 +1,109 @@
+{
+  "id": "mirofish-policies-v2-2026-11-15",
+  "status": "frozen_before_first_v2_scenario",
+  "supersedes": "mirofish-policies-v1-2026-11-15",
+  "supersede_reason": "v1 produced zero role-comparable pairs in both countries. Graph extraction added non-actors (MiroFish, PyroSync, 'internal simulated discussion board', 'active cell-day review scenario') and duplicated roles, so no independent/coordinated pair shared the intended actor set. v1 runs are retained as a recorded negative result and are not rescored.",
+  "countries": [
+    "Sri_Lanka",
+    "Argentina"
+  ],
+  "month": "2025-08",
+  "policies": [
+    "independent",
+    "coordinated"
+  ],
+  "replicates": [
+    201,
+    202
+  ],
+  "max_rounds": 1,
+  "reviewers": 4,
+  "reviews_per_day": 20,
+  "maximum_total_scenarios": 8,
+  "maximum_concurrency": 2,
+  "maximum_prepared_personas": 8,
+  "require_exact_roles": true,
+  "role_lock": {
+    "rule": "Exactly one prepared profile per intended actor, verified against the upstream profile listing immediately before the simulation starts.",
+    "enforced_in": "pyrosync/mirofish.py role_lock_status, checked in the 'ready' phase",
+    "on_violation": "The run is marked failed before /api/simulation/start. No simulation or report is paid for, and the run is excluded from pairing rather than scored.",
+    "unverifiable_listing": "A persona count without names does not satisfy the lock; the run stops.",
+    "recorded_fields": [
+      "expected",
+      "observed",
+      "missing",
+      "unexpected",
+      "duplicated",
+      "satisfied",
+      "reason"
+    ]
+  },
+  "roles": [
+    "district analyst",
+    "field coordinator",
+    "agricultural liaison",
+    "skeptical reviewer"
+  ],
+  "role_profile_names": [
+    "Asha",
+    "Bruno",
+    "Chandra",
+    "Devi"
+  ],
+  "fixed_questions": [
+    "What was observed?",
+    "What does missing coverage prevent us concluding?",
+    "Which communication claims lack evidence?",
+    "What remains unresolved?"
+  ],
+  "matching": {
+    "held_constant_across_policies": [
+      "country and archive month",
+      "frozen observation payload and artifact_sha256",
+      "declared reviewer count and reviews per person per day",
+      "deterministic capacity queue baseline",
+      "maximum rounds",
+      "locked actor set",
+      "upstream revision and runtime patch hash",
+      "model and provider"
+    ],
+    "pair_definition": "One independent run and one coordinated run with the same country and replicate label, both completed, both satisfying the role lock.",
+    "eligibility_metric": "comparisons[].eligible_pairs in processed_data/evaluations/policy_study.json",
+    "minimum_pairs_before_any_policy_comparison": 2
+  },
+  "evaluation": {
+    "human_blinded_scores_0_to_3": [
+      "unsupported_claims",
+      "uncertainty_omissions",
+      "contradictions",
+      "usefulness"
+    ],
+    "baseline": "deterministic evidence brief",
+    "automated_screening": "does not replace blinded domain review",
+    "rubric_document": "docs/POLICY_REVIEW_RUBRIC.md",
+    "reviewers_required": 2,
+    "reviewer_independence": "Reviewers must not be the run operator and must score independently before discussing any report.",
+    "unblinding_guess_required": true
+  },
+  "outcome_scope": {
+    "measured": "communication quality of generated narratives against a deterministic evidence brief",
+    "not_measured": [
+      "fire suppression outcomes",
+      "response times",
+      "staffing capacity improvements",
+      "public behaviour",
+      "ignition or spread"
+    ],
+    "deterministic_invariant": "Queue metrics depend only on workload and declared capacity and must be identical between policies for the same country/month; generated prose cannot modify them."
+  },
+  "replicate_labels_are_random_seeds": false,
+  "replicate_label_note": "The current upstream API exposes no controlled random seed. Replicate labels distinguish repeated runs under identical settings; they do not reproduce a run.",
+  "release_status": "synthetic_research_only",
+  "spending": "bounded scenarios/rounds/personas; provider monetary cost reported only if available, never inferred from round count. The role lock exists partly so that incomparable runs are not paid for.",
+  "efficacy_claim": "abstain until the minimum eligible pairs exist and independent blinded scores are recorded",
+  "results_artifact": "processed_data/evaluations/policy_study.json",
+  "results_status": "not_collected_under_v2",
+  "dependencies": [
+    "Configured LLM and Zep credentials for the pinned MiroFish backend (tracked separately)."
+  ]
+}

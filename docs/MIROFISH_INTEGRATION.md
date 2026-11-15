@@ -67,7 +67,11 @@ The seed includes the exact artifact hash, selected daily active-cell counts, fo
 
 Policy A: each stakeholder issues independent evidence-grounded updates. Policy B: a coordinator collects updates into one daily evidence-grounded bulletin. Both get the same observations and capacity assumptions. The independently computed capacity queue starts empty and is identical across policies; conversation does not automatically change processing throughput. The engine may suggest communication benefits, but it cannot establish them from generated prose alone.
 
-The upstream engine simulates Reddit/Twitter-like interactions. This integration uses only its simulated Reddit discussion board; it does not publish to real social media or send messages. It requests fictional analyst, field coordinator, agricultural liaison and skeptical reviewer personas. Graph extraction is stochastic and may not recover exactly these four; PyroSync checks the prepared profile count before running and refuses more than eight. It does not claim validated role fidelity.
+The upstream engine simulates Reddit/Twitter-like interactions. This integration uses only its simulated Reddit discussion board; it does not publish to real social media or send messages. It requests fictional analyst, field coordinator, agricultural liaison and skeptical reviewer personas. Graph extraction is stochastic and may not recover exactly these four.
+
+**Role lock.** Before starting a simulation, PyroSync reads the prepared profile listing and requires **exactly one profile per intended actor** (Asha, Bruno, Chandra, Devi). The outcome is recorded on the run as `role_lock`, with the expected, observed, missing, unexpected and duplicated names. If the lock is not satisfied — extra extracted actors such as the platform or the project itself, a duplicated role, a missing role, or a listing that gives only a count — the run is marked failed **before** `/api/simulation/start`, so no simulation or report is paid for and the run is excluded from pairing rather than scored. The prepared profile count must also remain within 1..8. Pass `require_exact_roles=false` for exploratory runs; the drift is still recorded, and such runs are not policy-comparable.
+
+This lock exists because the v1 study produced zero role-comparable pairs: extraction added non-actors and duplicated roles, so no independent/coordinated pair shared the intended actor set. Role fidelity is now checked rather than assumed, which is not the same as claiming the personas behave like real stakeholders.
 
 Local preparation makes no provider calls. **Start/resume** uploads the seed summary and uses the upstream LLM/Zep services. Default four rounds, maximum twelve, one platform, template-based profiles and graph memory updates disabled reduce pilot work. They do not impose a dollar cap: ontology extraction, graph construction, generated configuration, per-round reasoning and reporting have their own costs. Provider-side spending limits remain separate.
 
@@ -107,3 +111,14 @@ Tests exercise the real HTTP adapter against a local API stub through the comple
 **Local provider smoke checks passed:** service-account authentication and a real MiroFish JSON request through the Vertex relay, plus a read-only Zep graph listing. A complete real LLM/Zep simulation and generated report remain unvalidated. Stub results are not recorded as MiroFish research findings.
 
 To evaluate policy usefulness, preregister a question set; use matched independent/coordinated runs with identical evidence and assumptions; repeat across runs and countries; have blinded domain reviewers score unsupported claims, omission of uncertainty, internal contradictions and usefulness. Record provider model/version, actual personas, round counts, tokens/cost and latency. Generated confidence or agreement is not forecast calibration. Numeric capacity outcomes require a separate validated operational model, not counting simulated posts.
+
+### Study protocols
+
+| Protocol | Status |
+| --- | --- |
+| [`experiments/mirofish-policies-v1.json`](../experiments/mirofish-policies-v1.json) | Run. **Negative result:** 7 of 8 scenarios completed but `eligible_pairs` is 0 for both countries, because persona drift left no role-comparable independent/coordinated pair. Retained as recorded history; not rescored. |
+| [`experiments/mirofish-policies-v2.json`](../experiments/mirofish-policies-v2.json) | Frozen, not yet run. Adds the enforced role lock, an explicit pair definition, and a minimum of two eligible pairs per country before any policy comparison is reported. Requires configured credentials. |
+
+Run a specific protocol with `.venv/bin/python -m pyrosync.policy_study --plan experiments/mirofish-policies-v2.json --run`. Without `--run` it only reconciles existing runs and regenerates the review packet. `make policy-study` keeps the v1 default so the recorded v1 artifact is not overwritten by accident.
+
+Reviewer instructions, the four 0–3 scales, the required unblinding guess and the fixed analysis constraints are in [blinded review rubric](POLICY_REVIEW_RUBRIC.md). **No human scores have been recorded yet**, so no policy difference has been measured and no efficacy claim is made.
