@@ -4,6 +4,10 @@ An instrument-aware fire observation lab for the NASA Space Apps harmonization c
 
 **Dashboard scope:** Sri Lanka and Argentina, 2025 archive. The backend also acquires 2020–2024 archives and evaluates frozen historical forecast and sensor-comparison experiments. This is a research prototype: active cell-days are not distinct fires or burned area, and the archive is not a live warning feed. Climate anomalies and operational historical harmonization are not validated.
 
+## Submission package
+
+Follow [How to submit](submission/colombo-2026/HOW_TO_SUBMIT.md) for the exact form fields, single demo link, seven-slide deck, and five-minute pitch. The [48-hour evidence review](submission/colombo-2026/HACKATHON_EVIDENCE.md) documents historical sensor comparisons and deterministic demo checks without claiming participant or operational validation.
+
 ## Run locally
 
 Requires Python 3.12, pip and network access for initial dependency installation. Node is only needed for the JavaScript syntax check, not for serving the dashboard.

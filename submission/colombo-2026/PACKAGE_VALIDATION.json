@@ -1,10 +1,10 @@
 {
   "upstream_revision": "4b39801",
-  "tests_passed": 41,
+  "tests_passed": 44,
   "javascript_syntax": "passed",
   "slide_count": 7,
   "rendered_text_complete": true,
-  "summary_word_count": 138,
+  "summary_word_count": 151,
   "media": {
     "PyroSync_Live_Pitch_5min.mp4": {
       "programs": [],
@@ -69,14 +69,9 @@
         "http_status": 200,
         "anonymous": true,
         "content_matches_local": true
-      },
-      {
-        "url": "https://raw.githubusercontent.com/Chanu23UOM/gmora-spaceapps-2026/submission-colombo-2026/submission/colombo-2026/PROJECT_SUBMISSION.md",
-        "http_status": 200,
-        "anonymous": true,
-        "content_matches_local": true
       }
-    ]
+    ],
+    "note": "Video/PDF checks remain valid; updated text and guide must be checked after publishing this follow-up."
   },
   "files": {
     "PyroSync_Demo_Voice.mp3": "6d360d5e0e4251313e07d315d75769c5184e7b4961b68aae850a25eb3373c628",
@@ -90,5 +85,10 @@
   "local_only_rehearsal_files": [
     "PyroSync_Live_Pitch_5min.mp4",
     "PyroSync_Live_Pitch_5min.mp3"
-  ]
+  ],
+  "automated_browser_checks": 14,
+  "participant_count": 0,
+  "scope": "48-hour hackathon research prototype; human/operational trials are future validation, not submission prerequisites",
+  "sensor_validation_audit": "processed_data/evaluations/sensor_validation_audit.json",
+  "source_evidence_replication": ".venv/bin/python -m pyrosync.validation"
 }

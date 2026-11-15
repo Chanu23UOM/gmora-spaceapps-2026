@@ -4,7 +4,7 @@ Prepared from upstream `4b39801` against the two user-supplied submission bookle
 
 ## Paste into the official form
 
-Copy [PROJECT_SUBMISSION.md](PROJECT_SUBMISSION.md). It contains the 138-word summary, project details, actual NASA/other sources, AI disclosure, and the separate project-source link. Paste only the single designated demo URL into the Project Demo field:
+Copy [PROJECT_SUBMISSION.md](PROJECT_SUBMISSION.md). It contains the 151-word summary, project details, actual NASA/other sources, AI disclosure, and the separate project-source link. Paste only the single designated demo URL into the Project Demo field:
 
 https://github.com/Chanu23UOM/gmora-spaceapps-2026/blob/submission-colombo-2026/submission/colombo-2026/PyroSync_Demo_30s.mp4
 
@@ -18,7 +18,7 @@ The local narrated five-minute rehearsal video (`PyroSync_Live_Pitch_5min.mp4`) 
 
 ## Assessment
 
-[GUIDELINE_REVIEW.md](GUIDELINE_REVIEW.md) maps the booklet requirements to the deliverables and gives a provisional internal assessment of 36/50. This is not an official score or prediction. The main limitations are unmeasured user benefit, unknown observation opportunity, and unvalidated full historical harmonization/operational warning skill. New AI role checks and the frozen v2 study are implementation progress; the v2 study and user trials have not run.
+[GUIDELINE_REVIEW.md](GUIDELINE_REVIEW.md) maps the booklet requirements to the deliverables and maps the booklet requirements to the deliverables. The [48-hour evidence assessment](HACKATHON_EVIDENCE.md) distinguishes the working prototype and measured checks from future research; no official score or predicted award is claimed. The main limitations are unmeasured user benefit, unknown observation opportunity, and unvalidated full historical harmonization/operational warning skill. New AI role checks and the frozen v2 study are implementation progress; the v2 study and user trials have not run.
 
 [PACKAGE_VALIDATION.json](PACKAGE_VALIDATION.json) records tests, artifact checks and anonymous access. [VOICE_PROVENANCE.json](VOICE_PROVENANCE.json) records the model, preset and timing adjustments. No key, bearer token, service-account JSON or private simulation report is distributed.
 
@@ -32,3 +32,5 @@ The local narrated five-minute rehearsal video (`PyroSync_Live_Pitch_5min.mp4`) 
 - `python3 tools/render_media.py` composes the 30-second captioned demo and the five-minute narrated rehearsal. `--demo-only` skips the latter. FFmpeg normalizes loudness; original WAV takes and provider response metadata remain ignored.
 
 The official NASA submission form has not been posted or finalized by this task. The package provides the public materials and copy-ready fields for the team to enter.
+
+Start with [HOW_TO_SUBMIT.md](HOW_TO_SUBMIT.md) for the exact fields, file choices, public URLs, and five-minute live-pitch instructions.

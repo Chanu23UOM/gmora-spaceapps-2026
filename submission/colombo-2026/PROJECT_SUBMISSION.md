@@ -16,7 +16,7 @@ https://www.spaceappschallenge.org/2026/challenges/modis-and-viirs-hot-spots/
 
 ## High-level summary
 
-PyroSync helps people understand why different satellites can tell different stories about fire activity. Using NASA FIRMS observations from MODIS and VIIRS, we built a working dashboard for Sri Lanka and Argentina that combines an activity calendar, a map, source evidence, and downloadable briefs. A shared counting rule records each active grid cell once per day while preserving the observations behind it. Users can inspect sensor differences and see how results change when a source or analytical choice changes. We also evaluate seven-day forecasts against simple baselines using earlier data for model selection and later years for testing. Historical results are promising in Argentina, while Sri Lanka’s gains remain inconclusive. PyroSync is a research prototype, not a live emergency-warning service. Our goal is to help analysts compare, question, and explain satellite fire records before those records inform decisions.
+PyroSync helps people understand why different satellites can tell different stories about fire activity. Using NASA FIRMS observations from MODIS and VIIRS, we built a working dashboard for Sri Lanka and Argentina that combines an activity calendar, a map, source evidence, and downloadable briefs. A shared counting rule records each active grid cell once per day while preserving the observations behind it. Users can inspect sensor differences and see how results change when a source or analytical choice changes. Historical sensor mappings improve agreement with a VIIRS observation reference in both countries. We also evaluate seven-day forecasts against simple baselines using earlier data for model selection and later years for testing. Historical results are promising in Argentina, while Sri Lanka’s gains remain inconclusive. PyroSync is a research prototype, not a live emergency-warning service. Our goal is to help analysts compare, question, and explain satellite fire records before those records inform decisions.
 
 ## Link to Project Demo — use only this one URL
 
@@ -26,7 +26,7 @@ This is the 30-second video option with burned-in English subtitles and an adult
 
 ## Link to Project
 
-https://github.com/Chanu23UOM/gmora-spaceapps-2026
+https://github.com/Chanu23UOM/gmora-spaceapps-2026/tree/submission-colombo-2026
 
 The repository provides runnable source, data definitions, results, and reproduction instructions. A public hosted application is not claimed. Initial local setup requires Python and dependency installation; the core dashboard requires no paid account or API key.
 
@@ -53,6 +53,14 @@ We acquired 30 official NASA archive files across three streams, two countries, 
 For Argentina, the model selected using earlier years reduced mean absolute error versus repeating last week's values by 19.2% on the 2023 outer test and 31.9% on the 2024 outer test. These passed an exploratory research gate, not operational validation. Sri Lanka's historical point improvements remained inconclusive. In the separate original 2025 experiment, both frozen country choices failed promotion. We retain those failures instead of choosing a model after seeing the test results.
 
 Historical sensor mappings are evaluated separately against VIIRS's observed cell union, not against ground truth. Agreement with another instrument does not establish true fire counts or climate trends.
+
+### Sensor-comparison evidence within the hackathon scope
+
+Using the originally selected mappings, MODIS-to-VIIRS count error was reduced relative to unmapped MODIS by 29.5% (2023) and 18.5% (2024) in Sri Lanka, and by 61.4% and 50.3% in Argentina. The VIIRS-only recorded cell union is the reference, not ground truth. The choices were fitted on selection years and chosen on calibration years; none was replaced after looking at the test scores.
+
+An added exploratory audit of the same already-seen years simulates instrument switches at 11 month boundaries per year. Reference-relative discontinuities were smaller after mapping in all four country/year cases. This constructed diagnostic does not validate a real satellite transition or climate trend. Full values, formulas, caveats and reproduction steps are in `HACKATHON_EVIDENCE.md` and the machine-readable audit.
+
+The dashboard also passed 14 deterministic browser checks across both countries. We corrected ambiguous aggregate-export wording and added country/period context to accessible map labels. These are technical checks and fixes, not a survey or evidence of user preference. A 48-hour prototype can demonstrate reproducibility and a clear user journey while leaving recruitment and operational trials for later work.
 
 ### Benefits and intended users
 

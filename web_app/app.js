@@ -484,8 +484,8 @@ function showEvidence(c) {
   note.className = "evidence-sample-note";
   note.textContent =
     c.cell_days > c.samples.length || c.raw > c.samples.length
-      ? `Showing ${c.samples.length} example row${c.samples.length === 1 ? "" : "s"} only — not the full set for this cell. Use “Export selected GeoJSON” or the daily CSV for every record.`
-      : `Example row${c.samples.length === 1 ? "" : "s"} for this cell. Use the GeoJSON/CSV exports for machine-readable detail.`;
+      ? `Showing ${c.samples.length} example row${c.samples.length === 1 ? "" : "s"} only — not the full set for this cell. GeoJSON and daily CSV exports contain aggregate detail; complete original observations remain in the source CSV files.`
+      : `Example row${c.samples.length === 1 ? "" : "s"} for this cell. GeoJSON and daily CSV exports contain aggregate detail; complete original observations remain in the source CSV files.`;
   sources.append(sampleList, note);
   box.append(sources);
 
@@ -582,7 +582,7 @@ function renderMap() {
       class: "map-dot",
       tabindex: i >= cells.length - 20 ? "0" : "-1",
       role: "button",
-      "aria-label": `${c.h3}: ${c.cell_days} cell-days, source type ${c.type}`,
+      "aria-label": `${state.country.replaceAll("_", " ")} · ${monthName(state.month, true)} · ${c.h3}: ${c.cell_days} active cell-days, source type ${c.type}`,
     });
     dot.append(svgNode("title", {}, `${c.h3}: ${c.cell_days} cell-days`));
     dot.onclick = () => showEvidence(c);

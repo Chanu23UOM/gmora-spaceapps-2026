@@ -7,7 +7,7 @@ Evaluated after fast-forwarding `main` from `0fde77d` to upstream `4b39801` on 2
 | Requirement | Source | Package decision |
 | --- | --- | --- |
 | Five-minute live presentation, then five-minute Q&A | Judging guide p. 4 | Replace the earlier ten-minute competition pitch with `LIVE_PITCH_5_MIN.md` and seven slides. |
-| Summary of 50–200 words | Components p. 1; judging guide p. 6 | `SUMMARY.txt`: 138 words. |
+| Summary of 50–200 words | Components p. 1; judging guide p. 6 | `SUMMARY.txt`: 151 words. |
 | Exactly one demo link: at most seven slides, including title, OR a 30-second video with English subtitles | Components p. 1; judging guide p. 7 | Canonical demo is the 30-second subtitled video. The seven-slide deck supports the live pitch, not a second URL in the demo field. |
 | Public access without password, registration, or permission | Components p. 1; judging guide p. 7 | Public artifact links must be checked anonymously after publication; local files alone do not satisfy this. |
 | No under-18 names, voices, or likenesses | Components p. 1; judging guide p. 7 | Product screenshots and abstract visuals only; synthetic adult narrator. No human voice recordings or portraits. |
@@ -16,18 +16,19 @@ Evaluated after fast-forwarding `main` from `0fde77d` to upstream `4b39801` on 2
 | Details: operation, method, benefits, aims, tools | Components p. 1 | Copy-ready project description in `PROJECT_SUBMISSION.md`. |
 | Partner data optional; cite other code/text/images used | Components p. 2 | No CONAE data or agency adoption claimed; bibliography names actual source material and dependencies. |
 
-## Provisional rubric assessment
+## Rubric assessment in the 48-hour context
 
-These are internal estimates to prioritise work, not judge scores or predicted awards.
+The supplied booklets assess a hackathon project and its potential. They do not require a completed participant trial, agency adoption, or an operational deployment. No numerical judge score is predicted here.
 
-| Criterion | Estimate / 10 | Evidence | Remaining weakness |
-| --- | ---: | --- | --- |
-| Impact | 6 | Useful analyst tasks; Sri Lankan and Argentine cases; portable briefs and evidence | No measured user benefit, adoption, or operational impact; two-country scope |
-| Creativity | 7 | Shared observation unit plus evidence drilldown, sensor-removal checks, and an abstaining model gate | Integrated workflow is a proposed differentiator; worldwide novelty unproven |
-| Validity | 7 | 41 automated tests passed; source provenance; historical held-out evaluations; explicit failed gates | Observation opportunity unknown; true-fire accuracy unvalidated; UI study and independent policy review not run |
-| Relevance | 8 | NASA MODIS/VIIRS core data, common units, calendar, region/time selection, exports, historical sensor experiments | Full operational historical harmonization, climate baselines, and sensor-transition continuity unvalidated |
-| Presentation | 8 | Seven clear slides; 541-word script; actual UI and measured results; concise ask | Rehearsal and public-link verification required; do not submit the older ten-minute video as the 30-second demo |
-| Total | 36 / 50 | Internal assessment only | No score guarantee |
+| Criterion | Evidence achievable and demonstrated | Honest next step |
+| --- | --- | --- |
+| Impact | Clear analyst/reporting tasks in Sri Lanka and Argentina; portable source-backed briefs | Measure user benefit with analysts after the event |
+| Creativity | Shared observation unit, inspectable source evidence, source-removal tests and explicit model abstention | Compare the integrated workflow with alternatives; no worldwide novelty claim |
+| Validity | Reproducible inputs, 44 passing tests, 14 browser checks, historical mapping results, exploratory switch diagnostics | Add observation opportunity and independent references before operational/climate claims |
+| Relevance | NASA MODIS/VIIRS are the core data; region/month calendar, map, exports, and mappings tested against a VIIRS reference | Extend to real sensor transitions and a longer validated historical record |
+| Presentation | 151-word summary, seven slides, a five-minute script, a 30-second subtitled narrated video, public source and attribution | Rehearse and confirm the exact pasted public links |
+
+[HACKATHON_EVIDENCE.md](HACKATHON_EVIDENCE.md) contains the measured values and their definitions. Automated checks do not stand in for participant feedback; the human study is future work, not an additional submission prerequisite.
 
 ## Strongest subcategory opportunities
 
@@ -59,3 +60,7 @@ No live alerts, real-fire recall, burned-area estimates, avoided losses, survey 
 - `node --check web_app/app.js`: passed.
 - Updated UI screenshots captured from the local app after pulling upstream.
 - Final presentation page count, summary length, narration/media duration, public access, and render checks recorded in `PACKAGE_VALIDATION.json`.
+
+## Follow-up technical proof
+
+The subsequent 48-hour audit is in `HACKATHON_EVIDENCE.md`; it adds the four fixed-mapping comparisons and exploratory transition diagnostics, 14 browser checks, and narrow evidence/accessibility fixes. Current regression suite: 44 tests passed.

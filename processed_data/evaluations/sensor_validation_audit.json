@@ -1,0 +1,490 @@
+{
+  "countries": [
+    {
+      "country": "Sri_Lanka",
+      "outer_folds": [
+        {
+          "MAE_reduction_vs_identity": 0.2952980860642883,
+          "calibration_year": 2022,
+          "identity_MAE": 22.84109589041096,
+          "identity_transition": {
+            "boundaries": [
+              {
+                "boundary": "2023-02-01",
+                "reference_relative_jump": 1.4285714285714286
+              },
+              {
+                "boundary": "2023-03-01",
+                "reference_relative_jump": 11.714285714285715
+              },
+              {
+                "boundary": "2023-04-01",
+                "reference_relative_jump": 11.571428571428573
+              },
+              {
+                "boundary": "2023-05-01",
+                "reference_relative_jump": 1.0
+              },
+              {
+                "boundary": "2023-06-01",
+                "reference_relative_jump": 9.571428571428573
+              },
+              {
+                "boundary": "2023-07-01",
+                "reference_relative_jump": 26.285714285714285
+              },
+              {
+                "boundary": "2023-08-01",
+                "reference_relative_jump": 75.99999999999999
+              },
+              {
+                "boundary": "2023-09-01",
+                "reference_relative_jump": 95.42857142857143
+              },
+              {
+                "boundary": "2023-10-01",
+                "reference_relative_jump": 29.42857142857143
+              },
+              {
+                "boundary": "2023-11-01",
+                "reference_relative_jump": 0.8571428571428572
+              },
+              {
+                "boundary": "2023-12-01",
+                "reference_relative_jump": 0.0
+              }
+            ],
+            "mean_absolute_reference_relative_jump": 23.935064935064933,
+            "simulated_boundaries": 11
+          },
+          "selected_MAE": 16.09616399036172,
+          "selected_MAE_on_zero_MODIS_days": 6.5521269759670995,
+          "selected_mapping": "monthly_quantile_mapping",
+          "selected_transition": {
+            "boundaries": [
+              {
+                "boundary": "2023-02-01",
+                "reference_relative_jump": 0.4285714285714286
+              },
+              {
+                "boundary": "2023-03-01",
+                "reference_relative_jump": -7.065162907268172
+              },
+              {
+                "boundary": "2023-04-01",
+                "reference_relative_jump": -13.444700460829493
+              },
+              {
+                "boundary": "2023-05-01",
+                "reference_relative_jump": -7.246428571428574
+              },
+              {
+                "boundary": "2023-06-01",
+                "reference_relative_jump": 6.670506912442396
+              },
+              {
+                "boundary": "2023-07-01",
+                "reference_relative_jump": 10.801190476190474
+              },
+              {
+                "boundary": "2023-08-01",
+                "reference_relative_jump": 41.40408986175116
+              },
+              {
+                "boundary": "2023-09-01",
+                "reference_relative_jump": 5.593250203307122
+              },
+              {
+                "boundary": "2023-10-01",
+                "reference_relative_jump": -14.282142857142837
+              },
+              {
+                "boundary": "2023-11-01",
+                "reference_relative_jump": -11.599078341013827
+              },
+              {
+                "boundary": "2023-12-01",
+                "reference_relative_jump": 0.0
+              }
+            ],
+            "mean_absolute_reference_relative_jump": 10.775920183631408,
+            "simulated_boundaries": 11
+          },
+          "selection_years": [
+            2020,
+            2021
+          ],
+          "test_days": 365,
+          "test_year": 2023,
+          "zero_MODIS_but_positive_VIIRS_days": 149,
+          "zero_MODIS_days": 251
+        },
+        {
+          "MAE_reduction_vs_identity": 0.18452975615685374,
+          "calibration_year": 2023,
+          "identity_MAE": 19.193989071038253,
+          "identity_transition": {
+            "boundaries": [
+              {
+                "boundary": "2024-02-01",
+                "reference_relative_jump": 3.7142857142857144
+              },
+              {
+                "boundary": "2024-03-01",
+                "reference_relative_jump": 21.714285714285715
+              },
+              {
+                "boundary": "2024-04-01",
+                "reference_relative_jump": 29.142857142857146
+              },
+              {
+                "boundary": "2024-05-01",
+                "reference_relative_jump": 4.857142857142858
+              },
+              {
+                "boundary": "2024-06-01",
+                "reference_relative_jump": 0.5714285714285714
+              },
+              {
+                "boundary": "2024-07-01",
+                "reference_relative_jump": 6.0
+              },
+              {
+                "boundary": "2024-08-01",
+                "reference_relative_jump": 30.0
+              },
+              {
+                "boundary": "2024-09-01",
+                "reference_relative_jump": 42.42857142857142
+              },
+              {
+                "boundary": "2024-10-01",
+                "reference_relative_jump": 93.57142857142858
+              },
+              {
+                "boundary": "2024-11-01",
+                "reference_relative_jump": 3.4285714285714284
+              },
+              {
+                "boundary": "2024-12-01",
+                "reference_relative_jump": 0.0
+              }
+            ],
+            "mean_absolute_reference_relative_jump": 21.4025974025974,
+            "simulated_boundaries": 11
+          },
+          "selected_MAE": 15.652126948082248,
+          "selected_MAE_on_zero_MODIS_days": 7.453952228515145,
+          "selected_mapping": "monthly_quantile_mapping",
+          "selected_transition": {
+            "boundaries": [
+              {
+                "boundary": "2024-02-01",
+                "reference_relative_jump": -0.14285714285714324
+              },
+              {
+                "boundary": "2024-03-01",
+                "reference_relative_jump": 7.731092436974793
+              },
+              {
+                "boundary": "2024-04-01",
+                "reference_relative_jump": 13.142857142857146
+              },
+              {
+                "boundary": "2024-05-01",
+                "reference_relative_jump": -5.919047619047619
+              },
+              {
+                "boundary": "2024-06-01",
+                "reference_relative_jump": -3.0
+              },
+              {
+                "boundary": "2024-07-01",
+                "reference_relative_jump": -3.052380952380953
+              },
+              {
+                "boundary": "2024-08-01",
+                "reference_relative_jump": 6.981720430107522
+              },
+              {
+                "boundary": "2024-09-01",
+                "reference_relative_jump": -6.961597542242707
+              },
+              {
+                "boundary": "2024-10-01",
+                "reference_relative_jump": 56.60714285714289
+              },
+              {
+                "boundary": "2024-11-01",
+                "reference_relative_jump": 1.4285714285714284
+              },
+              {
+                "boundary": "2024-12-01",
+                "reference_relative_jump": 0.0
+              }
+            ],
+            "mean_absolute_reference_relative_jump": 9.5424788683802,
+            "simulated_boundaries": 11
+          },
+          "selection_years": [
+            2020,
+            2021,
+            2022
+          ],
+          "test_days": 366,
+          "test_year": 2024,
+          "zero_MODIS_but_positive_VIIRS_days": 161,
+          "zero_MODIS_days": 262
+        }
+      ]
+    },
+    {
+      "country": "Argentina",
+      "outer_folds": [
+        {
+          "MAE_reduction_vs_identity": 0.6138273522305691,
+          "calibration_year": 2022,
+          "identity_MAE": 285.3232876712329,
+          "identity_transition": {
+            "boundaries": [
+              {
+                "boundary": "2023-02-01",
+                "reference_relative_jump": 209.8571428571429
+              },
+              {
+                "boundary": "2023-03-01",
+                "reference_relative_jump": 360.2857142857143
+              },
+              {
+                "boundary": "2023-04-01",
+                "reference_relative_jump": 131.14285714285714
+              },
+              {
+                "boundary": "2023-05-01",
+                "reference_relative_jump": 176.71428571428572
+              },
+              {
+                "boundary": "2023-06-01",
+                "reference_relative_jump": 101.42857142857142
+              },
+              {
+                "boundary": "2023-07-01",
+                "reference_relative_jump": 197.71428571428572
+              },
+              {
+                "boundary": "2023-08-01",
+                "reference_relative_jump": 303.42857142857144
+              },
+              {
+                "boundary": "2023-09-01",
+                "reference_relative_jump": 868.1428571428572
+              },
+              {
+                "boundary": "2023-10-01",
+                "reference_relative_jump": 410.8571428571428
+              },
+              {
+                "boundary": "2023-11-01",
+                "reference_relative_jump": 166.85714285714283
+              },
+              {
+                "boundary": "2023-12-01",
+                "reference_relative_jump": 102.85714285714285
+              }
+            ],
+            "mean_absolute_reference_relative_jump": 275.38961038961037,
+            "simulated_boundaries": 11
+          },
+          "selected_MAE": 110.18404947027902,
+          "selected_MAE_on_zero_MODIS_days": null,
+          "selected_mapping": "monthly_ratio",
+          "selected_transition": {
+            "boundaries": [
+              {
+                "boundary": "2023-02-01",
+                "reference_relative_jump": 33.3996486011624
+              },
+              {
+                "boundary": "2023-03-01",
+                "reference_relative_jump": 39.19737798031838
+              },
+              {
+                "boundary": "2023-04-01",
+                "reference_relative_jump": 9.843219960322415
+              },
+              {
+                "boundary": "2023-05-01",
+                "reference_relative_jump": 12.805752692660917
+              },
+              {
+                "boundary": "2023-06-01",
+                "reference_relative_jump": -15.30773893715903
+              },
+              {
+                "boundary": "2023-07-01",
+                "reference_relative_jump": 4.2170240247998265
+              },
+              {
+                "boundary": "2023-08-01",
+                "reference_relative_jump": -49.295062002682585
+              },
+              {
+                "boundary": "2023-09-01",
+                "reference_relative_jump": -232.5527552157987
+              },
+              {
+                "boundary": "2023-10-01",
+                "reference_relative_jump": -99.00076459614036
+              },
+              {
+                "boundary": "2023-11-01",
+                "reference_relative_jump": 46.17750116563292
+              },
+              {
+                "boundary": "2023-12-01",
+                "reference_relative_jump": -10.053086486584021
+              }
+            ],
+            "mean_absolute_reference_relative_jump": 50.16817560575105,
+            "simulated_boundaries": 11
+          },
+          "selection_years": [
+            2020,
+            2021
+          ],
+          "test_days": 365,
+          "test_year": 2023,
+          "zero_MODIS_but_positive_VIIRS_days": 0,
+          "zero_MODIS_days": 0
+        },
+        {
+          "MAE_reduction_vs_identity": 0.5034999295535892,
+          "calibration_year": 2023,
+          "identity_MAE": 278.3606557377049,
+          "identity_transition": {
+            "boundaries": [
+              {
+                "boundary": "2024-02-01",
+                "reference_relative_jump": 268.2857142857143
+              },
+              {
+                "boundary": "2024-03-01",
+                "reference_relative_jump": 76.28571428571429
+              },
+              {
+                "boundary": "2024-04-01",
+                "reference_relative_jump": 238.28571428571428
+              },
+              {
+                "boundary": "2024-05-01",
+                "reference_relative_jump": 50.0
+              },
+              {
+                "boundary": "2024-06-01",
+                "reference_relative_jump": 91.28571428571428
+              },
+              {
+                "boundary": "2024-07-01",
+                "reference_relative_jump": 174.2857142857143
+              },
+              {
+                "boundary": "2024-08-01",
+                "reference_relative_jump": 408.71428571428567
+              },
+              {
+                "boundary": "2024-09-01",
+                "reference_relative_jump": 711.4285714285713
+              },
+              {
+                "boundary": "2024-10-01",
+                "reference_relative_jump": 492.57142857142856
+              },
+              {
+                "boundary": "2024-11-01",
+                "reference_relative_jump": 399.28571428571433
+              },
+              {
+                "boundary": "2024-12-01",
+                "reference_relative_jump": 88.0
+              }
+            ],
+            "mean_absolute_reference_relative_jump": 272.5844155844156,
+            "simulated_boundaries": 11
+          },
+          "selected_MAE": 138.20608518327958,
+          "selected_MAE_on_zero_MODIS_days": 15.5,
+          "selected_mapping": "monthly_ratio",
+          "selected_transition": {
+            "boundaries": [
+              {
+                "boundary": "2024-02-01",
+                "reference_relative_jump": 70.96885970615006
+              },
+              {
+                "boundary": "2024-03-01",
+                "reference_relative_jump": 12.724952351229945
+              },
+              {
+                "boundary": "2024-04-01",
+                "reference_relative_jump": -22.884275942099862
+              },
+              {
+                "boundary": "2024-05-01",
+                "reference_relative_jump": 5.720750782064634
+              },
+              {
+                "boundary": "2024-06-01",
+                "reference_relative_jump": -57.887063967303476
+              },
+              {
+                "boundary": "2024-07-01",
+                "reference_relative_jump": 8.281627600840892
+              },
+              {
+                "boundary": "2024-08-01",
+                "reference_relative_jump": -150.81665273502017
+              },
+              {
+                "boundary": "2024-09-01",
+                "reference_relative_jump": -220.36869958451962
+              },
+              {
+                "boundary": "2024-10-01",
+                "reference_relative_jump": -170.75073717602106
+              },
+              {
+                "boundary": "2024-11-01",
+                "reference_relative_jump": -25.340725817549355
+              },
+              {
+                "boundary": "2024-12-01",
+                "reference_relative_jump": 17.621175299388042
+              }
+            ],
+            "mean_absolute_reference_relative_jump": 69.39686554201701,
+            "simulated_boundaries": 11
+          },
+          "selection_years": [
+            2020,
+            2021,
+            2022
+          ],
+          "test_days": 366,
+          "test_year": 2024,
+          "zero_MODIS_but_positive_VIIRS_days": 4,
+          "zero_MODIS_days": 4
+        }
+      ]
+    }
+  ],
+  "input_sha256": {
+    "Argentina": "42eef859d623767291d28872613460b7f8fd5f7fbba0bfdf3be91d5efc3f42be",
+    "Sri_Lanka": "ccc996332d603a50175695e0b04cdc6ed5082f7f26c9107989c914367039ced7"
+  },
+  "protocol_sha256": "2ecdcf9c8be4ee3b104960c9bd50d707e01b4b69cb7eaabaab3781a1967c2823",
+  "reference": "VIIRS-only recorded active-cell union, not ground truth",
+  "release_status": "research_only; no climate-trend or operational warning validation",
+  "schema_version": 1,
+  "status": "exploratory_audit_of_spent_holdouts",
+  "transition_scope": "Simulated month-boundary switch to VIIRS; zero error after switch is by construction. Not a real retirement test."
+}
