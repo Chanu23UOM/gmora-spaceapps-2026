@@ -655,6 +655,152 @@ function renderPeakMetric() {
     `${fmt(peakMonth.total)} ${unitLabel()} · Peak day: ${peakDayShort} (${fmt(peakDay[state.mode])})`;
 }
 
+// Build the selected-period brief from the same payload and selection the
+// dashboard figures use, so every stated number reconciles with what is shown.
+function periodBriefModel() {
+  const days = rangeDays();
+  const sum = (k) => days.reduce((n, d) => n + (d[k] || 0), 0);
+  const year = state.data.year || 2025;
+  const countryLabel = state.country.replaceAll("_", " ");
+  const period = monthName(state.month, true);
+  const cellDays = sum("active_cells");
+  const raw = sum("raw");
+  const sourceCellDays = Object.keys(sourceLabels).map((s) => ({
+    label: sourceLabels[s],
+    value: days.reduce((n, d) => n + ((d.source_cells || {})[s] || 0), 0),
+  }));
+  const recordedDays = days.filter((d) => (d.active_cells || 0) > 0).length;
+  const peak = days.reduce(
+    (best, cur) => ((cur.active_cells || 0) > (best?.active_cells || 0) ? cur : best),
+    null,
+  );
+  const observations = [
+    { label: "Raw detections (all CSV rows)", value: fmt(raw) },
+    { label: "Quality-filtered vegetation active cell-days", value: fmt(cellDays) },
+    {
+      label: "Active cell-days seen by more than one source stream",
+      value: fmt(sum("multi_sensor_cells")),
+    },
+    {
+      label: "Static thermal detections (type 2, excluded)",
+      value: fmt(sum("industrial_raw")),
+    },
+    {
+      label: "Days with at least one qualifying detection",
+      value: `${fmt(recordedDays)} of ${fmt(days.length)}`,
+    },
+  ];
+  if (peak && (peak.active_cells || 0) > 0) {
+    observations.push({
+      label: "Highest recorded day",
+      value: `${peak.date} (${fmt(peak.active_cells)} active cell-days)`,
+    });
+  }
+  return {
+    title: `${countryLabel} · ${period}`,
+    source: `NASA FIRMS ${year} country archive CSVs — MODIS (Terra, Aqua), VIIRS (S-NPP), VIIRS (NOAA-20).`,
+    coverage: days.length
+      ? `Selected period: ${days[0].date} to ${days[days.length - 1].date} (UTC days).`
+      : "Selected period contains no archive days.",
+    observations,
+    sourceCellDays,
+    unit:
+      "An active cell-day is one H3 resolution-8 grid cell (~0.74 km²) with at least one quality-filtered vegetation detection in one UTC day. It merges overlapping pixels and repeat satellite passes into a single daily unit.",
+    limitation: state.data.limitations[0],
+    coverageLimit:
+      "Cloud and overpass coverage masks are unavailable in these files, so a zero means no qualifying detections were recorded — not confirmed absence of fire.",
+    notClaimed:
+      "This brief does not state a number of distinct fires, a burned area, a cause of any detection, or an emergency level.",
+    separation:
+      "Forecast estimates and synthetic MiroFish discussion findings are not part of this brief; they are kept in Research & scenarios and are research-only.",
+    runId: state.manifest?.run_id ?? "unknown",
+  };
+}
+
+function renderPeriodBrief() {
+  const model = periodBriefModel();
+  const body = $("brief-body");
+  body.replaceChildren();
+  $("brief-heading").textContent = `What was recorded in ${monthName(state.month, true)}.`;
+
+  const head = document.createElement("p");
+  head.className = "brief-title";
+  head.textContent = model.title;
+  const src = document.createElement("p");
+  src.className = "brief-meta";
+  src.textContent = `${model.source} ${model.coverage}`;
+  body.append(head, src);
+
+  const list = document.createElement("dl");
+  list.className = "brief-list";
+  for (const row of model.observations) {
+    const dt = document.createElement("dt");
+    dt.textContent = row.label;
+    const dd = document.createElement("dd");
+    dd.textContent = row.value;
+    list.append(dt, dd);
+  }
+  body.append(list);
+
+  const streams = document.createElement("p");
+  streams.className = "brief-meta";
+  streams.textContent = `Active cell-days per source stream: ${model.sourceCellDays
+    .map((s) => `${s.label} ${fmt(s.value)}`)
+    .join(" · ")}. Streams overlap, so these do not sum to the combined total.`;
+  body.append(streams);
+
+  for (const [cls, text] of [
+    ["brief-note", model.unit],
+    ["brief-note", model.limitation],
+    ["brief-note", model.coverageLimit],
+    ["brief-caution", model.notClaimed],
+    ["brief-caution", model.separation],
+  ]) {
+    const p = document.createElement("p");
+    p.className = cls;
+    p.textContent = text;
+    body.append(p);
+  }
+  const run = document.createElement("p");
+  run.className = "brief-meta";
+  run.textContent = `Build run ${model.runId} · research prototype · not an operational warning.`;
+  body.append(run);
+}
+
+function periodBriefMarkdown() {
+  const model = periodBriefModel();
+  return [
+    `# PyroSync selected-period brief — ${model.title}`,
+    "",
+    "Research prototype. Observations only; not an operational warning.",
+    "",
+    `Source: ${model.source}`,
+    model.coverage,
+    "",
+    "## What was recorded",
+    "",
+    ...model.observations.map((row) => `- ${row.label}: ${row.value}`),
+    "",
+    `- Active cell-days per source stream: ${model.sourceCellDays
+      .map((s) => `${s.label} ${fmt(s.value)}`)
+      .join("; ")}. Streams overlap and do not sum to the combined total.`,
+    "",
+    "## How to read the unit",
+    "",
+    model.unit,
+    "",
+    "## Limitations",
+    "",
+    `- ${model.limitation}`,
+    `- ${model.coverageLimit}`,
+    `- ${model.notClaimed}`,
+    `- ${model.separation}`,
+    "",
+    `Build run: ${model.runId}`,
+    "",
+  ].join("\n");
+}
+
 function renderMonth() {
   if (!state.data) return;
   const days = rangeDays();
@@ -672,6 +818,10 @@ function renderMonth() {
   renderPeakMetric();
   renderCalendar();
   renderActivity();
+  renderPeriodBrief();
+  $("brief-csv-link").href = `data/${state.country}_daily.csv`;
+  $("brief-csv-link").textContent =
+    `Daily CSV for ${state.country.replaceAll("_", " ")} ↓`;
   loadMap();
 }
 
@@ -893,6 +1043,34 @@ for (const [id, mode] of [
     $("raw-mode").setAttribute("aria-pressed", String(mode === "raw"));
   };
 }
+
+$("period-brief-toggle").onclick = () => {
+  const panel = $("period-brief");
+  const open = panel.hidden;
+  panel.hidden = !open;
+  $("period-brief-toggle").setAttribute("aria-expanded", String(open));
+  $("period-brief-toggle").textContent = open
+    ? "Hide period brief"
+    : "Show period brief";
+};
+$("brief-period-download").onclick = () =>
+  download(
+    `${state.country}_${state.month}_period_brief.md`,
+    periodBriefMarkdown(),
+    "text/markdown",
+  );
+$("brief-period-print").onclick = () => {
+  // Make sure the reader prints what they can see on screen.
+  if ($("period-brief").hidden) $("period-brief-toggle").click();
+  document.body.classList.add("printing-brief");
+  const cleanup = () => {
+    document.body.classList.remove("printing-brief");
+    window.removeEventListener("afterprint", cleanup);
+  };
+  window.addEventListener("afterprint", cleanup);
+  window.print();
+  setTimeout(cleanup, 1000);
+};
 
 $("brief-download").onclick = async () => {
   const response = await fetch(`data/${state.country}_brief.md`);

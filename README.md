@@ -27,9 +27,21 @@ python3 -m venv .venv
 .venv/bin/python -m pyrosync.server --port 8765
 ```
 
+## Two-minute demo
+
+The dashboard has three views: **Overview**, **Explore map & sensors**, and **Research & scenarios**. The core observation walkthrough needs no API key, account or paid service.
+
+1. **Choose a region.** Pick Sri Lanka or Argentina and a month in the controls at the top. Every view follows that selection.
+2. **Inspect the period.** Read the selected-period figures and the activity calendar, then open **Show period brief** for a short plain-language account of what the archive recorded, in what unit, and what it does not establish.
+3. **Understand a source discrepancy.** Open **Explore map & sensors** and select a mapped cell. The inspection panel explains which instruments contributed and why raw detections and active cell-days differ, with source timestamps and CSV row references behind optional disclosures.
+4. **Export.** Download the period brief, the daily CSV, or the selected month's GeoJSON.
+
+The same tour is available in the dashboard under **Two-minute guided tour** in the header. Forecast evaluation and synthetic MiroFish communication scenarios live in **Research & scenarios** and are research-only; they are deliberately kept out of the observation brief.
+
 ## What works
 
 - Daily calendar, raw-count comparison, month/region selection, static-source toggle and monthly geographic evidence inspector.
+- Selected-period brief for the chosen country and month: source files and dates, supported observation counts, the activity unit, limitations, and printable/downloadable output computed from the same payload the dashboard displays.
 - H3 resolution-8 active cell-day union, across Terra/Aqua MODIS, S-NPP VIIRS and NOAA-20 VIIRS. Map points aggregate these units into resolution-7 parents.
 - Confidence/type filtering, source-row examples, input hashes, method manifest and CSV/GeoJSON downloads.
 - Sensor-dropout counterfactuals and grid/confidence sensitivity experiments.
